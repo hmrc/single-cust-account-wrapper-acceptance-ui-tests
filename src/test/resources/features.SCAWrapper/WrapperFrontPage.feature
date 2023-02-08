@@ -47,6 +47,7 @@ Feature: Wrapper integrating with sca-frontend
     Given User login to the GG Login Page
     Then User should see Cookies, Accessibility statement, Privacy policy, Terms and conditions, Help using GOV.UK, Contact and Rhestr o Wasanaethau Cymraeg links in the footer
 
+
   Scenario: User should be able to see the content in Welsh language
     Given User login to the GG Login Page
     When the user clicks on 'Cymraeg' welesh language link

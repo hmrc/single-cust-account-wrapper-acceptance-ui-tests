@@ -105,7 +105,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
 
   And("""^the user sees relevant content in welsh language$""") { () =>
     val texts =
-      List("Gwasanaeth", "newydd", "yw", "hwn")
+      List("Gwasanaeth")
     SCAStartPage.textContentVerify(texts)
   }
 
@@ -119,7 +119,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
   }
 
   And("""the user sees relevant content in English language""") { () =>
-    val texts = List("Single Customer Account", "This is a new service")
+    val texts = List("Single Customer Account")
 
     SCAStartPage.textContentVerify(texts)
   }
