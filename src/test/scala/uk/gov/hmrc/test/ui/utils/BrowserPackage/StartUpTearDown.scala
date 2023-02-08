@@ -14,17 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.cucumber.runner
+package uk.gov.hmrc.test.ui.utils.BrowserPackage
 
-import io.cucumber.junit.Cucumber
-import io.cucumber.junit.CucumberOptions
-import org.junit.runner.RunWith
+import uk.gov.hmrc.test.ui.pages.config.Configuration
 
-@RunWith(classOf[Cucumber])
-@CucumberOptions(
-  features = Array("src/test/resources/features.SCAWrapper"),
-  glue = Array("uk.gov.hmrc.test.ui.cucumber.stepdefs"),
-  plugin = Array("pretty", "html:target/cucumber", "json:target/cucumber.json", "junit:target/test-reports/Runner.xml"),
-  tags = "@suite"
-)
-class Runner {}
+import java.util.concurrent.TimeUnit
+
+trait StartUpTearDown {
+
+  def driver                  = Driver.webDriver
+  implicit lazy val webDriver = driver
+  driver
+    .manage()
+    .timeouts()
+    .implicitlyWait(Configuration.settings.PAGE_TIMEOUT_SECS, TimeUnit.SECONDS)
+}
