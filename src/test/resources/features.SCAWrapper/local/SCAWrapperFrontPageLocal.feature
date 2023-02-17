@@ -60,7 +60,7 @@ Feature: Wrapper integrating with sca-frontend
     And the user sees relevant content in English language
 
 
-    @suite1
+
   Scenario: User login with PTA enrolment and then verify all the menu links should redirecting to desired page
       Given User login to the GG Login Page with PTA enrolment
       When the user clicks on Account Home menu
