@@ -13,10 +13,12 @@ Feature: Wrapper integrating with sca-frontend
     When SA enrolment is applied
     Then User should see Business tax account menu option
 
+
   Scenario: User logins to SCA web application and should see following menu items.
     Given User login to the GG Login Page Without SA enrollment
     Then User should see following option in menu Account Home, Messages, Check progress, Profile and settings and Sign out
     Then User should also see Account Home icon besides account home menu option
+    Then User should not see Business tax account menu option
 
 
   Scenario: The Phase banner if it is shown should only be positioned at the bottom of the page directly above the footer and feedback link should be redirect to 'Send your feedback' Page
@@ -58,6 +60,7 @@ Feature: Wrapper integrating with sca-frontend
     And the user sees relevant content in English language
 
 
+    @suite1
   Scenario: User login with PTA enrolment and then verify all the menu links should redirecting to desired page
       Given User login to the GG Login Page with PTA enrolment
       When the user clicks on Account Home menu
