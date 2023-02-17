@@ -15,9 +15,10 @@ CHROME_PARENT_DIR="/usr/local/bin/"
 CHROME_DOWNLOAD_URL="http://chromedriver.storage.googleapis.com/$CHROME_VERSION/chromedriver_${OS}.zip"
 CHROME_TEMP="/tmp/chromedriver-v${CHROME_VERSION}-${OS}.tar.gz"
 
-wget -N ${CHROME_DOWNLOAD_URL} -P ~/
 unzip ~/chromedriver_${OS}.zip -d ~/
+wget -N ${CHROME_DOWNLOAD_URL} -P ~/
 rm ~/chromedriver_${OS}.zip
 sudo mv -f ~/chromedriver ${CHROME_PARENT_DIR}chromedriver
 sudo chown root:root ${CHROME_PARENT_DIR}chromedriver
 sudo chmod 755 ${CHROME_PARENT_DIR}chromedriver
+

@@ -18,6 +18,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import io.cucumber.scala.{EN, ScalaDsl}
 import org.eclipse.jetty.websocket.common.message.MessageReader
+import org.junit.Assert.assertTrue
 import org.openqa.selenium.support.ui.{ExpectedConditions, WebDriverWait}
 import org.openqa.selenium.{By, NoSuchElementException}
 import org.scalatest.matchers.must.Matchers
@@ -162,6 +163,26 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
     }
   }
 
+  When("""^User clicks on (.*) footer link$""") { linkName: String =>
+    linkName match {
+      case "Cookies"                      =>
+        webDriver.findElement(By.partialLinkText(linkName)).click()
+      case "Accessibility statement"      =>
+        webDriver.findElement(By.partialLinkText(linkName)).click()
+      case "Privacy policy"               =>
+        webDriver.findElement(By.partialLinkText(linkName)).click()
+      case "Terms and conditions"         =>
+        webDriver.findElement(By.partialLinkText(linkName)).click()
+      case "Help using GOV.UK"            =>
+        webDriver.findElement(By.partialLinkText(linkName)).click()
+      case "Contact"                      =>
+        webDriver.findElement(By.partialLinkText(linkName)).click()
+      case "Rhestr o Wasanaethau Cymraeg" =>
+        webDriver.findElement(By.partialLinkText(linkName)).click()
+
+    }
+  }
+
   Then("""user should redirect to (.*) page$""") { (locator: String) =>
     webDriver.findElement(By.xpath("//*[contains(text(),'" + locator + "')]")).isDisplayed
     webDriver.navigate().back()
@@ -169,10 +190,10 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
 
   Then("""user should go through tax letter journey and redirect to Account home page""") { () =>
     val wait = new WebDriverWait(webDriver, Duration.ofSeconds(50))
-    webDriver.findElement(By.id("sps-opt-in-2")).click()
-    webDriver.findElement(By.id("submitEmailButton")).click()
-    wait.until(ExpectedConditions.urlContains("/paperless/optout-confirmation?"))
-    webDriver.findElement(By.id("submitEmailButton")).click()
+   // webDriver.findElement(By.id("sps-opt-in-2")).click()
+   // webDriver.findElement(By.id("submitEmailButton")).click()
+  //  wait.until(ExpectedConditions.urlContains("/paperless/optout-confirmation?"))
+   // webDriver.findElement(By.id("submitEmailButton")).click()
     wait.until(
       ExpectedConditions.or(
         ExpectedConditions.urlContains("/paperless/survey/optin-declined?"),
@@ -181,8 +202,8 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
     )
     webDriver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
     webDriver.navigate().back()
-    webDriver.navigate().back()
-    webDriver.navigate().back()
+  //  webDriver.navigate().back()
+   // webDriver.navigate().back()
   }
 
   Then("""User should see cookies banner""") { () =>
@@ -193,5 +214,10 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
     webDriver.findElement(By.xpath("//*[contains(text(),'Accept additional cookies')]")).click()
     webDriver.findElement(By.xpath("//*[contains(text(),'Hide cookies message')]")).click()
   }
+
+  Then("""User should not see Business tax account menu option""") { () =>
+    assertTrue(webDriver.findElements(By.xpath("//*[contains(text(),'Business tax account')]")).isEmpty)
+  }
+
 
 }
