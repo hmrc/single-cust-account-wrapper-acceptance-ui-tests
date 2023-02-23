@@ -16,8 +16,8 @@ Feature: Wrapper integrating with sca-frontend
 
   Scenario: User logins to SCA web application and should see following menu items.
     Given User login to the GG Login Page Without SA enrollment
-    Then User should see following option in menu Account Home, Messages, Check progress, Profile and settings and Sign out
-    Then User should also see Account Home icon besides account home menu option
+    Then User should see following option in menu Account home, Messages, Check progress, Profile and settings and Sign out
+    Then User should also see Account home icon besides account home menu option
     Then User should not see Business tax account menu option
 
 
@@ -63,7 +63,7 @@ Feature: Wrapper integrating with sca-frontend
 
   Scenario: User login with PTA enrolment and then verify all the menu links should redirecting to desired page
       Given User login to the GG Login Page with PTA enrolment
-      When the user clicks on Account Home menu
+      When the user clicks on Account home menu
       Then user should go through tax letter journey and redirect to Account home page
       When the user clicks on Messages menu
       Then user should redirect to Messages page
