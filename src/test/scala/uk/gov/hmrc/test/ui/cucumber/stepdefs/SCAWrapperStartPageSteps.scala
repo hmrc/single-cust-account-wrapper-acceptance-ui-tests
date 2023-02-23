@@ -149,7 +149,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
 
   When("""^the user clicks on (.*) menu$""") { linkName: String =>
     linkName match {
-      case "Account Home"         =>
+      case "Account home"         =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
       case "Messages"             =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
