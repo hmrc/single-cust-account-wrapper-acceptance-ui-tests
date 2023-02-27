@@ -61,7 +61,6 @@ Feature: Wrapper integrating with sca-frontend
     Then the user can not click language 'English' link
     And the user sees relevant content in English language
 
-
   Scenario: User logins to SCA web application should see the cookies banner and able to close it
     And User is on SCA start page
     Then User should see cookies banner
