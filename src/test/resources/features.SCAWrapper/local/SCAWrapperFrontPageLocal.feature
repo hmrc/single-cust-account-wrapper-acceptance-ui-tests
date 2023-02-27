@@ -8,11 +8,6 @@ Feature: Wrapper integrating with sca-frontend
     Then User should see SCA title page Header contain service name as Single Customer Account in govuk-header__content
 
 
-  Scenario: User logins to SCA web application should see the cookies banner and able to close it
-    And User is on SCA start page
-    Then User should see cookies banner
-    Then User should able to close it
-
   Scenario: User logins to SCA web application and BTA menu only shown based on the SA enrolment rule.
     Given User login to the GG Login Page
     And User is on SCA start page
@@ -49,22 +44,6 @@ Feature: Wrapper integrating with sca-frontend
     Then User should see Cookies, Accessibility statement, Privacy policy, Terms and conditions, Help using GOV.UK, Contact and Rhestr o Wasanaethau Cymraeg links in the footer
 
 
-
-
-  Scenario: User login with PTA enrolment and then verify all the menu links should redirecting to desired page
-      Given User login to the GG Login Page with PTA enrolment
-      When the user clicks on Check progress menu
-      Then user should redirect to Track the progress page
-      When the user clicks on Account home menu
-      Then user should go through tax letter journey and redirect to Account home page
-      When the user clicks on Messages menu
-      Then user should redirect to Messages page
-      When the user clicks on Profile and settings menu
-      Then user should redirect to Profile and settings page
-      When the user clicks on Sign out menu
-      Then user should redirect to Give feedback page
-
-
   Scenario: User logins to SCA web application and should see Is this page not working properly? link and this link should lead to a page that says 'Get help with a technical problem'.
     Given User login to the GG Login Page
     Then User should see Is this page not working properly? (opens in new tab) directly above the footer
@@ -81,6 +60,26 @@ Feature: Wrapper integrating with sca-frontend
     When the user clicks on 'English' language link
     Then the user can not click language 'English' link
     And the user sees relevant content in English language
+
+
+  Scenario: User logins to SCA web application should see the cookies banner and able to close it
+    And User is on SCA start page
+    Then User should see cookies banner
+    Then User should able to close it
+
+  Scenario: User login with PTA enrolment and then verify all the menu links should redirecting to desired page
+    Given User login to the GG Login Page with PTA enrolment
+    When the user clicks on Account home menu
+    Then user should go through tax letter journey and redirect to Account home page
+    When the user clicks on Messages menu
+    Then user should redirect to Messages page
+    When the user clicks on Check progress menu
+    Then user should redirect to Track the progress page
+    When the user clicks on Profile and settings menu
+    Then user should redirect to Profile and settings page
+    When the user clicks on Sign out menu
+    Then user should redirect to Give feedback page
+
 
 
 

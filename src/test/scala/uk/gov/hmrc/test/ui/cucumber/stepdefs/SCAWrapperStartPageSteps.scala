@@ -74,6 +74,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
   Then("""Verify redirected URL should contains service name as single-customer-account""") { () =>
     SCAStartPage.VerifyServiceName()
 
+
   }
   Then("""User should see (.*) link in the footer$""") { (Accessibilitystatement: String) =>
     assert(SCAStartPage.AccessibilitystatementLink(Accessibilitystatement))
@@ -108,6 +109,10 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
     val texts =
       List("Hafan y cyfrif","Negeseuon","Gwirio cynnydd","Proffil a gosodiadau","Allgofnodi","Cyfrif treth busnes","Cyfrif Cwsmer Sengl")
     SCAStartPage.textContentVerify(texts)
+    val othertexts =
+      List("Cwcis ar wasanaethau CThEM","Mae‘r holl gynnwys ar gael o dan","Drwydded Llywodraeth Agored v3.0",", oni nodir yn wahanol","A yw’r dudalen hon yn gweithio’n iawn? (yn agor mewn tab newydd)","Cwcis","Polisi preifatrwydd","Telerau ac Amodau","Help wrth ddefnyddio GOV.UK","Cysylltu")
+    SCAStartPage.textContentVerify(othertexts)
+
   }
 
   When("""the user clicks on 'Cymraeg' welesh language link""") { () =>
