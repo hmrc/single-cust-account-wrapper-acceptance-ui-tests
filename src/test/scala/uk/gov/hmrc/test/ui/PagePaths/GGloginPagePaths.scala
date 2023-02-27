@@ -43,7 +43,7 @@ trait SCAStartPagePaths {
   val Feedbacklink               = "./html/body/header/div[2]/div/p/span/a"
   val SCAAccessErrorText         = "govuk-heading-xl"
   val BusinessAccountLink        = "//*[contains(text(),'Business tax account')]"
-  val AccountHomeLink            = "(//*[contains(text(),'Account Home')])[1]"
+  val AccountHomeLink            = "(//*[contains(text(),'Account home')])[1]"
   val AccountHomeIcon            = "//*[@class='hmrc-account-icon hmrc-account-icon--home']"
   val MessagesLink               = "//*[contains(text(),'Messages')]"
   val CheckProgressLink          = "//*[contains(text(),'Check progress')]"

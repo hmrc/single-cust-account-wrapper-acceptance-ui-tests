@@ -106,7 +106,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
 
   And("""^the user sees relevant content in welsh language$""") { () =>
     val texts =
-      List("Gwasanaeth")
+      List("Hafan y cyfrif","Negeseuon","Gwirio cynnydd","Proffil a gosodiadau","Allgofnodi","Cyfrif treth busnes","Cyfrif Cwsmer Sengl")
     SCAStartPage.textContentVerify(texts)
   }
 
@@ -120,7 +120,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
   }
 
   And("""the user sees relevant content in English language""") { () =>
-    val texts = List("Single Customer Account")
+    val texts = List("Single Customer Account","Account home","Messages","Check progress","Profile and settings","Business tax account","Sign out")
 
     SCAStartPage.textContentVerify(texts)
   }
@@ -149,7 +149,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
 
   When("""^the user clicks on (.*) menu$""") { linkName: String =>
     linkName match {
-      case "Account Home"         =>
+      case "Account home"         =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
       case "Messages"             =>
         webDriver.findElement(By.partialLinkText(linkName)).click()

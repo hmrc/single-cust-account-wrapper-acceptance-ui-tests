@@ -70,14 +70,14 @@ object GGLoginPage extends StartUpTearDown with GGloginPagePaths with SCAStartPa
   def clickSubmitButton(): Unit =
     driver.findElement(By.id(submitButton)).click()
 
-  val NINumber                    = "AA999999A"
+  val NINumber                    = "ER872414B"
   val dropdown                    = "presets-dropdown"
   val SelfAssessment              = "SA"
   val addPresent                  = "add-preset"
   val identifierValueForUTRNumber = "input-4-0-value"
   val UTRNumber                   = "1632631936"
   val identifierValueForPTA       = "input-0-0-value"
-  val PTANumber                   = "AA999999A"
+  val PTANumber                   = "ER872414B"
   val EnrolmentKey                = "HMRC-PT"
   val IdentifierName              = "NINO"
 }
