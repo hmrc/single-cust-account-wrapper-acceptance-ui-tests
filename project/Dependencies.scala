@@ -13,6 +13,7 @@ object Dependencies {
     "com.typesafe"         % "config"                  % "1.3.2",
     "com.typesafe.play"   %% "play-ws-standalone-json" % "2.1.2",
     "com.typesafe.play"   %% "play-ahc-ws-standalone"  % "2.1.2",
+    "org.mongodb.scala"   %% "mongo-scala-driver"      % "2.6.0",
     "org.scalaj"          %% "scalaj-http"             % "2.4.2"
   ).map(_ % Test)
 }
