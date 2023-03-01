@@ -1,6 +1,7 @@
 @suite
 Feature: Wrapper integrating with sca-frontend
 
+
   Scenario: User logins to SCA web application and should see default GOV.UK header along with service name so user is reassured they have signed into Government service.
     Given User login to the GG Login Page
     And User is on SCA start page
@@ -66,6 +67,8 @@ Feature: Wrapper integrating with sca-frontend
     Then User should see cookies banner
     Then User should able to close it
 
+
+
   Scenario: User login with PTA enrolment and then verify all the menu links should redirecting to desired page
     Given User login to the GG Login Page with PTA enrolment
     When the user clicks on Account home menu
@@ -81,11 +84,11 @@ Feature: Wrapper integrating with sca-frontend
 
 
 
-
-
-
-
-
-
+  Scenario: Check the messages icon displays correctly
+  Given User login to the GG Login Page with PTA enrolment
+    And A message is posted to the messages API
+  Then the user should see 1 as the number of messages
+  Then the user should see the message on the page after clicking the message
+  Then the user should not see tomato icon beside message menu
 
 

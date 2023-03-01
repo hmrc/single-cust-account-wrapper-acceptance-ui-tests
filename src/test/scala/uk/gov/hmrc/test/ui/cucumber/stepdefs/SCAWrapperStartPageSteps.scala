@@ -23,12 +23,15 @@ import org.openqa.selenium.support.ui.{ExpectedConditions, WebDriverWait}
 import org.openqa.selenium.{By, NoSuchElementException}
 import org.scalatest.matchers.must.Matchers
 import org.scalatestplus.selenium._
+import play.api.libs.json.Json
 import uk.gov.hmrc.test.ui.PagePaths.GGloginPagePaths
 import uk.gov.hmrc.test.ui.pages.GGLoginPage.{AccountHomeIcon, banner}
-import uk.gov.hmrc.test.ui.pages.SCAStartPage
+import uk.gov.hmrc.test.ui.pages.Turnover.convertToAnyShouldWrapper
+import uk.gov.hmrc.test.ui.pages.{MessagesStub, SCAStartPage}
 import uk.gov.hmrc.test.ui.utils.BrowserPackage.Driver.webDriver
 
 import java.time.Duration
+import scala.util.Random
 
 class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBrowser with GGloginPagePaths {
 
@@ -189,26 +192,50 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
   }
 
   Then("""user should redirect to (.*) page$""") { (locator: String) =>
-    webDriver.findElement(By.xpath("//*[contains(text(),'" + locator + "')]")).isDisplayed
-    webDriver.navigate().back()
+    if(webDriver.getCurrentUrl.contains("https://www.qa.tax.service.gov.uk/track"))
+      {
+        webDriver.findElement(By.xpath("//*[contains(text(),'I cannot see my submitted forms')]")).isDisplayed
+      }
+    else
+      {
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + locator + "')]")).isDisplayed
+      }
+
   }
 
   Then("""user should go through tax letter journey and redirect to Account home page""") { () =>
     val wait = new WebDriverWait(webDriver, Duration.ofSeconds(50))
-   // webDriver.findElement(By.id("sps-opt-in-2")).click()
-   // webDriver.findElement(By.id("submitEmailButton")).click()
-  //  wait.until(ExpectedConditions.urlContains("/paperless/optout-confirmation?"))
-   // webDriver.findElement(By.id("submitEmailButton")).click()
-    wait.until(
-      ExpectedConditions.or(
-        ExpectedConditions.urlContains("/paperless/survey/optin-declined?"),
-        ExpectedConditions.urlContains("/personal-account")
-      )
-    )
-    webDriver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
-    webDriver.navigate().back()
-  //  webDriver.navigate().back()
-   // webDriver.navigate().back()
+
+    if (webDriver.getCurrentUrl.contains("/personal-account"))
+      {
+        wait.until(
+          ExpectedConditions.or(
+            ExpectedConditions.urlContains("/paperless/survey/optin-declined?"),
+            ExpectedConditions.urlContains("/personal-account")
+          )
+        )
+        webDriver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
+        webDriver.navigate().back()
+      }
+
+    if (webDriver.getCurrentUrl.contains("paperless/optin?"))
+      {
+        wait.until(
+          ExpectedConditions.or(
+            ExpectedConditions.urlContains("paperless/optin?"),
+            ExpectedConditions.urlContains("/personal-account")
+          )
+        )
+        webDriver.findElement(By.id("sps-opt-in-2")).click()
+        webDriver.findElement(By.id("submitEmailButton")).click()
+        wait.until(ExpectedConditions.urlContains("/paperless/optout-confirmation?"))
+        webDriver.findElement(By.id("submitEmailButton")).click()
+        webDriver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
+        webDriver.navigate().back()
+        webDriver.navigate().back()
+        webDriver.navigate().back()
+      }
+
   }
 
   Then("""User should see cookies banner""") { () =>
@@ -225,4 +252,70 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
   }
 
 
+  And("""A message is posted to the messages API""") {
+
+   val id=  Random.alphanumeric.filter(_.isDigit).take(14).mkString
+    val subject = Random.alphanumeric.filter(_.isLetter).take(4).mkString
+    val stubRequestBody =
+      s"""{
+        |   "externalRef":{
+        |      "id":"${id}",
+        |      "source":"gmc"
+        |   },
+        |   "recipient":{
+        |      "taxIdentifier":{
+        |         "name":"nino",
+        |         "value":"ER872414B"
+        |      },
+        |      "name":{
+        |         "title":"Mr",
+        |         "forename":"BOB",
+        |         "secondForename":"Harry",
+        |         "surname":"JONES",
+        |         "honours":"OBE"
+        |      },
+        |      "email":"someEmail@test.com"
+        |   },
+        |   "messageType":"mailout-batch",
+        |   "subject":"Reminder to file a Self Assessment return ${subject}",
+        |   "content":"Some base64-encoded HTML",
+        |   "validFrom":"2017-02-14",
+        |   "alertQueue":"DEFAULT",
+        |   "details":{
+        |      "formId":"SA300",
+        |      "issueDate":"2017-02-14",
+        |      "statutory":true,
+        |      "paperSent":false,
+        |      "batchId":"1234567",
+        |      "sourceData": "RnVjaw==",
+        |      "replyTo": "5c0a57826b00006b0032d0db"
+        |   }
+        |}""".stripMargin
+    MessagesStub.postMessagesStub(Json.parse(stubRequestBody))
+    System.out.println(id)
+    System.out.println(subject)
+
+  }
+
+
+  And("""^the user should see (.*) as the number of messages$""") { (messages: String) =>
+    webDriver.navigate().refresh()
+    val actualMessagesText =
+      webDriver.findElement(By.className("hmrc-notification-badge")).getText
+    actualMessagesText shouldBe messages
+
+  }
+
+  And("""the user should see the message on the page after clicking the message""") { () =>
+    webDriver.findElement(By.xpath("//*[contains(text(),'Messages')]")).click()
+    webDriver.findElement(By.xpath("//span[@class='govuk-!-font-weight-bold black-text govuk-body']")).click()
+    webDriver.findElement(By.xpath("//p[@class='message_time faded-text--small govuk-hint']")).isDisplayed
+    webDriver.findElement(By.id("back-link")).click()
+
+  }
+
+  And("""^the user should not see tomato icon beside message menu$""") { () =>
+    assertTrue(webDriver.findElements(By.className("hmrc-notification-badge")).isEmpty)
+
+  }
 }
