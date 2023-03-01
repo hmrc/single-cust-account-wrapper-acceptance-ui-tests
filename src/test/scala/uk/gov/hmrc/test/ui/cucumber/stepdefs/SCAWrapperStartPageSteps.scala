@@ -32,6 +32,7 @@ import uk.gov.hmrc.test.ui.utils.BrowserPackage.Driver.webDriver
 import uk.gov.hmrc.test.ui.utils.MongoConnection
 
 import java.time.Duration
+import scala.util.Random
 
 class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBrowser with GGloginPagePaths {
 
@@ -227,7 +228,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
     assertTrue(webDriver.findElements(By.xpath("//*[contains(text(),'Business tax account')]")).isEmpty)
   }
 
-  Then("""^mongoDB is dropped$""") { () =>
+    Then("""^mongoDB is dropped$""") { () =>
     MongoConnection.dropDatabase("pertax-frontend")
     MongoConnection.dropDatabase("enrolment-store-stub")
     MongoConnection.dropDatabase("message")
@@ -238,10 +239,15 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
 
 
   Given("""A message is updated in reactive mongo""") {
+
+   val id=  Random.alphanumeric.filter(_.isDigit).take(14).mkString
+    val subject = Random.alphanumeric.filter(_.isLetter).take(4).mkString
+    //val id = Random.nextString(14)
+    //val subject = Random.nextString(50)
     val stubRequestBody =
-      """{
+      s"""{
         |   "externalRef":{
-        |      "id":"12341234231590",
+        |      "id":"${id}",
         |      "source":"gmc"
         |   },
         |   "recipient":{
@@ -259,7 +265,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
         |      "email":"someEmail@test.com"
         |   },
         |   "messageType":"mailout-batch",
-        |   "subject":"Reminder to file a Self Assessment return",
+        |   "subject":"Reminder to file a Self Assessment return ${subject}",
         |   "content":"Some base64-encoded HTML",
         |   "validFrom":"2017-02-14",
         |   "alertQueue":"DEFAULT",
@@ -274,6 +280,8 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
         |   }
         |}""".stripMargin
     MessagesStub.postMessagesStub(Json.parse(stubRequestBody))
+    System.out.println(id)
+    System.out.println(subject)
 
   }
 

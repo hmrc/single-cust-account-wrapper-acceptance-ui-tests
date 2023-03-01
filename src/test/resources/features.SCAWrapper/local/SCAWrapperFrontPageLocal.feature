@@ -2,7 +2,7 @@
 Feature: Wrapper integrating with sca-frontend
 
   Background:
-    Given mongoDB is dropped
+   # Given mongoDB is dropped
     And A message is updated in reactive mongo
 
   Scenario: User logins to SCA web application and should see default GOV.UK header along with service name so user is reassured they have signed into Government service.
