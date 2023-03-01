@@ -82,7 +82,7 @@ Feature: Wrapper integrating with sca-frontend
     Then user should redirect to Give feedback page
 
 
-    @suite1
+
   Scenario: Check the messages icon displays correctly
   Given User login to the GG Login Page with PTA enrolment
     And A message is posted to the messages API
