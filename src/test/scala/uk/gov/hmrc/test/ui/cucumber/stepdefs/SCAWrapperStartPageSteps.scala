@@ -29,7 +29,6 @@ import uk.gov.hmrc.test.ui.pages.GGLoginPage.{AccountHomeIcon, banner}
 import uk.gov.hmrc.test.ui.pages.Turnover.convertToAnyShouldWrapper
 import uk.gov.hmrc.test.ui.pages.{MessagesStub, SCAStartPage}
 import uk.gov.hmrc.test.ui.utils.BrowserPackage.Driver.webDriver
-import uk.gov.hmrc.test.ui.utils.MongoConnection
 
 import java.time.Duration
 import scala.util.Random
@@ -228,22 +227,11 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
     assertTrue(webDriver.findElements(By.xpath("//*[contains(text(),'Business tax account')]")).isEmpty)
   }
 
-    Then("""^mongoDB is dropped$""") { () =>
-    MongoConnection.dropDatabase("pertax-frontend")
-    MongoConnection.dropDatabase("enrolment-store-stub")
-    MongoConnection.dropDatabase("message")
-    MongoConnection.dropDatabase("pay-api")
-    MongoConnection.dropDatabase("citizen-details")
-    MongoConnection.dropDatabase("keystore")
-  }
 
-
-  Given("""A message is updated in reactive mongo""") {
+  And("""A message is posted to the messages API""") {
 
    val id=  Random.alphanumeric.filter(_.isDigit).take(14).mkString
     val subject = Random.alphanumeric.filter(_.isLetter).take(4).mkString
-    //val id = Random.nextString(14)
-    //val subject = Random.nextString(50)
     val stubRequestBody =
       s"""{
         |   "externalRef":{
@@ -287,6 +275,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
 
 
   And("""^the user should see (.*) as the number of messages$""") { (messages: String) =>
+    webDriver.navigate().refresh()
     val actualMessagesText =
       webDriver.findElement(By.className("hmrc-notification-badge")).getText
     actualMessagesText shouldBe messages

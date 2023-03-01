@@ -1,9 +1,6 @@
 @suite
 Feature: Wrapper integrating with sca-frontend
 
-  Background:
-   # Given mongoDB is dropped
-    And A message is updated in reactive mongo
 
   Scenario: User logins to SCA web application and should see default GOV.UK header along with service name so user is reassured they have signed into Government service.
     Given User login to the GG Login Page
@@ -85,8 +82,10 @@ Feature: Wrapper integrating with sca-frontend
     Then user should redirect to Give feedback page
 
 
+    @suite1
   Scenario: Check the messages icon displays correctly
   Given User login to the GG Login Page with PTA enrolment
+    And A message is posted to the messages API
   Then the user should see 1 as the number of messages
   Then the user should see the message on the page after clicking the message
   Then the user should not see tomato icon beside message menu
