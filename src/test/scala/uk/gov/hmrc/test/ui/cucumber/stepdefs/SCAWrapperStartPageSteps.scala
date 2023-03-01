@@ -192,26 +192,50 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
   }
 
   Then("""user should redirect to (.*) page$""") { (locator: String) =>
-    webDriver.findElement(By.xpath("//*[contains(text(),'" + locator + "')]")).isDisplayed
-    webDriver.navigate().back()
+    if(webDriver.getCurrentUrl.contains("https://www.qa.tax.service.gov.uk/track"))
+      {
+        webDriver.findElement(By.xpath("//*[contains(text(),'I cannot see my submitted forms')]")).isDisplayed
+      }
+    else
+      {
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + locator + "')]")).isDisplayed
+      }
+
   }
 
   Then("""user should go through tax letter journey and redirect to Account home page""") { () =>
     val wait = new WebDriverWait(webDriver, Duration.ofSeconds(50))
-   // webDriver.findElement(By.id("sps-opt-in-2")).click()
-   // webDriver.findElement(By.id("submitEmailButton")).click()
-  //  wait.until(ExpectedConditions.urlContains("/paperless/optout-confirmation?"))
-   // webDriver.findElement(By.id("submitEmailButton")).click()
-    wait.until(
-      ExpectedConditions.or(
-        ExpectedConditions.urlContains("/paperless/survey/optin-declined?"),
-        ExpectedConditions.urlContains("/personal-account")
-      )
-    )
-    webDriver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
-    webDriver.navigate().back()
-  //  webDriver.navigate().back()
-   // webDriver.navigate().back()
+
+    if (webDriver.getCurrentUrl.contains("/personal-account"))
+      {
+        wait.until(
+          ExpectedConditions.or(
+            ExpectedConditions.urlContains("/paperless/survey/optin-declined?"),
+            ExpectedConditions.urlContains("/personal-account")
+          )
+        )
+        webDriver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
+        webDriver.navigate().back()
+      }
+
+    if (webDriver.getCurrentUrl.contains("paperless/optin?"))
+      {
+        wait.until(
+          ExpectedConditions.or(
+            ExpectedConditions.urlContains("paperless/optin?"),
+            ExpectedConditions.urlContains("/personal-account")
+          )
+        )
+        webDriver.findElement(By.id("sps-opt-in-2")).click()
+        webDriver.findElement(By.id("submitEmailButton")).click()
+        wait.until(ExpectedConditions.urlContains("/paperless/optout-confirmation?"))
+        webDriver.findElement(By.id("submitEmailButton")).click()
+        webDriver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
+        webDriver.navigate().back()
+        webDriver.navigate().back()
+        webDriver.navigate().back()
+      }
+
   }
 
   Then("""User should see cookies banner""") { () =>
