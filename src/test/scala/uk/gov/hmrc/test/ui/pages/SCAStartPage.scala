@@ -176,6 +176,12 @@ object SCAStartPage
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(Feedbacklink), FeedbackLink))
 
+  def FeedBackLinkJenkins(FeedbackLink: String): Boolean =
+    new FluentWait[WebDriver](driver)
+      .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
+      .ignoring(classOf[Nothing])
+      .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(FeedbacklinkJenkins), FeedbackLink))
+
   def FeedBackPage(Feedbackpage: String): Boolean =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
