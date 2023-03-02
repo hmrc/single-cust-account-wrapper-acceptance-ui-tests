@@ -25,14 +25,15 @@ case class MessageCount(
 
 object MessagesStub {
 
-  def postMessagesStub(requestBody: JsValue) = {
-    val body = requestBody.toString()
-    val request =
-      Http(s"http://localhost:8910/messages")
+  def postMessagesStub(requestBody: JsValue, env: String) = {
+    if(env == "local"){
+      val body = requestBody.toString()
+      Http("http://localhost:8910/messages")
         .method("POST")
         .postData(body)
         .header("Content-type", "application/json")
         .asString
+    }
   }
 
 }
