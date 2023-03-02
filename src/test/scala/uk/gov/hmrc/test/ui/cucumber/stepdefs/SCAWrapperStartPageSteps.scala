@@ -60,7 +60,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
   }
   Then("""User should able to see (.*) link directly above the footer in Jenkins$""") { (FeedbackLink: String) =>
     //TODO find out why the xpath is different when the service isn't running locally
-    assert(SCAStartPage.FeedBackLink(FeedbackLink))
+    assert(SCAStartPage.FeedBackLinkJenkins(FeedbackLink))
   }
   When("""User click on feedback link""") { () =>
     SCAStartPage.clickOnFeedback()
