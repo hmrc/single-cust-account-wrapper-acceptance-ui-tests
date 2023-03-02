@@ -252,9 +252,9 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
   }
 
 
-  And("""A message is posted to the messages API""") {
+  And("""A message is posted to the messages API in the (.*) environment$""") {(env: String) =>
 
-   val id=  Random.alphanumeric.filter(_.isDigit).take(14).mkString
+    val id=  Random.alphanumeric.filter(_.isDigit).take(14).mkString
     val subject = Random.alphanumeric.filter(_.isLetter).take(4).mkString
     val stubRequestBody =
       s"""{
@@ -291,7 +291,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
         |      "replyTo": "5c0a57826b00006b0032d0db"
         |   }
         |}""".stripMargin
-    MessagesStub.postMessagesStub(Json.parse(stubRequestBody))
+    MessagesStub.postMessagesStub(Json.parse(stubRequestBody), env)
     System.out.println(id)
     System.out.println(subject)
 
