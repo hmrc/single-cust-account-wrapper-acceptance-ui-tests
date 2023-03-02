@@ -26,7 +26,7 @@ Feature: Wrapper integrating with sca-frontend
   Scenario: The Phase banner if it is shown should only be positioned at the bottom of the page directly above the footer and feedback link should be redirect to 'Send your feedback' Page
       Given User login to the GG Login Page
       Then default content of phase status should be ALPHA
-      Then User should able to see feedback link directly above the footer
+      Then User should able to see feedback link directly above the footer in Jenkins
       When User click on feedback link
       Then it should redirect to Send your feedback page
       Then Verify redirected URL should contains service name as single-customer-account
