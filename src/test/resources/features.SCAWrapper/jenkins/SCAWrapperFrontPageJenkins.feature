@@ -69,6 +69,7 @@ Feature: Wrapper integrating with sca-frontend
 
 
 
+
   Scenario: User login with PTA enrolment and then verify all the menu links should redirecting to desired page
     Given User login to the GG Login Page with PTA enrolment
     When the user clicks on Account home menu
@@ -76,7 +77,7 @@ Feature: Wrapper integrating with sca-frontend
     When the user clicks on Messages menu
     Then user should redirect to Messages page
     When the user clicks on Check progress menu
-    Then user should redirect to Track the progress page
+    Then user should redirects to Track the progress page
     When the user clicks on Profile and settings menu
     Then user should redirect to Profile and settings page
     When the user clicks on Sign out menu

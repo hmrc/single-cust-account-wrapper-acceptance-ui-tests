@@ -68,8 +68,8 @@ Feature: Wrapper integrating with sca-frontend
     Then User should able to close it
 
 
-
-  Scenario: User login with PTA enrolment and then verify all the menu links should redirecting to desired page
+    @suite1
+    Scenario: User login with PTA enrolment and then verify all the menu links should redirecting to desired page
     Given User login to the GG Login Page with PTA enrolment
     When the user clicks on Account home menu
     Then user should go through tax letter journey and redirect to Account home page

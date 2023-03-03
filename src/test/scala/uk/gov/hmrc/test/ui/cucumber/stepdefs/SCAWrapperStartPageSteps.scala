@@ -60,6 +60,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
   }
   Then("""User should able to see (.*) link directly above the footer in Jenkins$""") { (FeedbackLink: String) =>
     //TODO find out why the xpath is different when the service isn't running locally
+    webDriver.findElement(By.xpath("//span[@class='govuk-phase-banner__text']")).isDisplayed
     assert(SCAStartPage.FeedBackLinkJenkins(FeedbackLink))
   }
   When("""User click on feedback link""") { () =>
@@ -195,7 +196,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
     }
   }
 
-  Then("""user should redirect to (.*) page$""") { (locator: String) =>
+  Then("""user should redirects to (.*) page$""") { (locator: String) =>
     if(webDriver.getCurrentUrl.contains("https://www.qa.tax.service.gov.uk/track"))
       {
         webDriver.findElement(By.xpath("//*[contains(text(),'I cannot see my submitted forms')]")).isDisplayed
@@ -207,7 +208,15 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
 
   }
 
-  Then("""user should go through tax letter journey and redirect to Account home page""") { () =>
+
+  Then("""user should redirect to (.*) page$""") { (locator: String) =>
+    val url = webDriver.getCurrentUrl
+    System.out.println(url)
+    webDriver.findElement(By.xpath("//*[contains(text(),'" + locator + "')]")).isDisplayed
+    }
+
+
+    Then("""user should go through tax letter journey and redirect to Account home page""") { () =>
     val wait = new WebDriverWait(webDriver, Duration.ofSeconds(50))
 
     if (webDriver.getCurrentUrl.contains("/personal-account"))
