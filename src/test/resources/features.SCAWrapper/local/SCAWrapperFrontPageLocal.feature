@@ -28,7 +28,7 @@ Feature: Wrapper integrating with sca-frontend
       Then default content of phase status should be ALPHA
       Then User should able to see feedback link directly above the footer
       When User click on feedback link
-      Then it should redirect to Send your feedback page
+      Then it should re  direct to Send your feedback page
       Then Verify redirected URL should contains service name as single-customer-account
 
 

@@ -113,7 +113,7 @@ object SCAStartPage
 
   def clickOnBackButton(): Unit = driver.findElement(By.className(backButton)).click()
 
-  def clickOnFeedback(): Unit = driver.findElement(By.xpath(Feedbacklink)).click()
+  def clickOnFeedback(): Unit = driver.findElement(By.xpath(FeedbacklinkJenkins)).click()
 
   def returnToPreviousPage(): Unit = driver.navigate.back()
 
