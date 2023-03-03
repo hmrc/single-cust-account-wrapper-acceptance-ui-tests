@@ -41,7 +41,7 @@ trait SCAStartPagePaths {
   val yourMessage                = "Reminder to file a Self Assessment return"
   val backButton                 = "govuk-back-link"
   val Feedbacklink               = "./html/body/div/main/div/div/div[2]/div/p/span/a"
-  val FeedbacklinkJenkins        = "//a[contains(text(),‘feedback’)]"
+  val FeedbacklinkJenkins        = "//a[@class='govuk-link' and contains(text(),'feedback')]"
   val SCAAccessErrorText         = "govuk-heading-xl"
   val BusinessAccountLink        = "//*[contains(text(),'Business tax account')]"
   val AccountHomeLink            = "(//*[contains(text(),'Account home')])[1]"
