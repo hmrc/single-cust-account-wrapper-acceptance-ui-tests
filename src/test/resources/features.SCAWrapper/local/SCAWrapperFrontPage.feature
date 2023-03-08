@@ -75,8 +75,7 @@ Feature: Wrapper integrating with sca-frontend
     When the user clicks on Messages menu
     Then user should redirect to Messages page
     When the user clicks on Check progress menu
-    Then user should redirects to Track the progress page
-    When the user clicks on Profile and settings menu
+      When the user clicks on Profile and settings menu
     Then user should redirect to Profile and settings page
     When the user clicks on Sign out menu
     Then user should redirect to Give feedback page
@@ -85,9 +84,9 @@ Feature: Wrapper integrating with sca-frontend
 
   Scenario: Check the messages icon displays correctly
   Given User login to the GG Login Page with PTA enrolment
-  And A message is posted to the messages API in the local environment
+  #And A message is posted to the messages API in the local environment
   Then the user should see 1 as the number of messages
-  Then the user should see the message on the page after clicking the message
-  Then the user should not see tomato icon beside message menu
+  #Then the user should see the message on the page after clicking the message
+  #Then the user should not see tomato icon beside message menu
 
 

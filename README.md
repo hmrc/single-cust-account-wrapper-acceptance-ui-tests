@@ -36,7 +36,7 @@ To run against a containerised Chrome browser:
 
 ```bash
 ./run_browser_with_docker.sh remote-chrome 
-./run_local.sh remote-chrome local
+./run_tests.sh remote-chrome local
 ```
 
 `./run_browser_with_docker.sh` is **NOT** required when running in a CI environment. 

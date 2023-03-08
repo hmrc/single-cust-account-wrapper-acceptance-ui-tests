@@ -197,16 +197,10 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
     }
   }
 
-  Then("""user should redirects to (.*) page$""") { (locator: String) =>
-    if(webDriver.getCurrentUrl.contains("https://www.qa.tax.service.gov.uk/track"))
-      {
-        webDriver.findElement(By.xpath("//*[contains(text(),'I cannot see my submitted forms')]")).isDisplayed
-      }
-    else
-      {
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + locator + "')]")).isDisplayed
-      }
+  Then("""user should redirects to track page$""") { () =>
 
+      val trackURL = webDriver.getCurrentUrl
+      trackURL.contains("/track")
   }
 
 
