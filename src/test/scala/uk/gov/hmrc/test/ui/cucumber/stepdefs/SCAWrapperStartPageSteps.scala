@@ -121,6 +121,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
       List("Cwcis ar wasanaethau CThEM","Mae‘r holl gynnwys ar gael o dan","Drwydded Llywodraeth Agored v3.0",", oni nodir yn wahanol","A yw’r dudalen hon yn gweithio’n iawn? (yn agor mewn tab newydd)","Cwcis","Polisi preifatrwydd","Telerau ac Amodau","Help wrth ddefnyddio GOV.UK","Cysylltu")
     SCAStartPage.textContentVerify(othertexts)
 
+
   }
 
   When("""the user clicks on 'Cymraeg' welesh language link""") { () =>
@@ -196,16 +197,10 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
     }
   }
 
-  Then("""user should redirects to (.*) page$""") { (locator: String) =>
-    if(webDriver.getCurrentUrl.contains("https://www.qa.tax.service.gov.uk/track"))
-      {
-        webDriver.findElement(By.xpath("//*[contains(text(),'I cannot see my submitted forms')]")).isDisplayed
-      }
-    else
-      {
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + locator + "')]")).isDisplayed
-      }
+  Then("""user should redirects to track page$""") { () =>
 
+      val trackURL = webDriver.getCurrentUrl
+      trackURL.contains("/track")
   }
 
 

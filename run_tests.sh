@@ -15,4 +15,4 @@ fi
 
 sbt -Dbrowser="${BROWSER_TYPE:=$DEFAULT_BROWSER}" -Denvironment="${ENV:=local}" "testOnly uk.gov.hmrc.test.ui.cucumber.runner.Runner"
 
-# Jenkins version uses SCA stub for messages
+# Local version uses real messages API for messages
