@@ -22,13 +22,12 @@ Feature: Wrapper integrating with sca-frontend
     Then User should also see Account home icon besides account home menu option
     Then User should not see Business tax account menu option
 
-
   Scenario: The Phase banner if it is shown should only be positioned at the bottom of the page directly above the footer and feedback link should be redirect to 'Send your feedback' Page
       Given User login to the GG Login Page
       Then default content of phase status should be ALPHA
       Then User should able to see feedback link directly above the footer
       When User click on feedback link
-      Then it should re  direct to Send your feedback page
+      Then it should redirect to Send your feedback page
       Then Verify redirected URL should contains service name as single-customer-account
 
 
@@ -57,9 +56,9 @@ Feature: Wrapper integrating with sca-frontend
     Given User login to the GG Login Page
     When the user clicks on 'Cymraeg' welesh language link
     Then the user sees relevant content in welsh language
-    And the user can not click language 'Cymraeg' link
+   And the user can not click language 'Cymraeg' link
     When the user clicks on 'English' language link
-    Then the user can not click language 'English' link
+   Then the user can not click language 'English' link
     And the user sees relevant content in English language
 
   Scenario: User logins to SCA web application should see the cookies banner and able to close it
@@ -68,7 +67,7 @@ Feature: Wrapper integrating with sca-frontend
     Then User should able to close it
 
 
-    @suite1
+
     Scenario: User login with PTA enrolment and then verify all the menu links should redirecting to desired page
     Given User login to the GG Login Page with PTA enrolment
     When the user clicks on Account home menu
@@ -76,7 +75,7 @@ Feature: Wrapper integrating with sca-frontend
     When the user clicks on Messages menu
     Then user should redirect to Messages page
     When the user clicks on Check progress menu
-    Then user should redirect to Track the progress page
+    Then user should redirects to Track the progress page
     When the user clicks on Profile and settings menu
     Then user should redirect to Profile and settings page
     When the user clicks on Sign out menu
