@@ -23,14 +23,12 @@ Feature: Wrapper integrating with sca-frontend
     Then User should not see Business tax account menu option
 
   Scenario: The Phase banner if it is shown should only be positioned at the bottom of the page directly above the footer and feedback link should be redirect to 'Send your feedback' Page
-      Given User login to the GG Login Page
-      Then default content of phase status should be ALPHA
-      Then User should able to see feedback link directly above the footer
-      When User click on feedback link
-      Then it should redirect to Send your feedback page
-      Then Verify redirected URL should contains service name as single-customer-account
-
-
+    Given User login to the GG Login Page
+    Then default content of phase status should be ALPHA
+    Then User should able to see feedback link directly above the footer
+    When User click on feedback link
+    Then it should redirect to Send your feedback page
+    Then Verify redirected URL should contains service name as single-customer-account
 
   Scenario: Services should be able to configure the URL of Accessibility statement link
     Given User login to the GG Login Page
@@ -56,9 +54,9 @@ Feature: Wrapper integrating with sca-frontend
     Given User login to the GG Login Page
     When the user clicks on 'Cymraeg' welesh language link
     Then the user sees relevant content in welsh language
-   And the user can not click language 'Cymraeg' link
+    And the user can not click language 'Cymraeg' link
     When the user clicks on 'English' language link
-   Then the user can not click language 'English' link
+    Then the user can not click language 'English' link
     And the user sees relevant content in English language
 
   Scenario: User logins to SCA web application should see the cookies banner and able to close it
@@ -78,13 +76,9 @@ Feature: Wrapper integrating with sca-frontend
     When the user clicks on Sign out menu
     Then user should redirect to Give feedback page
 
-
-
   Scenario: Check the messages icon displays correctly
   Given User login to the GG Login Page with PTA enrolment
   #And A message is posted to the messages API in the local environment
   Then the user should see 1 as the number of messages
   #Then the user should see the message on the page after clicking the message
   #Then the user should not see tomato icon beside message menu
-
-
