@@ -174,7 +174,7 @@ object SCAStartPage
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
-      .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(Feedbacklink), FeedbackLink))
+      .until(ExpectedConditions.textToBePresentInElementLocated(By.className("govuk-phase-banner__text"), FeedbackLink))
 
   def FeedBackLinkJenkins(FeedbackLink: String): Boolean =
     new FluentWait[WebDriver](driver)
