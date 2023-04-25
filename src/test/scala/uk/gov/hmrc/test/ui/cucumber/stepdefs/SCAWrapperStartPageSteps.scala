@@ -79,8 +79,8 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
     SCAStartPage.moveToTab()
     assert(SCAStartPage.PageNotWorkingProperly(PageNotWorkingProperly))
   }
-  Then("""Verify redirected URL should contains service name as single-customer-account""") { () =>
-    SCAStartPage.VerifyServiceName()
+  Then("""Verify redirected URL should contains service name as (.*)$""") { (Servicename: String) =>
+    SCAStartPage.VerifyServiceName(Servicename)
 
 
   }
@@ -120,8 +120,6 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
     val othertexts =
       List("Cwcis ar wasanaethau CThEM","Mae‘r holl gynnwys ar gael o dan","Drwydded Llywodraeth Agored v3.0",", oni nodir yn wahanol","A yw’r dudalen hon yn gweithio’n iawn? (yn agor tab newydd)","Cwcis","Polisi preifatrwydd","Telerau ac Amodau","Help wrth ddefnyddio GOV.UK","Cysylltu")
     SCAStartPage.textContentVerify(othertexts)
-
-
   }
 
   When("""the user clicks on 'Cymraeg' welesh language link""") { () =>
@@ -325,5 +323,21 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
   And("""^the user should not see tomato icon beside message menu$""") { () =>
     assertTrue(webDriver.findElements(By.className("hmrc-notification-badge")).isEmpty)
 
+  }
+
+  And("""^the user sees chocs relevant content in welsh language$""") { () =>
+    val texts =
+      List("Hafan y cyfrif", "Negeseuon", "Gwirio cynnydd", "Proffil a gosodiadau", "Allgofnodi", "Cyfrif treth busnes", "Cyfrif treth personol")
+    SCAStartPage.textContentVerify(texts)
+    val othertexts =
+      List("Cwcis ar wasanaethau CThEM", "Mae‘r holl gynnwys ar gael o dan", "Drwydded Llywodraeth Agored v3.0", ", oni nodir yn wahanol", "A yw’r dudalen hon yn gweithio’n iawn? (yn agor tab newydd)", "Cwcis", "Polisi preifatrwydd", "Telerau ac Amodau", "Help wrth ddefnyddio GOV.UK", "Cysylltu")
+    SCAStartPage.textContentVerify(othertexts)
+  }
+
+
+  And("""the user sees chocs relevant content in English language""") { () =>
+    val texts = List("Personal tax account", "Account home", "Messages", "Check progress", "Profile and settings", "Business tax account", "Sign out")
+
+    SCAStartPage.textContentVerify(texts)
   }
 }

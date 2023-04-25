@@ -216,10 +216,10 @@ object SCAStartPage
     driver.switchTo.window(newTb.get(1))
   }
 
-  def VerifyServiceName(): Unit = {
+  def VerifyServiceName(Serivename: String): Unit = {
     val url = driver.getCurrentUrl
     System.out.println(url)
-    assert(url.contains("single-customer-account"))
+    assert(url.contains(Serivename))
 
   }
 

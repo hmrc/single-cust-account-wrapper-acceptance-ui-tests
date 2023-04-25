@@ -23,7 +23,8 @@ case class Configuration(
   FEEDBACK_PAGE: String,
   STATEPENSION_PAGE: String,
   NI_PAGE: String,
-  PAGE_TIMEOUT_SECS: Int = 60
+  PAGE_TIMEOUT_SECS: Int = 60,
+  CHOCS_PAGE: String
 )
 
 object Configuration {
@@ -45,7 +46,8 @@ object Configuration {
       AUTHLOGINSTUB = "http://localhost:9949/auth-login-stub/gg-sign-in",
       FEEDBACK_PAGE = "http://localhost:9514/feedback/single-customer-account-frontend",
       STATEPENSION_PAGE = "http://localhost:9234/check-your-state-pension/account",
-      NI_PAGE = "http://localhost:9234/check-your-state-pension/account/nirecord"
+      NI_PAGE = "http://localhost:9234/check-your-state-pension/account/nirecord",
+      CHOCS_PAGE = "http://localhost:10600/single-customer-account/your-details"
     )
   ) { environmentUrl =>
     new Configuration(
@@ -54,7 +56,8 @@ object Configuration {
       AUTHLOGINSTUB = s"$environmentUrl/auth-login-stub/gg-sign-in",
       FEEDBACK_PAGE = s"$environmentUrl/feedback/single-customer-account-frontend",
       STATEPENSION_PAGE = s"$environmentUrl/check-your-state-pension/account",
-      NI_PAGE = s"$environmentUrl/check-your-state-pension/account/nirecord"
+      NI_PAGE = s"$environmentUrl/check-your-state-pension/account/nirecord",
+      CHOCS_PAGE = s"$environmentUrl/single-customer-account/your-details"
     )
   }
 }

@@ -26,14 +26,14 @@ class SCAStartPageSteps extends ScalaDsl with EN with Matchers with WebBrowser {
 
   Then("""User is on SCA start page$""")(() => assert(SCAStartPage.verifySCAStartPage()))
 
-  Then("""User should see SCA title page Header contain logo text as (.*) in (.*)$""") {
-    (value: String, locator: String) =>
-      SCAStartPage.assertContent(By.xpath("//*[@class='" + locator + "']"), value)
+  Then("""User should see (.*) title page Header contain logo text as (.*) in (.*)$""") {
+    (Servicename: String, value: String, locator: String) =>
+      ( Servicename,SCAStartPage.assertContent(By.xpath("//*[@class='" + locator + "']"), value))
   }
 
-  Then("""User should see SCA title page Header contain service name as (.*) in (.*)$""") {
-    (value: String, locator: String) =>
-      SCAStartPage.assertContent(By.xpath("//*[@class='" + locator + "']"), value)
+  Then("""User should see (.*) title page Header contain service name as (.*) in (.*)$""") {
+    (Servicename: String,value: String, locator: String) =>
+      ( Servicename,SCAStartPage.assertContent(By.xpath("//*[@class='" + locator + "']"), value))
   }
 
   Then("""User should see SCA title page footer contain (.*) in (.*)$""") { (value: String, locator: String) =>

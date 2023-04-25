@@ -1,4 +1,4 @@
-@suite @ZAP
+@suite @ZAP @accessibility
 Feature: Wrapper integrating with sca-frontend
 
 
