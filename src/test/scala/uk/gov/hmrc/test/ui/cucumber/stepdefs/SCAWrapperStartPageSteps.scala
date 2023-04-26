@@ -122,12 +122,12 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
     SCAStartPage.textContentVerify(othertexts)
   }
 
-  When("""the user clicks on 'Cymraeg' welesh language link""") { () =>
-    SCAStartPage.clickOnCymraeg()
+  When("""the user clicks on 'Cymraeg' welesh language link of (.*)$""") { (Servicename: String) =>
+    SCAStartPage.clickOnCymraeg(Servicename)
 
   }
-  When("""the user clicks on 'English' language link""") { () =>
-    SCAStartPage.clickOnEnglish()
+  When("""the user clicks on 'English' language link of (.*)$""") { (Servicename: String) =>
+    SCAStartPage.clickOnEnglish(Servicename)
 
   }
 

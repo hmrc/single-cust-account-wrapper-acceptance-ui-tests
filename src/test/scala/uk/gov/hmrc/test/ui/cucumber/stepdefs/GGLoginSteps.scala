@@ -54,6 +54,7 @@ class GGLoginSteps extends ScalaDsl with EN with Matchers with WebBrowser {
     GGChocsLoginPage.enterRedirectURL()
     GGChocsLoginPage.selectConfidenceLevel()
     GGChocsLoginPage.enterNino()
+    GGChocsLoginPage.selectSAEnrolment()
     GGChocsLoginPage.clickSubmitButton()
   }
 
