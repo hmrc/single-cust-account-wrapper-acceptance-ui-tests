@@ -286,9 +286,9 @@ object SCAStartPage
     for (txt <- txts)
       assert(webDriver.getPageSource.contains(txt), s"\n'$txt' text was not found on the page")
 
-  def clickOnCymraeg(): Unit = driver.findElement(By.xpath("//span[contains(text(),'Cymraeg')]")).click()
+  def clickOnCymraeg(Servicename: String): Unit = driver.findElement(By.xpath("//a[@href='/"+Servicename+"/hmrc-frontend/language/cy']")).click()
 
-  def clickOnEnglish(): Unit =
-    driver.findElement(By.xpath("//a[@href='/single-customer-account/hmrc-frontend/language/en']")).click()
+  def clickOnEnglish(Servicename: String): Unit =
+    driver.findElement(By.xpath("//a[@href='/"+Servicename+"/hmrc-frontend/language/en']")).click()
 
 }

@@ -52,10 +52,10 @@ Feature: Wrapper integrating with sca-frontend
 
   Scenario: User should be able to see the content in Welsh language
     Given User login to the GG Login Page
-    When the user clicks on 'Cymraeg' welesh language link
+    When the user clicks on 'Cymraeg' welesh language link of single-customer-account
     Then the user sees relevant content in welsh language
     And the user can not click language 'Cymraeg' link
-    When the user clicks on 'English' language link
+    When the user clicks on 'English' language link of single-customer-account
     Then the user can not click language 'English' link
     And the user sees relevant content in English language
 
