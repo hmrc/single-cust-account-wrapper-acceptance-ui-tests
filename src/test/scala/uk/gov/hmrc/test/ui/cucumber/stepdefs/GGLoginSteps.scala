@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import io.cucumber.scala.{EN, ScalaDsl}
 import org.scalatest.matchers.must.Matchers
 import org.scalatestplus.selenium._
-import uk.gov.hmrc.test.ui.pages.GGLoginPage
+import uk.gov.hmrc.test.ui.pages.{GGChocsLoginPage, GGLoginPage}
 
 class GGLoginSteps extends ScalaDsl with EN with Matchers with WebBrowser {
 
@@ -41,6 +41,30 @@ class GGLoginSteps extends ScalaDsl with EN with Matchers with WebBrowser {
   }
 
   Given("""^User login to the GG Login Page with PTA enrolment$""") { () =>
+    GGLoginPage.navigateToAuthLoginStub()
+    GGLoginPage.enterRedirectURL()
+    GGLoginPage.selectConfidenceLevel()
+    GGLoginPage.enterNino()
+    GGLoginPage.selectPTAEnrolment()
+    GGLoginPage.clickSubmitButton()
+  }
+
+  Given("""^User login to the Chocs GG Login Page$""") { () =>
+    GGChocsLoginPage.navigateToAuthLoginStub()
+    GGChocsLoginPage.enterRedirectURL()
+    GGChocsLoginPage.selectConfidenceLevel()
+    GGChocsLoginPage.enterNino()
+    GGChocsLoginPage.clickSubmitButton()
+  }
+
+  Given("""^User login to the Chocs GG Login Page Without SA enrollment$""") { () =>
+    GGChocsLoginPage.navigateToAuthLoginStub()
+    GGChocsLoginPage.enterRedirectURL()
+    GGChocsLoginPage.selectConfidenceLevel()
+    GGChocsLoginPage.enterNino()
+    GGChocsLoginPage.clickSubmitButton()
+  }
+  Given("""^User login to the Chocs GG Login Page with PTA enrolment$""") { () =>
     GGLoginPage.navigateToAuthLoginStub()
     GGLoginPage.enterRedirectURL()
     GGLoginPage.selectConfidenceLevel()
