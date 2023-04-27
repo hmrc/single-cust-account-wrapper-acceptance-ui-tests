@@ -24,7 +24,8 @@ case class Configuration(
   STATEPENSION_PAGE: String,
   NI_PAGE: String,
   PAGE_TIMEOUT_SECS: Int = 60,
-  CHOCS_PAGE: String
+  CHOCS_PAGE: String,
+  NINO_PAGE: String
 )
 
 object Configuration {
@@ -47,7 +48,8 @@ object Configuration {
       FEEDBACK_PAGE = "http://localhost:9514/feedback/single-customer-account-frontend",
       STATEPENSION_PAGE = "http://localhost:9234/check-your-state-pension/account",
       NI_PAGE = "http://localhost:9234/check-your-state-pension/account/nirecord",
-      CHOCS_PAGE = "http://localhost:10600/single-customer-account/your-details"
+      CHOCS_PAGE = "http://localhost:10600/single-customer-account/your-details",
+      NINO_PAGE = "http://localhost:14006/save-your-national-insurance-number"
     )
   ) { environmentUrl =>
     new Configuration(
@@ -57,7 +59,8 @@ object Configuration {
       FEEDBACK_PAGE = s"$environmentUrl/feedback/single-customer-account-frontend",
       STATEPENSION_PAGE = s"$environmentUrl/check-your-state-pension/account",
       NI_PAGE = s"$environmentUrl/check-your-state-pension/account/nirecord",
-      CHOCS_PAGE = s"$environmentUrl/single-customer-account/your-details"
+      CHOCS_PAGE = s"$environmentUrl/single-customer-account/your-details",
+      NINO_PAGE= s"$environmentUrl/save-your-national-insurance-number"
     )
   }
 }
