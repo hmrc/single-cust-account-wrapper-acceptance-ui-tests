@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import io.cucumber.scala.{EN, ScalaDsl}
 import org.scalatest.matchers.must.Matchers
 import org.scalatestplus.selenium._
-import uk.gov.hmrc.test.ui.pages.{GGChocsLoginPage, GGLoginPage}
+import uk.gov.hmrc.test.ui.pages.{GGChocsLoginPage, GGLoginPage, GGNINOLoginPage}
 
 class GGLoginSteps extends ScalaDsl with EN with Matchers with WebBrowser {
 
@@ -66,11 +66,37 @@ class GGLoginSteps extends ScalaDsl with EN with Matchers with WebBrowser {
     GGChocsLoginPage.clickSubmitButton()
   }
   Given("""^User login to the Chocs GG Login Page with PTA enrolment$""") { () =>
-    GGLoginPage.navigateToAuthLoginStub()
-    GGLoginPage.enterRedirectURL()
-    GGLoginPage.selectConfidenceLevel()
-    GGLoginPage.enterNino()
-    GGLoginPage.selectPTAEnrolment()
-    GGLoginPage.clickSubmitButton()
+    GGChocsLoginPage.navigateToAuthLoginStub()
+    GGChocsLoginPage.enterRedirectURL()
+    GGChocsLoginPage.selectConfidenceLevel()
+    GGChocsLoginPage.enterNino()
+    GGChocsLoginPage.selectPTAEnrolment()
+    GGChocsLoginPage.clickSubmitButton()
+  }
+
+
+  Given("""^User login to the NINO GG Login Page$""") { () =>
+    GGNINOLoginPage.navigateToAuthLoginStub()
+    GGNINOLoginPage.enterRedirectURL()
+    GGNINOLoginPage.selectConfidenceLevel()
+    GGNINOLoginPage.enterNino()
+    GGNINOLoginPage.selectSAEnrolment()
+    GGNINOLoginPage.clickSubmitButton()
+  }
+
+  Given("""^User login to the NINO GG Login Page Without SA enrollment$""") { () =>
+    GGNINOLoginPage.navigateToAuthLoginStub()
+    GGNINOLoginPage.enterRedirectURL()
+    GGNINOLoginPage.selectConfidenceLevel()
+    GGNINOLoginPage.enterNino()
+    GGNINOLoginPage.clickSubmitButton()
+  }
+  Given("""^User login to the NINO GG Login Page with PTA enrolment$""") { () =>
+    GGNINOLoginPage.navigateToAuthLoginStub()
+    GGNINOLoginPage.enterRedirectURL()
+    GGNINOLoginPage.selectConfidenceLevel()
+    GGNINOLoginPage.enterNino()
+    GGNINOLoginPage.selectPTAEnrolment()
+    GGNINOLoginPage.clickSubmitButton()
   }
 }

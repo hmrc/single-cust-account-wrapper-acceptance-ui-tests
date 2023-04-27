@@ -50,9 +50,9 @@ Feature: Wrapper integrating with chocs-frontend
 Scenario: User should be able to see the content in Welsh language
    Given User login to the Chocs GG Login Page
   When the user clicks on 'Cymraeg' welesh language link of single-customer-account/your-details
-  Then the user sees chocs relevant content in welsh language
+  Then the user sees services relevant content in welsh language
   When the user clicks on 'English' language link of single-customer-account/your-details
-  And the user sees chocs relevant content in English language
+  And the user sees services relevant content in English language
 
   Scenario: User logins to Chocs web application should see the cookies banner and able to close it
     Given User login to the Chocs GG Login Page
