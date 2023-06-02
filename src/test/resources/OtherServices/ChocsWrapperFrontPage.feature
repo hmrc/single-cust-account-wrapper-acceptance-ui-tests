@@ -17,7 +17,7 @@ Feature: Wrapper integrating with chocs-frontend
   Scenario: User logins to Chocs web application and should see following menu items.
     Given User login to the Chocs GG Login Page Without SA enrollment
     Then User should see following option in menu Account home, Messages, Check progress, Profile and settings and Sign out
-    #Then User should also see Account home icon besides account home menu option
+    Then User should also see Account home icon besides account home menu option
     Then User should not see Business tax account menu option
 
   Scenario: The Phase banner if it is shown should only be positioned at the bottom of the page directly above the footer and feedback link should be redirect to 'Send your feedback' Page
