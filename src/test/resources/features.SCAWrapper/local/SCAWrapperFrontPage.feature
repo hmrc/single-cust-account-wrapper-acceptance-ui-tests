@@ -76,6 +76,7 @@ Feature: Wrapper integrating with sca-frontend
     When the user clicks on Sign out menu
     Then user should redirect to Give feedback page
 
+
   Scenario: Check the messages icon displays correctly
   Given User login to the GG Login Page with PTA enrolment
   And A message is posted to the messages API in the local environment
