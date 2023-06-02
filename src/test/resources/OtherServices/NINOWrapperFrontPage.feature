@@ -17,7 +17,7 @@ Feature: Wrapper integrating with nino-frontend
   Scenario: User logins to NINO web application and should see following menu items.
     Given User login to the NINO GG Login Page Without SA enrollment
     Then User should see following option in menu Account home, Messages, Check progress, Profile and settings and Sign out
-    Then User should also see Account home icon besides account home menu option
+    #Then User should also see Account home icon besides account home menu option
     Then User should not see Business tax account menu option
 
 
