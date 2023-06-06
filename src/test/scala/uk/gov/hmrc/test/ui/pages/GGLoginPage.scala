@@ -67,6 +67,10 @@ object GGLoginPage extends StartUpTearDown with GGloginPagePaths with SCAStartPa
       .sendKeys(NINumber)
   }
 
+  def fillInLogInDetailsForChildBenefit(): Unit = {
+  }
+
+
   def clickSubmitButton(): Unit =
     driver.findElement(By.id(submitButton)).click()
 
@@ -81,3 +85,7 @@ object GGLoginPage extends StartUpTearDown with GGloginPagePaths with SCAStartPa
   val EnrolmentKey                = "HMRC-PT"
   val IdentifierName              = "NINO"
 }
+
+
+
+

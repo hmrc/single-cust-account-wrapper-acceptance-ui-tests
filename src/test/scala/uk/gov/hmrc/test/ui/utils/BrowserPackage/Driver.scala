@@ -1,5 +1,4 @@
 
-
 package uk.gov.hmrc.test.ui.utils.BrowserPackage
 
 import org.openqa.selenium.WebDriver
