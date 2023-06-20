@@ -70,9 +70,15 @@ object GGLoginPage extends StartUpTearDown with GGloginPagePaths with SCAStartPa
   def fillInLogInDetailsForChildBenefit(): Unit = {
   }
 
+  def enterRedirectActivityURL(): Unit =
+    driver
+      .findElement(By.name(redirectURLField))
+      .sendKeys(Configuration.settings.ACTIVITY)
 
-  def clickSubmitButton(): Unit =
+  def clickSubmitButton(): Unit = {
     driver.findElement(By.id(submitButton)).click()
+    driver.manage().window().maximize()
+  }
 
   val NINumber                    = "ER872414B"
   val dropdown                    = "presets-dropdown"

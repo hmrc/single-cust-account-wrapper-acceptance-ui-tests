@@ -119,4 +119,13 @@ object GGLoginSteps extends ScalaDsl with EN with Matchers with WebBrowser {
     }
   }
 
+  Given("""^User login to the activity Login Page$""") { () =>
+    GGLoginPage.navigateToAuthLoginStub()
+    GGLoginPage.enterRedirectActivityURL()
+    GGLoginPage.selectConfidenceLevel()
+    GGLoginPage.enterNino()
+    GGLoginPage.selectSAEnrolment()
+    GGLoginPage.clickSubmitButton()
+  }
+
 }
