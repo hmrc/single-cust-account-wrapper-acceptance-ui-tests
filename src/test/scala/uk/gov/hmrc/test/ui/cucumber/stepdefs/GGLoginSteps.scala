@@ -19,9 +19,9 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import io.cucumber.scala.{EN, ScalaDsl}
 import org.scalatest.matchers.must.Matchers
 import org.scalatestplus.selenium._
-import uk.gov.hmrc.test.ui.pages.{GGChocsLoginPage, GGLoginPage, GGNINOLoginPage}
+import uk.gov.hmrc.test.ui.pages.{GGChildBenefitLogin, GGChocsLoginPage, GGLoginPage, GGNINOLoginPage}
 
-class GGLoginSteps extends ScalaDsl with EN with Matchers with WebBrowser {
+object GGLoginSteps extends ScalaDsl with EN with Matchers with WebBrowser {
 
   Given("""^User login to the GG Login Page$""") { () =>
     GGLoginPage.navigateToAuthLoginStub()
@@ -99,4 +99,33 @@ class GGLoginSteps extends ScalaDsl with EN with Matchers with WebBrowser {
     GGNINOLoginPage.selectPTAEnrolment()
     GGNINOLoginPage.clickSubmitButton()
   }
+
+
+  Given("""^I accesses the (.*) page with nino (.*)$""") { (url: String, nino: String) =>
+    url match {
+      case "child-benefit" =>
+        GGChildBenefitLogin.navigateToBaseUrl(url)
+        GGChildBenefitLogin.setConfidenceLevel()
+        GGChildBenefitLogin.enterNINO(nino)
+        GGChildBenefitLogin.clickSubmitButton()
+      case "/service-down" =>
+        GGChildBenefitLogin.navigateToServiceUrl("child-benefit", url)
+        GGChildBenefitLogin.setConfidenceLevel()
+      case _ =>
+        GGChildBenefitLogin.navigateToServiceUrl("child-benefit", url)
+        GGChildBenefitLogin.setConfidenceLevel()
+        GGChildBenefitLogin.enterNINO(nino)
+        GGChildBenefitLogin.clickSubmitButton()
+    }
+  }
+
+  Given("""^User login to the activity Login Page$""") { () =>
+    GGLoginPage.navigateToAuthLoginStub()
+    GGLoginPage.enterRedirectActivityURL()
+    GGLoginPage.selectConfidenceLevel()
+    GGLoginPage.enterNino()
+    GGLoginPage.selectSAEnrolment()
+    GGLoginPage.clickSubmitButton()
+  }
+
 }

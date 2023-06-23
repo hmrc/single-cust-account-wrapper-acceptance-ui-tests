@@ -67,8 +67,18 @@ object GGLoginPage extends StartUpTearDown with GGloginPagePaths with SCAStartPa
       .sendKeys(NINumber)
   }
 
-  def clickSubmitButton(): Unit =
+  def fillInLogInDetailsForChildBenefit(): Unit = {
+  }
+
+  def enterRedirectActivityURL(): Unit =
+    driver
+      .findElement(By.name(redirectURLField))
+      .sendKeys(Configuration.settings.ACTIVITY)
+
+  def clickSubmitButton(): Unit = {
     driver.findElement(By.id(submitButton)).click()
+    driver.manage().window().maximize()
+  }
 
   val NINumber                    = "ER872414B"
   val dropdown                    = "presets-dropdown"
@@ -81,3 +91,7 @@ object GGLoginPage extends StartUpTearDown with GGloginPagePaths with SCAStartPa
   val EnrolmentKey                = "HMRC-PT"
   val IdentifierName              = "NINO"
 }
+
+
+
+
