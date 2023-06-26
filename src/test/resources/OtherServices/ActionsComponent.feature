@@ -1,8 +1,8 @@
 @suite
-Feature: Wrapper integrating with child benefit-frontend
+Feature: Claim your tax refund link
 
 
-  Scenario: User logins to Chocs Service and should see default GOV.UK header along with service name so user is reassured they have signed into Government service.
+  Scenario: User logins to Actions Capabilities page and should see Claim your tax refund link
     Given User login to the actions GG Login Page with nino AA999999A
     Then User sees Things for you to do
     Then User sees Claim your tax refund
