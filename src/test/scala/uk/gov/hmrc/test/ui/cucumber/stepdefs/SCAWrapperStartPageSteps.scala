@@ -306,14 +306,16 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
 
   And("""^the user should see (.*) as the number of messages$""") { (messages: String) =>
     webDriver.navigate().refresh()
+    webDriver.findElement(By.partialLinkText("Messages")).click()
     val actualMessagesText =
       webDriver.findElement(By.className("hmrc-notification-badge")).getText
-    actualMessagesText shouldBe messages
 
+    actualMessagesText shouldBe messages
+    System.out.println("actual text "+actualMessagesText)
   }
 
   And("""the user should see the message on the page after clicking the message""") { () =>
-    webDriver.findElement(By.xpath("//*[contains(text(),'Messages')]")).click()
+   // webDriver.findElement(By.xpath("//*[contains(text(),'Messages')]")).click()
     webDriver.findElement(By.xpath("//span[@class='govuk-!-font-weight-bold black-text govuk-body']")).click()
     webDriver.findElement(By.xpath("//p[@class='message_time faded-text--small govuk-hint']")).isDisplayed
     webDriver.findElement(By.id("back-link")).click()
