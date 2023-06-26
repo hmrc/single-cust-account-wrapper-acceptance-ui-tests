@@ -28,7 +28,7 @@ class ActivitiesPageSteps extends ScalaDsl with EN with Matchers with WebBrowser
 
   And("""User is on activity start page$""")(() => assert(SCAStartPage.verifySCAStartPage()))
 
-  Then("""User should see (.*) in (.*)$""") { (value: String, locator: String) =>
+  Then("""User should able to see (.*) in (.*)$""") { (value: String, locator: String) =>
     SCAStartPage.assertContent(By.xpath("//*[@class='" + locator + "']"), value)
   }
 
