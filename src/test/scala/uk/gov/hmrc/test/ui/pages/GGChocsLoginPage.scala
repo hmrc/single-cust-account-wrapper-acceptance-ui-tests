@@ -37,6 +37,11 @@ object GGChocsLoginPage extends StartUpTearDown with GGloginPagePaths with SCASt
       .findElement(By.name(redirectURLField))
       .sendKeys(Configuration.settings.CHOCS_PAGE)
 
+  def enterRedirectActionURL(): Unit =
+    driver
+      .findElement(By.name(redirectURLField))
+      .sendKeys(Configuration.settings.ACTIONS_PAGE)
+
   def selectConfidenceLevel(): Unit = {
     val confidenceLevel: Select = new Select(driver.findElement(By.name(confidenceLevelField)))
     confidenceLevel.selectByValue("200")
@@ -45,6 +50,12 @@ object GGChocsLoginPage extends StartUpTearDown with GGloginPagePaths with SCASt
     driver
       .findElement(By.name(nino))
       .sendKeys(NINumber)
+
+  def enterNino(ninoNumber: String): Unit        =
+    driver
+      .findElement(By.name(nino))
+      .sendKeys(ninoNumber)
+
   def selectSAEnrolment(): Unit = {
     val EnrolmentSelect: Select = new Select(driver.findElement(By.id(dropdown)))
     EnrolmentSelect.selectByVisibleText(SelfAssessment)

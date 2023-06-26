@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.pages
 import org.openqa.selenium.{By, WebDriver}
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import org.scalatest.matchers.must.Matchers.{be, convertToAnyMustWrapper}
-import uk.gov.hmrc.test.ui.PagePaths.{FeedbackPagePaths, GGloginPagePaths, SCAStartPagePaths}
+import uk.gov.hmrc.test.ui.PagePaths.{ActionsPagePaths, FeedbackPagePaths, GGloginPagePaths, SCAStartPagePaths}
 import uk.gov.hmrc.test.ui.pages.config.Configuration
 import uk.gov.hmrc.test.ui.utils.BrowserPackage.StartUpTearDown
 import uk.gov.hmrc.test.ui.utils.HttpClient
@@ -29,6 +29,7 @@ import java.time.Duration
 object SCAStartPage
     extends StartUpTearDown
     with GGloginPagePaths
+    with ActionsPagePaths
     with SCAStartPagePaths
     with FeedbackPagePaths
     with HttpClient {
@@ -169,6 +170,13 @@ object SCAStartPage
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(SignOutLink), SignOut))
 
   }
+
+def confirmActionsResult(message: String): Boolean =
+  new FluentWait[WebDriver](driver)
+    .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
+    .ignoring(classOf[Nothing])
+    .until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector(actionsResult), message))
+
 
   def FeedBackLink(FeedbackLink: String): Boolean =
     new FluentWait[WebDriver](driver)
