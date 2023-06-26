@@ -24,6 +24,10 @@ trait GGloginPagePaths {
   val nino                 = "nino"
   val submitButton         = "submit-top"
 }
+
+trait ActionsPagePaths {
+  val actionsResult     = "div.govuk-grid-column-full"
+}
 trait SCAStartPagePaths {
   val accountName                = "name"
   val TaxandBenefits             = "nav-taxes-and-benefits"

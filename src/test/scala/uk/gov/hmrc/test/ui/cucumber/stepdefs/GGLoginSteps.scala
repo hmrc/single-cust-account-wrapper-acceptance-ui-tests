@@ -75,6 +75,16 @@ object GGLoginSteps extends ScalaDsl with EN with Matchers with WebBrowser {
   }
 
 
+  Given("""^User login to the actions GG Login Page with nino (.*)$""") { (ninoNumber: String) =>
+    GGChocsLoginPage.navigateToAuthLoginStub()
+    GGChocsLoginPage.enterRedirectActionURL()
+    GGChocsLoginPage.selectConfidenceLevel()
+    GGChocsLoginPage.enterNino(ninoNumber)
+    GGChocsLoginPage.clickSubmitButton()
+  }
+
+
+
   Given("""^User login to the NINO GG Login Page$""") { () =>
     GGNINOLoginPage.navigateToAuthLoginStub()
     GGNINOLoginPage.enterRedirectURL()
@@ -103,6 +113,11 @@ object GGLoginSteps extends ScalaDsl with EN with Matchers with WebBrowser {
 
   Given("""^I accesses the (.*) page with nino (.*)$""") { (url: String, nino: String) =>
     url match {
+      case "/actions" =>
+        GGChildBenefitLogin.navigateToServiceUrl("actions", url)
+        GGChildBenefitLogin.setConfidenceLevel()
+        GGChildBenefitLogin.enterNINO(nino)
+        GGChildBenefitLogin.clickSubmitButton()
       case "child-benefit" =>
         GGChildBenefitLogin.navigateToBaseUrl(url)
         GGChildBenefitLogin.setConfidenceLevel()
