@@ -31,7 +31,7 @@ class SCAStartPageSteps extends ScalaDsl with EN with Matchers with WebBrowser {
       ( Servicename,SCAStartPage.assertContent(By.xpath("//*[@class='" + locator + "']"), value))
   }
 
-  Then("""^User should see (.*)$""") { (message: String) =>
+  Then("""^User sees (.*)$""") { (message: String) =>
     assert(SCAStartPage.confirmActionsResult(message));
   }
 
