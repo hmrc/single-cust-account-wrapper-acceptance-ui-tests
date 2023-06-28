@@ -59,10 +59,12 @@ Feature: Wrapper integrating with sca-frontend
     Then the user can not click language 'English' link
     And the user sees relevant content in English language
 
+
   Scenario: User logins to SCA web application should see the cookies banner and able to close it
     And User is on SCA start page
     Then User should see cookies banner
     Then User should able to close it
+
 
     Scenario: User login with PTA enrolment and then verify all the menu links should redirecting to desired page
     Given User login to the GG Login Page with PTA enrolment
