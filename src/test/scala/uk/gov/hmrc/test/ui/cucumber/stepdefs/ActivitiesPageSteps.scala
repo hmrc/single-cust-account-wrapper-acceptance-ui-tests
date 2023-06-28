@@ -68,7 +68,7 @@ class ActivitiesPageSteps extends ScalaDsl with EN with Matchers with WebBrowser
         val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
         val formattedString = taxcode7date.format(formatter)
         System.out.print("7" + formattedString)
-        SCAStartPage.assertContent(By.xpath("//*[contains(text(),'" + formattedString + "')]"), formattedString)
+        SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][descendant::dt/strong[normalize-space(text())='" + formattedString + "']][1]/dt/strong"), formattedString)
 
       case "Your tax code has changed - 6" =>
         val taxcode6date = LocalDate.now.withMonth(4).withDayOfMonth(7)
