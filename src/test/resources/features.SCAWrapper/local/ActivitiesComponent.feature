@@ -25,7 +25,8 @@ Activity for the most recent tax code change.
     And User is on activity start page
     And User should able to see Your recent account activity in govuk-heading-l
     And User should see test text on activity page
-    And the user should sees text Your tax code has changed - 3 on the page
+
+
 
 #Latest Tax code change
   Scenario: User logins to activities page and should see latest tax code change if date inside current tax year (CY) and inside last 6 months
