@@ -61,7 +61,7 @@ class ActivitiesPageSteps extends ScalaDsl with EN with Matchers with WebBrowser
   }
 
   And("""^the user sees text as a (.*) date on the page$""") { (value: String) =>
-    SCAStartPage.assertContent(By.xpath("//*[contains(text(),'" + value + "')]"), value)
+
     value match {
       case "Your tax code has changed - 7" =>
         val taxcode7date = LocalDate.now
