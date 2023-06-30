@@ -25,6 +25,57 @@ The `run_tests.sh` script defaults to using `chrome` in the `local` environment.
  - `src/test/resources/application.conf` for **environment** 
  - [webdriver-factory](https://github.com/hmrc/webdriver-factory#2-instantiating-a-browser-with-default-options) for **browser-driver**
 
+
+## Running SCA Wrapper tests
+
+- clone the repo: https://github.com/hmrc/single-cust-account-wrapper-acceptance-ui-tests
+- Feature file :SCAWrapperFrontPage.feature
+- sm2 --start SCA_FUTURES_ALL
+  Then execute the `./run_tests.sh` script:
+
+## Running Integration Services SCA wrapper
+
+Then execute the `./run_integration_serivce.sh` script:
+
+## Running NINO tests
+
+-  FindMyNinoJourney.feature 
+   cd sca-webApp
+   Then execute the `sm2 --start SCA_FUTURES_ALL` in sca-webApp
+   cd find-my-nino-add-to-wallet-frontend
+   Then execute the `sbt run` in find-my-nino-add-to-wallet-frontend
+   cd find-my-nino-add-to-wallet:
+   Then execute the `sbt run` in find-my-nino-add-to-wallet
+   Then execute the ` ./run_local.sh` script:
+
+## Running CHOCS tests
+
+- clone repo: sca-change-of-circumstances-frontend
+  cd SCA_CHANGE_OF_CIRCUMSTANCES_FRONTEND
+  Then execute 
+  `  sbt run SCA_CHANGE_OF_CIRCUMSTANCES_FRONTEND --appendArgs '{"SCA_CHANGE_OF_CIRCUMSTANCES_FRONTEND":["-Dfeatures.pta-mode=true"]}'
+
+sm2 --start SCA_CHANGE_OF_CIRCUMSTANCES_ALL  `  in SCA_CHANGE_OF_CIRCUMSTANCES_FRONTEND
+
+## Running ActionsComponent.feature tests
+
+- clone repo: single-customer-account-capabilities
+  Then execute the `sbt run` single-customer-account-capabilities
+  
+- clone repo: single-customer-account-stub
+  Then execute the `sbt run` single-customer-account-stub
+  
+- clone repo: single-customer-account-frontend
+  Then execute the `sbt run` single-customer-account-frontend
+
+- sm2 --start SCA_FUTURES_ALL
+  Then execute the `./run_tests.sh` script
+
+## Running ActivitiesComponent.feature tests
+
+Then execute the `./run_tests.sh` script
+
+
 ## Running tests against a containerised browser - on a developer machine
 
 The script `./run_browser_with_docker.sh` can be used to start a Chrome, Firefox or Edge container on a developer machine. 
