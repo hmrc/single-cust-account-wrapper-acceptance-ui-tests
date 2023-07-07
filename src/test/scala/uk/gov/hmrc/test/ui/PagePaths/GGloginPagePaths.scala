@@ -16,8 +16,6 @@
 
 package uk.gov.hmrc.test.ui.PagePaths
 
-import scala.util.Random
-
 trait GGloginPagePaths {
   val redirectURLField     = "redirectionUrl"
   val confidenceLevelField = "confidenceLevel"

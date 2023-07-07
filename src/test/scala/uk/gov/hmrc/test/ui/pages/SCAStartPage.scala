@@ -16,8 +16,8 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.{By, WebDriver}
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
+import org.openqa.selenium.{By, WebDriver}
 import org.scalatest.matchers.must.Matchers.{be, convertToAnyMustWrapper}
 import uk.gov.hmrc.test.ui.PagePaths.{ActionsPagePaths, FeedbackPagePaths, GGloginPagePaths, SCAStartPagePaths}
 import uk.gov.hmrc.test.ui.pages.config.Configuration
@@ -27,7 +27,7 @@ import uk.gov.hmrc.test.ui.utils.HttpClient
 import java.time.Duration
 
 object SCAStartPage
-    extends StartUpTearDown
+  extends StartUpTearDown
     with GGloginPagePaths
     with ActionsPagePaths
     with SCAStartPagePaths
@@ -142,12 +142,12 @@ object SCAStartPage
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(BusinessAccountLink), BTA))
 
   def WrapperSCAMenu(
-    AccountHome: String,
-    Messages: String,
-    CheckProgress: String,
-    ProfileAndSettings: String,
-    SignOut: String
-  ): Boolean = {
+                      AccountHome: String,
+                      Messages: String,
+                      CheckProgress: String,
+                      ProfileAndSettings: String,
+                      SignOut: String
+                    ): Boolean = {
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -171,11 +171,11 @@ object SCAStartPage
 
   }
 
-def confirmActionsResult(message: String): Boolean =
-  new FluentWait[WebDriver](driver)
-    .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
-    .ignoring(classOf[Nothing])
-    .until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector(actionsResult), message))
+  def confirmActionsResult(message: String): Boolean =
+    new FluentWait[WebDriver](driver)
+      .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
+      .ignoring(classOf[Nothing])
+      .until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector(actionsResult), message))
 
 
   def FeedBackLink(FeedbackLink: String): Boolean =
@@ -220,13 +220,11 @@ def confirmActionsResult(message: String): Boolean =
     import java.util
     val newTb = new util.ArrayList[String](driver.getWindowHandles)
     driver.switchTo.window(newTb.get(1))
-    System.out.println("Page title of new tab: " + driver.getTitle)
     driver.switchTo.window(newTb.get(1))
   }
 
   def VerifyServiceName(Serivename: String): Unit = {
     val url = driver.getCurrentUrl
-    System.out.println(url)
     assert(url.contains(Serivename))
 
   }
@@ -243,14 +241,14 @@ def confirmActionsResult(message: String): Boolean =
   def clickOnAccessibilitystatementLink(): Unit = driver.findElement(By.linkText(AccessibilitystatementLink)).click()
 
   def WrapperSCAFooter(
-    Cookies: String,
-    AccessibilityStatement: String,
-    PrivacyPolicy: String,
-    TermsAndConditions: String,
-    HelpUsingGOVUK: String,
-    Contact: String,
-    WelshLanguage: String
-  ): Boolean = {
+                        Cookies: String,
+                        AccessibilityStatement: String,
+                        PrivacyPolicy: String,
+                        TermsAndConditions: String,
+                        HelpUsingGOVUK: String,
+                        Contact: String,
+                        WelshLanguage: String
+                      ): Boolean = {
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -294,9 +292,9 @@ def confirmActionsResult(message: String): Boolean =
     for (txt <- txts)
       assert(webDriver.getPageSource.contains(txt), s"\n'$txt' text was not found on the page")
 
-  def clickOnCymraeg(Servicename: String): Unit = driver.findElement(By.xpath("//a[@href='/"+Servicename+"/hmrc-frontend/language/cy']")).click()
+  def clickOnCymraeg(Servicename: String): Unit = driver.findElement(By.xpath("//a[@href='/" + Servicename + "/hmrc-frontend/language/cy']")).click()
 
   def clickOnEnglish(Servicename: String): Unit =
-    driver.findElement(By.xpath("//a[@href='/"+Servicename+"/hmrc-frontend/language/en']")).click()
+    driver.findElement(By.xpath("//a[@href='/" + Servicename + "/hmrc-frontend/language/en']")).click()
 
 }

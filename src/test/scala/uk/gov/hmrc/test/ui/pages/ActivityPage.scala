@@ -212,13 +212,11 @@ object ActivityPage
     import java.util
     val newTb = new util.ArrayList[String](driver.getWindowHandles)
     driver.switchTo.window(newTb.get(1))
-    System.out.println("Page title of new tab: " + driver.getTitle)
     driver.switchTo.window(newTb.get(1))
   }
 
   def VerifyServiceName(Serivename: String): Unit = {
     val url = driver.getCurrentUrl
-    System.out.println(url)
     assert(url.contains(Serivename))
 
   }
