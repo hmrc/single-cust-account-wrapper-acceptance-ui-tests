@@ -36,27 +36,30 @@ class ActivitiesPageSteps extends ScalaDsl with EN with Matchers with WebBrowser
   }
 
   Then("""^User should see test text on activity page$""") { () =>
-   val date = LocalDate.now.minusMonths(3).plusDays(1)
-    val formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy")
-   val formattedString = date.format(formatter)
+    val date = LocalDate.now.minusMonths(2).minusDays(1)
+    val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
+    val formattedString = date.format(formatter)
     System.out.print(formattedString)
-    SCAStartPage.assertContent(By.xpath("//*[contains(text(),'" + formattedString + "')]"),formattedString)
+    SCAStartPage.assertContent(By.xpath("(//div[@class='govuk-summary-list__row'][dd/a[contains(text(), 'Your tax calculation for the 2022-2023 is now available')]]/dt/strong[contains(text(), '" + formattedString + "')])[1]"), formattedString)
+
   }
 
   Then("""^the user sees PAYE income date on the page$""") { () =>
     val date = LocalDate.now.minusMonths(2).minusDays(1)
-    val formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy")
+    val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
     val formattedString = date.format(formatter)
     System.out.print(formattedString)
-    SCAStartPage.assertContent(By.xpath("//*[contains(text(),'" + formattedString + "')]"), formattedString)
-  }
+    SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][contains(., \"Central Perk Coffee Ltd paid you PAYE income\")]/descendant::dt/strong[contains(text(), '" + formattedString + "')]"), formattedString)
+
+
+}
 
 
   And("""the user sees text latest tax code change date on the page""") { () =>
     val date = LocalDate.now.minusMonths(2).minusDays(1)
-    val formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy")
+    val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
     val formattedString = date.format(formatter)
-    SCAStartPage.assertContent(By.xpath("//*[contains(text(),'" + formattedString + "')]"), formattedString)
+    SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][descendant::dt/strong[normalize-space(text())='" + formattedString + "']][1]/dt/strong"), formattedString)
 
   }
 
@@ -155,6 +158,10 @@ class ActivitiesPageSteps extends ScalaDsl with EN with Matchers with WebBrowser
     SCAStartPage.assertContent(By.xpath("//*[contains(text(),'" + value + "')]"), value)
   }
 
+
+  And("""^the user should sees latest tax code text (.*) on the page$""") { (value: String) =>
+    SCAStartPage.assertContent(By.xpath("//*[contains(a/text(), '" + value + "')]"), value)
+  }
 
   Then("""User should not see (.*) text on activity page$""") { (value: String) =>
     assertTrue(webDriver.findElements(By.xpath("//*[contains(text(),'" + value + "')]")).isEmpty)
