@@ -37,7 +37,7 @@ class ActivitiesPageSteps extends ScalaDsl with EN with Matchers with WebBrowser
 
   Then("""^User should see test text on activity page$""") { () =>
     val date = LocalDate.now.minusMonths(2).minusDays(1)
-    val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
+    val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
     val formattedString = date.format(formatter)
     System.out.print(formattedString)
     SCAStartPage.assertContent(By.xpath("(//div[@class='govuk-summary-list__row'][dd/a[contains(text(), 'Your tax calculation for the 2022-2023 is now available')]]/dt/strong[contains(text(), '" + formattedString + "')])[1]"), formattedString)
@@ -46,82 +46,27 @@ class ActivitiesPageSteps extends ScalaDsl with EN with Matchers with WebBrowser
 
   Then("""^the user sees PAYE income date on the page$""") { () =>
     val date = LocalDate.now.minusMonths(2).minusDays(1)
-    val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
+    val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
     val formattedString = date.format(formatter)
     System.out.print(formattedString)
     SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][contains(., \"Central Perk Coffee Ltd paid you PAYE income\")]/descendant::dt/strong[contains(text(), '" + formattedString + "')]"), formattedString)
-
-
 }
 
 
   And("""the user sees text latest tax code change date on the page""") { () =>
     val date = LocalDate.now.minusMonths(2).minusDays(1)
-    val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
+    val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
     val formattedString = date.format(formatter)
     SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][descendant::dt/strong[normalize-space(text())='" + formattedString + "']][1]/dt/strong"), formattedString)
-
   }
 
   And("""^the user sees text as a (.*) date on the page$""") { (value: String) =>
 
     value match {
-      case "Your tax code has changed - 7" =>
-        val taxcode7date = LocalDate.now
-        val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
-        val formattedString = taxcode7date.format(formatter)
-        System.out.print("7" + formattedString)
-        SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][descendant::dt/strong[normalize-space(text())='" + formattedString + "']][1]/dt/strong"), formattedString)
-
-      case "Your tax code has changed - 6" =>
-        val taxcode6date = LocalDate.now.withMonth(4).withDayOfMonth(7)
-        val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
-        val formattedString = taxcode6date.format(formatter)
-        System.out.print("6" + formattedString)
-        SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][descendant::dt/strong[normalize-space(text())='" + formattedString + "']][1]/dt/strong"), formattedString)
-
-      case "Your tax code has changed - 5" =>
-        val taxcode6date = LocalDate.now.withMonth(4).withDayOfMonth(6)
-        val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
-        val formattedString = taxcode6date.format(formatter)
-        System.out.print("6" + formattedString)
-        SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][descendant::dt/strong[normalize-space(text())='" + formattedString + "']][1]/dt/strong"), formattedString)
-
-
-      case "Your tax code has changed - 4" =>
-        val taxcode6date = LocalDate.now.withMonth(4).withDayOfMonth(5)
-        val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
-        val formattedString = taxcode6date.format(formatter)
-        System.out.print("6" + formattedString)
-        SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][descendant::dt/strong[normalize-space(text())='" + formattedString + "']][1]/dt/strong"), formattedString)
-
-
-      case "Your tax code has changed - 3" =>
-        val taxcode6date = LocalDate.now.minusMonths(3).plusDays(1)
-        val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
-        val formattedString = taxcode6date.format(formatter)
-        System.out.print("6" + formattedString)
-        SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][descendant::dt/strong[normalize-space(text())='" + formattedString + "']][1]/dt/strong"), formattedString)
-
-
-      case "Your tax code has changed - 2" =>
-        val taxcode6date = LocalDate.now.minusMonths(2)
-        val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
-        val formattedString = taxcode6date.format(formatter)
-        System.out.print("6" + formattedString)
-        SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][descendant::dt/strong[normalize-space(text())='" + formattedString + "']][1]/dt/strong"), formattedString)
-
-
-      case "Your tax code has changed - 1" =>
-        val taxcode6date = LocalDate.now.minusMonths(1).minusDays(1)
-        val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
-        val formattedString = taxcode6date.format(formatter)
-        System.out.print("6" + formattedString)
-        SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][descendant::dt/strong[normalize-space(text())='" + formattedString + "']][1]/dt/strong"), formattedString)
 
       case "HMRC paid you child benefit" =>
         val childbenefitdate = LocalDate.now.minusMonths(1).minusDays(1)
-        val formatter = DateTimeFormatter.ofPattern("d LLLL yyyy")
+        val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
         val formattedString = childbenefitdate.format(formatter)
         SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][descendant::dt/strong[normalize-space(text())='" + formattedString + "']][1]/dt/strong"), formattedString)
 
@@ -142,11 +87,7 @@ class ActivitiesPageSteps extends ScalaDsl with EN with Matchers with WebBrowser
         val formattedString4 = childbenefitdate4.format(formatter)
         SCAStartPage.assertContent(By.xpath("//div[@class='govuk-summary-list__row'][descendant::dt/strong[normalize-space(text())='" + formattedString4 + "']][1]/dt/strong"), formattedString4)
 
-
     }
-
-
-
   }
 
   And("""^the user sees text '(.*)' on the page$"""){(value: String) =>

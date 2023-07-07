@@ -17,7 +17,6 @@
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import io.cucumber.scala.{EN, ScalaDsl}
-import org.eclipse.jetty.websocket.common.message.MessageReader
 import org.junit.Assert.assertTrue
 import org.openqa.selenium.support.ui.{ExpectedConditions, WebDriverWait}
 import org.openqa.selenium.{By, NoSuchElementException}
@@ -115,10 +114,10 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
 
   And("""^the user sees relevant content in welsh language$""") { () =>
     val texts =
-      List("Hafan y cyfrif","Negeseuon","Gwirio cynnydd","Proffil a gosodiadau","Allgofnodi","Cyfrif treth busnes","Cyfrif Cwsmer Sengl")
+      List("Hafan y cyfrif", "Negeseuon", "Gwirio cynnydd", "Proffil a gosodiadau", "Allgofnodi", "Cyfrif treth busnes", "Cyfrif Cwsmer Sengl")
     SCAStartPage.textContentVerify(texts)
     val othertexts =
-      List("Cwcis ar wasanaethau CThEM","Mae‘r holl gynnwys ar gael o dan","Drwydded Llywodraeth Agored v3.0",", oni nodir yn wahanol","A yw’r dudalen hon yn gweithio’n iawn? (yn agor tab newydd)","Cwcis","Polisi preifatrwydd","Telerau ac Amodau","Help wrth ddefnyddio GOV.UK","Cysylltu")
+      List("Cwcis ar wasanaethau CThEM", "Mae‘r holl gynnwys ar gael o dan", "Drwydded Llywodraeth Agored v3.0", ", oni nodir yn wahanol", "A yw’r dudalen hon yn gweithio’n iawn? (yn agor tab newydd)", "Cwcis", "Polisi preifatrwydd", "Telerau ac Amodau", "Help wrth ddefnyddio GOV.UK", "Cysylltu")
     SCAStartPage.textContentVerify(othertexts)
   }
 
@@ -132,7 +131,7 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
   }
 
   And("""the user sees relevant content in English language""") { () =>
-    val texts = List("Single Customer Account","Account home","Messages","Check progress","Profile and settings","Business tax account","Sign out")
+    val texts = List("Single Customer Account", "Account home", "Messages", "Check progress", "Profile and settings", "Business tax account", "Sign out")
 
     SCAStartPage.textContentVerify(texts)
   }
@@ -161,15 +160,15 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
 
   When("""^the user clicks on (.*) menu$""") { linkName: String =>
     linkName match {
-      case "Account home"         =>
+      case "Account home" =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
-      case "Messages"             =>
+      case "Messages" =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
-      case "Check progress"       =>
+      case "Check progress" =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
       case "Profile and settings" =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
-      case "Sign out"             =>
+      case "Sign out" =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
 
     }
@@ -177,17 +176,17 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
 
   When("""^User clicks on (.*) footer link$""") { linkName: String =>
     linkName match {
-      case "Cookies"                      =>
+      case "Cookies" =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
-      case "Accessibility statement"      =>
+      case "Accessibility statement" =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
-      case "Privacy policy"               =>
+      case "Privacy policy" =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
-      case "Terms and conditions"         =>
+      case "Terms and conditions" =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
-      case "Help using GOV.UK"            =>
+      case "Help using GOV.UK" =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
-      case "Contact"                      =>
+      case "Contact" =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
       case "Rhestr o Wasanaethau Cymraeg" =>
         webDriver.findElement(By.partialLinkText(linkName)).click()
@@ -197,50 +196,46 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
 
   Then("""user should redirects to track page$""") { () =>
 
-      val trackURL = webDriver.getCurrentUrl
-      trackURL.contains("/track")
+    val trackURL = webDriver.getCurrentUrl
+    trackURL.contains("/track")
   }
 
 
   Then("""user should redirect to (.*) page$""") { (locator: String) =>
-    val url = webDriver.getCurrentUrl
-    System.out.println(url)
     webDriver.findElement(By.xpath("//*[contains(text(),'" + locator + "')]")).isDisplayed
-    }
+  }
 
 
-    Then("""user should go through tax letter journey and redirect to Account home page""") { () =>
+  Then("""user should go through tax letter journey and redirect to Account home page""") { () =>
     val wait = new WebDriverWait(webDriver, Duration.ofSeconds(50))
 
-    if (webDriver.getCurrentUrl.contains("/personal-account"))
-      {
-        wait.until(
-          ExpectedConditions.or(
-            ExpectedConditions.urlContains("/paperless/survey/optin-declined?"),
-            ExpectedConditions.urlContains("/personal-account")
-          )
+    if (webDriver.getCurrentUrl.contains("/personal-account")) {
+      wait.until(
+        ExpectedConditions.or(
+          ExpectedConditions.urlContains("/paperless/survey/optin-declined?"),
+          ExpectedConditions.urlContains("/personal-account")
         )
-        webDriver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
-        webDriver.navigate().back()
-      }
+      )
+      webDriver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
+      webDriver.navigate().back()
+    }
 
-    if (webDriver.getCurrentUrl.contains("paperless/optin?"))
-      {
-        wait.until(
-          ExpectedConditions.or(
-            ExpectedConditions.urlContains("paperless/optin?"),
-            ExpectedConditions.urlContains("/personal-account")
-          )
+    if (webDriver.getCurrentUrl.contains("paperless/optin?")) {
+      wait.until(
+        ExpectedConditions.or(
+          ExpectedConditions.urlContains("paperless/optin?"),
+          ExpectedConditions.urlContains("/personal-account")
         )
-        webDriver.findElement(By.id("sps-opt-in-2")).click()
-        webDriver.findElement(By.id("submitEmailButton")).click()
-        wait.until(ExpectedConditions.urlContains("/paperless/optout-confirmation?"))
-        webDriver.findElement(By.id("submitEmailButton")).click()
-        webDriver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
-        webDriver.navigate().back()
-        webDriver.navigate().back()
-        webDriver.navigate().back()
-      }
+      )
+      webDriver.findElement(By.id("sps-opt-in-2")).click()
+      webDriver.findElement(By.id("submitEmailButton")).click()
+      wait.until(ExpectedConditions.urlContains("/paperless/optout-confirmation?"))
+      webDriver.findElement(By.id("submitEmailButton")).click()
+      webDriver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
+      webDriver.navigate().back()
+      webDriver.navigate().back()
+      webDriver.navigate().back()
+    }
 
   }
 
@@ -258,49 +253,46 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
   }
 
 
-  And("""A message is posted to the messages API in the (.*) environment$""") {(env: String) =>
+  And("""A message is posted to the messages API in the (.*) environment$""") { (env: String) =>
 
-    val id=  Random.alphanumeric.filter(_.isDigit).take(14).mkString
+    val id = Random.alphanumeric.filter(_.isDigit).take(14).mkString
     val subject = Random.alphanumeric.filter(_.isLetter).take(4).mkString
     val stubRequestBody =
       s"""{
-        |   "externalRef":{
-        |      "id":"${id}",
-        |      "source":"gmc"
-        |   },
-        |   "recipient":{
-        |      "taxIdentifier":{
-        |         "name":"nino",
-        |         "value":"ER872414B"
-        |      },
-        |      "name":{
-        |         "title":"Mr",
-        |         "forename":"BOB",
-        |         "secondForename":"Harry",
-        |         "surname":"JONES",
-        |         "honours":"OBE"
-        |      },
-        |      "email":"someEmail@test.com"
-        |   },
-        |   "messageType":"mailout-batch",
-        |   "subject":"Reminder to file a Self Assessment return ${subject}",
-        |   "content":"Some base64-encoded HTML",
-        |   "validFrom":"2017-02-14",
-        |   "alertQueue":"DEFAULT",
-        |   "details":{
-        |      "formId":"SA300",
-        |      "issueDate":"2017-02-14",
-        |      "statutory":true,
-        |      "paperSent":false,
-        |      "batchId":"1234567",
-        |      "sourceData": "RnVjaw==",
-        |      "replyTo": "5c0a57826b00006b0032d0db"
-        |   }
-        |}""".stripMargin
+         |   "externalRef":{
+         |      "id":"${id}",
+         |      "source":"gmc"
+         |   },
+         |   "recipient":{
+         |      "taxIdentifier":{
+         |         "name":"nino",
+         |         "value":"ER872414B"
+         |      },
+         |      "name":{
+         |         "title":"Mr",
+         |         "forename":"BOB",
+         |         "secondForename":"Harry",
+         |         "surname":"JONES",
+         |         "honours":"OBE"
+         |      },
+         |      "email":"someEmail@test.com"
+         |   },
+         |   "messageType":"mailout-batch",
+         |   "subject":"Reminder to file a Self Assessment return $subject",
+         |   "content":"Some base64-encoded HTML",
+         |   "validFrom":"2017-02-14",
+         |   "alertQueue":"DEFAULT",
+         |   "details":{
+         |      "formId":"SA300",
+         |      "issueDate":"2017-02-14",
+         |      "statutory":true,
+         |      "paperSent":false,
+         |      "batchId":"1234567",
+         |      "sourceData": "RnVjaw==",
+         |      "replyTo": "5c0a57826b00006b0032d0db"
+         |   }
+         |}""".stripMargin
     MessagesStub.postMessagesStub(Json.parse(stubRequestBody), env)
-    System.out.println(id)
-    System.out.println(subject)
-
   }
 
 
@@ -311,20 +303,18 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
       webDriver.findElement(By.className("hmrc-notification-badge")).getText
 
     actualMessagesText shouldBe messages
-    System.out.println("actual text "+actualMessagesText)
   }
 
   And("""the user should see the message on the page after clicking the message""") { () =>
-   // webDriver.findElement(By.xpath("//*[contains(text(),'Messages')]")).click()
+    // webDriver.findElement(By.xpath("//*[contains(text(),'Messages')]")).click()
     webDriver.findElement(By.xpath("//span[@class='govuk-!-font-weight-bold black-text govuk-body']")).click()
-    webDriver.findElement(By.xpath("//p[@class='message_time faded-text--small govuk-hint']")).isDisplayed
+    webDriver.findElement(By.xpath("//p[@class='message_time faded-text--small govuk-body']")).isDisplayed
     webDriver.findElement(By.id("back-link")).click()
 
   }
 
   And("""^the user should not see tomato icon beside message menu$""") { () =>
     assertTrue(webDriver.findElements(By.className("hmrc-notification-badge")).isEmpty)
-
   }
 
   And("""^the user sees services relevant content in welsh language$""") { () =>
