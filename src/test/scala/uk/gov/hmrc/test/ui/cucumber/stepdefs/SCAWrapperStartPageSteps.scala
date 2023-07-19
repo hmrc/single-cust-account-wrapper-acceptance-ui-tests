@@ -327,6 +327,14 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
   }
 
 
+  And("""^the user sees services relevant content of chocs in welsh language$""") { () =>
+    val texts =
+      List("Hafan y cyfrif", "Negeseuon", "Gwirio cynnydd", "Proffil a gosodiadau", "Allgofnodi", "Cyfrif treth busnes", "Cyfrif treth personol")
+    SCAStartPage.textContentVerify(texts)
+    val othertexts =
+      List("Cwcis ar wasanaethau CThEM", "Mae‘r holl gynnwys ar gael o dan", "Drwydded Llywodraeth Agored v3.0", ", oni nodir yn wahanol", "Cwcis", "Polisi preifatrwydd", "Telerau ac Amodau", "Help wrth ddefnyddio GOV.UK", "Cysylltu")
+    SCAStartPage.textContentVerify(othertexts)
+  }
   And("""the user sees services relevant content in English language""") { () =>
     val texts = List("Personal tax account", "Account home", "Messages", "Check progress", "Profile and settings", "Business tax account", "Sign out")
 
