@@ -33,8 +33,10 @@ object GGChocsLoginPage extends StartUpTearDown with GGloginPagePaths with SCASt
     driver.navigate().to(Configuration.settings.AUTHLOGINSTUB)
 
   def enterRedirectURL(): Unit =
-    driver
-      .findElement(By.name(redirectURLField))
+
+
+   driver
+     .findElement(By.name(redirectURLField))
       .sendKeys(Configuration.settings.CHOCS_PAGE)
 
   def enterRedirectActionURL(): Unit =
@@ -81,14 +83,14 @@ object GGChocsLoginPage extends StartUpTearDown with GGloginPagePaths with SCASt
   def clickSubmitButton(): Unit =
     driver.findElement(By.id(submitButton)).click()
 
-  val NINumber                    = "AA000011A"
+  val NINumber                    = "ER872414B"
   val dropdown                    = "presets-dropdown"
   val SelfAssessment              = "SA"
   val addPresent                  = "add-preset"
   val identifierValueForUTRNumber = "input-4-0-value"
   val UTRNumber                   = "1632631936"
   val identifierValueForPTA       = "input-0-0-value"
-  val PTANumber                   = "AA000011A"
+  val PTANumber                   = "ER872414B"
   val EnrolmentKey                = "HMRC-PT"
   val IdentifierName              = "NINO"
 }

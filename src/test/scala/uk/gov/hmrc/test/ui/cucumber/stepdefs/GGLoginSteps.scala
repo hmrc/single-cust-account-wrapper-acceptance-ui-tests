@@ -54,7 +54,8 @@ object GGLoginSteps extends ScalaDsl with EN with Matchers with WebBrowser {
     GGChocsLoginPage.enterRedirectURL()
     GGChocsLoginPage.selectConfidenceLevel()
     GGChocsLoginPage.enterNino()
-    GGChocsLoginPage.selectSAEnrolment()
+    GGChocsLoginPage.selectPTAEnrolment()
+   GGChocsLoginPage.selectSAEnrolment()
     GGChocsLoginPage.clickSubmitButton()
   }
 
@@ -63,6 +64,7 @@ object GGLoginSteps extends ScalaDsl with EN with Matchers with WebBrowser {
     GGChocsLoginPage.enterRedirectURL()
     GGChocsLoginPage.selectConfidenceLevel()
     GGChocsLoginPage.enterNino()
+    GGChocsLoginPage.selectPTAEnrolment()
     GGChocsLoginPage.clickSubmitButton()
   }
   Given("""^User login to the Chocs GG Login Page with PTA enrolment$""") { () =>
@@ -80,6 +82,7 @@ object GGLoginSteps extends ScalaDsl with EN with Matchers with WebBrowser {
     GGChocsLoginPage.enterRedirectActionURL()
     GGChocsLoginPage.selectConfidenceLevel()
     GGChocsLoginPage.enterNino(ninoNumber)
+    GGChocsLoginPage.selectPTAEnrolment()
     GGChocsLoginPage.clickSubmitButton()
   }
 

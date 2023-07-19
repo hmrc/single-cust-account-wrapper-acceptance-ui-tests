@@ -44,13 +44,13 @@ object Configuration {
 
   lazy val settings: Configuration = environment.fold(
     new Configuration(
-      APP_ROOT = "http://localhost:9949/auth-login-stub/gg-sign-in?continue=%2Fsingle-customer-account",
+      APP_ROOT = "http://localhost:9949/auth-login-stub/gg-sign-in?",
       APPROOT = "http://localhost:8420/single-customer-account",
       AUTHLOGINSTUB = "http://localhost:9949/auth-login-stub/gg-sign-in",
       FEEDBACK_PAGE = "http://localhost:9514/feedback/single-customer-account-frontend",
       STATEPENSION_PAGE = "http://localhost:9234/check-your-state-pension/account",
       NI_PAGE = "http://localhost:9234/check-your-state-pension/account/nirecord",
-      CHOCS_PAGE = "http://localhost:10600/single-customer-account/your-details",
+      CHOCS_PAGE = "http://localhost:10600/hmrc-account/update-your-details",
       ACTIONS_PAGE = "http://localhost:8420/single-customer-account/actions",
       NINO_PAGE = "http://localhost:14006/save-your-national-insurance-number",
       ACTIVITY = "http://localhost:8420/single-customer-account/activities"
@@ -64,7 +64,7 @@ object Configuration {
       FEEDBACK_PAGE = s"$environmentUrl/feedback/single-customer-account-frontend",
       STATEPENSION_PAGE = s"$environmentUrl/check-your-state-pension/account",
       NI_PAGE = s"$environmentUrl/check-your-state-pension/account/nirecord",
-      CHOCS_PAGE = s"$environmentUrl/single-customer-account/your-details",
+      CHOCS_PAGE = s"$environmentUrl/hmrc-account/update-your-details",
       ACTIONS_PAGE = s"$environmentUrl/single-customer-account/actions",
       NINO_PAGE= s"$environmentUrl/save-your-national-insurance-number",
       ACTIVITY= s"$environmentUrl/single-customer-account/activities"
