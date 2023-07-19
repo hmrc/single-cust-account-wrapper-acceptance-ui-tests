@@ -1,4 +1,4 @@
-@suite
+@suite @CHB
 Feature: Wrapper integrating with child benefit-frontend
 
 

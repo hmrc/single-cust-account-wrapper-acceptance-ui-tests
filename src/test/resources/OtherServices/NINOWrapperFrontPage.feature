@@ -1,4 +1,4 @@
-@suite @ZAP
+@suite @ZAP @NINO
 Feature: Wrapper integrating with nino-frontend
 
 
