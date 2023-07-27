@@ -52,6 +52,7 @@ Scenario: User should be able to see the content in Welsh language
     Then User should see cookies banner
     Then User should able to close it
 
+
     Scenario: User login to chocs service and then verify all the menu links should redirecting to desired page
     Given User login to the Chocs GG Login Page with PTA enrolment
     When the user clicks on Account home menu
@@ -71,3 +72,12 @@ Scenario: User should be able to see the content in Welsh language
   Then the user should see 1 as the number of messages
   Then the user should see the message on the page after clicking the message
   Then the user should not see tomato icon beside message menu
+
+
+
+  Scenario: User logins to Chocs web application and should see Is this page not working properly? link and this link should lead to a page that says 'Get help with a technical problem'.
+    Given User login to the Chocs GG Login Page with PTA enrolment
+    Then User should see Is this page not working properly? (opens in new tab) directly above the footer
+    When User click on Is this page not working properly link
+    Then User should redirect to Get help with a technical problem page
+    Then Verify redirected URL should contains service name as service=sca-change-of-circumstances-frontend
