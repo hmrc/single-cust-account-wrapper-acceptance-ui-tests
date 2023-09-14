@@ -1,4 +1,4 @@
-@suite
+
 Feature: Activities component
 TAI service only show content for the most recent tax code change, therefore we are also only able to show 1
 Activity for the most recent tax code change.

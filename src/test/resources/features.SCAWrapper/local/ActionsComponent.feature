@@ -1,4 +1,4 @@
-@suite
+
 Feature: Claim your tax refund link
 
 
