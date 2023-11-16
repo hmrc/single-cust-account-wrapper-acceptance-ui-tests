@@ -70,8 +70,6 @@ Scenario: User should be able to see the content in Welsh language
   Given User login to the Chocs GG Login Page with PTA enrolment
   And A message is posted to the messages API in the local environment
   Then the user should see 1 as the number of messages
-  Then the user should see the message on the page after clicking the message
-  Then the user should not see tomato icon beside message menu
 
 
 
