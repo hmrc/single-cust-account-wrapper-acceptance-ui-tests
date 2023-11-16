@@ -313,9 +313,6 @@ class SCAWrapperStartPageSteps extends ScalaDsl with EN with Matchers with WebBr
 
   }
 
-  And("""^the user should not see tomato icon beside message menu$""") { () =>
-    assertTrue(webDriver.findElements(By.className("hmrc-notification-badge")).isEmpty)
-  }
 
   And("""^the user sees services relevant content in welsh language$""") { () =>
     val texts =
