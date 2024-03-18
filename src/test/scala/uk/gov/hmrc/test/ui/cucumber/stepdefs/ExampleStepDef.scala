@@ -16,9 +16,9 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
+import uk.gov.hmrc.test.ui.pages.CheckYourVATResult.{result, useSetVATFlatRate, useUniqueVATFlatRate}
 import uk.gov.hmrc.test.ui.pages.CheckYourVATHomePage
 import uk.gov.hmrc.test.ui.pages.CheckYourVATHomePage.provideVATPeriod
-import uk.gov.hmrc.test.ui.pages.CheckYourVATResult.{result, useSetVATFlatRate, useUniqueVATFlatRate}
 
 class ExampleStepDef extends BaseStepDef {
 

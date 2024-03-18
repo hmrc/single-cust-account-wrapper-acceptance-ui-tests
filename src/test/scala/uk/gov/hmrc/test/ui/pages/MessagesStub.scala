@@ -32,7 +32,7 @@ object MessagesStub {
         .method("POST")
         .postData(body)
         .header("Content-type", "application/json")
-        .asString
+        .asString.isSuccess
     }
   }
 

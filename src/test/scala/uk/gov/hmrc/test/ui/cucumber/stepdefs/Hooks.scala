@@ -18,7 +18,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import io.cucumber.scala._
 import org.openqa.selenium.io.FileHandler.{copy, createDir}
-import org.openqa.selenium.{OutputType, TakesScreenshot, WebDriver}
+import org.openqa.selenium.{OutputType, TakesScreenshot}
 import uk.gov.hmrc.selenium.webdriver.{Browser, Driver}
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 

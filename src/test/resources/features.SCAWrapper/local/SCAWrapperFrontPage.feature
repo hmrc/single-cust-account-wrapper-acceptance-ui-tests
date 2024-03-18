@@ -80,7 +80,8 @@ Feature: Wrapper integrating with sca-frontend
 
 
   Scenario: Check the messages icon displays correctly
-  Given User login to the GG Login Page with PTA enrolment
+  Given The message collection is dropped from mongo database
+  And User login to the GG Login Page with PTA enrolment
   And A message is posted to the messages API in the local environment
   Then the user should see 1 as the number of messages
 
