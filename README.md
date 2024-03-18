@@ -5,33 +5,15 @@ UI test suite for the `<digital service name>` using WebDriver and `<scalatest/c
 
 ## Running the tests
 
-Prior to executing the tests ensure you have:
- - Docker - to run mongo and browser (Chrome, Firefox or Edge) inside a container 
- - Appropriate [drivers installed](#installing-local-driver-binaries) - to run tests against locally installed Browser
- - Installed/configured [service manager](https://github.com/hmrc/service-manager).  
-
-Run the following command to start services locally:
-
-    docker run --rm -d --name mongo -d -p 27017:27017 mongo:4.0
-    sm --start PLATFORM_EXAMPLE_UI_TESTS -r --wait 100
-
-Using the `--wait 100` argument ensures a health check is run on all the services started as part of the profile. `100` refers to the given number of seconds to wait for services to pass health checks.
-
-Then execute the `run_tests.sh` script:
-
-    ./run_tests.sh <browser-driver> <environment> 
-
-The `run_tests.sh` script defaults to using `chrome` in the `local` environment.  For a complete list of supported param values, see:
- - `src/test/resources/application.conf` for **environment** 
- - [webdriver-factory](https://github.com/hmrc/webdriver-factory#2-instantiating-a-browser-with-default-options) for **browser-driver**
-
-
 ## Running SCA Wrapper tests
-
-- clone the repo: https://github.com/hmrc/single-cust-account-wrapper-acceptance-ui-tests
-- Feature file :SCAWrapperFrontPage.feature
-- sm2 --start SCA_FUTURES_ALL
-  Then execute the `./run_tests.sh` script:
+1. Clone the project [https://github.com/hmrc/single-cust-account-wrapper-acceptance-ui-tests]  to a directory of your choice
+2. Clone the local-selenium-grid [https://github.com/hmrc/local-selenium-grid ] to a directory of your choice
+3. On a terminal instance run: `sm2 --start SCA_FUTURES_ALL`
+4. Make sure all  you services are running: `sm2 -s`
+5. Navigate to the directory where you cloned local-selenium-grid
+6. Start local-selenium-grid: `./start.sh`
+7. Navigate to the directory where you cloned the tests
+8. Run: `./run_tests.sh`
 
 ## Running Integration Services SCA wrapper
 

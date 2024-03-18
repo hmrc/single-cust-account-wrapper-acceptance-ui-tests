@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,16 +18,15 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import org.openqa.selenium.{By, WebDriver}
-import org.scalatest.matchers.must.Matchers.{be, convertToAnyMustWrapper}
+import org.scalatest.matchers.must.Matchers.convertToAnyMustWrapper
 import uk.gov.hmrc.test.ui.PagePaths.{ActionsPagePaths, FeedbackPagePaths, GGloginPagePaths, SCAStartPagePaths}
 import uk.gov.hmrc.test.ui.pages.config.Configuration
-import uk.gov.hmrc.test.ui.utils.BrowserPackage.StartUpTearDown
 import uk.gov.hmrc.test.ui.utils.HttpClient
 
 import java.time.Duration
 
 object SCAStartPage
-  extends StartUpTearDown
+  extends BasePage
     with GGloginPagePaths
     with ActionsPagePaths
     with SCAStartPagePaths
@@ -288,9 +287,10 @@ object SCAStartPage
 
   }
 
+
   def textContentVerify(txts: List[String]) =
     for (txt <- txts)
-      assert(webDriver.getPageSource.contains(txt), s"\n'$txt' text was not found on the page")
+      assert(driver.getPageSource.contains(txt), s"\n'$txt' text was not found on the page")
 
   def clickOnCymraeg(Servicename: String): Unit = driver.findElement(By.xpath("//a[@href='/" + Servicename + "/hmrc-frontend/language/cy']")).click()
 

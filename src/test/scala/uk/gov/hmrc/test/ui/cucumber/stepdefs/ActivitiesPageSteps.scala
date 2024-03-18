@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,18 +16,14 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
-import io.cucumber.scala.{EN, ScalaDsl}
 import org.junit.Assert.assertTrue
 import org.openqa.selenium.By
-import org.scalatest.matchers.must.Matchers
-import org.scalatestplus.selenium._
 import uk.gov.hmrc.test.ui.pages.SCAStartPage
-import uk.gov.hmrc.test.ui.utils.BrowserPackage.Driver.webDriver
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class ActivitiesPageSteps extends ScalaDsl with EN with Matchers with WebBrowser {
+class ActivitiesPageSteps extends BaseStepDef {
 
   And("""User is on activity start page$""")(() => assert(SCAStartPage.verifySCAStartPage()))
 
@@ -105,6 +101,6 @@ class ActivitiesPageSteps extends ScalaDsl with EN with Matchers with WebBrowser
   }
 
   Then("""User should not see (.*) text on activity page$""") { (value: String) =>
-    assertTrue(webDriver.findElements(By.xpath("//*[contains(text(),'" + value + "')]")).isEmpty)
+    assertTrue(driver.findElements(By.xpath("//*[contains(text(),'" + value + "')]")).isEmpty)
   }
 }

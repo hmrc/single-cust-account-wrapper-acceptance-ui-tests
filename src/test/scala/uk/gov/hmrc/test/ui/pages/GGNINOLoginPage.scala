@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,11 +20,9 @@ import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.test.ui.PagePaths.{FeedbackPagePaths, GGloginPagePaths, SCAStartPagePaths}
 import uk.gov.hmrc.test.ui.pages.config.Configuration
-import uk.gov.hmrc.test.ui.utils.BrowserPackage.StartUpTearDown
-
 //import java.lang
 
-object GGNINOLoginPage extends StartUpTearDown with GGloginPagePaths with SCAStartPagePaths with FeedbackPagePaths {
+object GGNINOLoginPage extends BasePage with GGloginPagePaths with SCAStartPagePaths with FeedbackPagePaths {
 
   def navigateToStartPage(): Unit =
     driver.get(Configuration.settings.APP_ROOT)
