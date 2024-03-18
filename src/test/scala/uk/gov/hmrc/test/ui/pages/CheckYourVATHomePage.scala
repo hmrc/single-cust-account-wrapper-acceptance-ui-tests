@@ -27,15 +27,15 @@ object CheckYourVATHomePage extends BasePage {
   val quarterlyRadioButton = "vatReturnPeriod-2"
 
   def loadPage: this.type = {
-    driver.navigate().to(url)
+    webDriver.navigate().to(url)
     onPage(vatReturnPeriod)
     this
   }
 
   def provideVATPeriod(period: String): Turnover.type = {
     period match {
-      case "Annually" => driver.findElement(By.id(annuallyRadioButton)).click()
-      case _          => driver.findElement(By.id(quarterlyRadioButton)).click()
+      case "Annually" => webDriver.findElement(By.id(annuallyRadioButton)).click()
+      case _          => webDriver.findElement(By.id(quarterlyRadioButton)).click()
     }
     submitPage()
     Turnover

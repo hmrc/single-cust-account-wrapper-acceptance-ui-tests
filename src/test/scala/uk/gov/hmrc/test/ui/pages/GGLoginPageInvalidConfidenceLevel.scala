@@ -26,12 +26,12 @@ import java.time.Duration
 object GGLoginPageInvalidConfidenceLevel extends BasePage with GGloginPagePaths {
 
   def selectConfidenceLevel(): Unit = {
-    val confidenceLevel: Select = new Select(driver.findElement(By.name(confidenceLevelField)))
+    val confidenceLevel: Select = new Select(webDriver.findElement(By.name(confidenceLevelField)))
     confidenceLevel.selectByValue("50")
   }
 
   def verifySCAStartPageAccessError(SCAAccessError: String): Boolean =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](webDriver)
       .withTimeout(Duration.ofSeconds(10))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.className(SCAAccessErrorText), SCAAccessError))

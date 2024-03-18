@@ -101,6 +101,6 @@ class ActivitiesPageSteps extends BaseStepDef {
   }
 
   Then("""User should not see (.*) text on activity page$""") { (value: String) =>
-    assertTrue(driver.findElements(By.xpath("//*[contains(text(),'" + value + "')]")).isEmpty)
+    assertTrue(webDriver.findElements(By.xpath("//*[contains(text(),'" + value + "')]")).isEmpty)
   }
 }

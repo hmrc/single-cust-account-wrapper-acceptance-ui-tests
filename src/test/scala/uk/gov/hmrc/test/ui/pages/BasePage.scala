@@ -25,12 +25,12 @@ abstract class BasePage extends BrowserDriver with Matchers {
   val continueButton = "continue-button"
 
   def submitPage(): Unit =
-    driver.findElement(By.id(continueButton)).click()
+    webDriver.findElement(By.id(continueButton)).click()
 
   def onPage(pageTitle: String): Unit =
-    if (driver.getTitle != pageTitle)
+    if (webDriver.getTitle != pageTitle)
       throw PageNotFoundException(
-        s"Expected '$pageTitle' page, but found '${driver.getTitle}' page."
+        s"Expected '$pageTitle' page, but found '${webDriver.getTitle}' page."
       )
 }
 

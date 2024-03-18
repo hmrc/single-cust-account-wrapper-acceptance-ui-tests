@@ -27,7 +27,7 @@ object CheckYourVATResult extends BasePage {
 
   def result: String = {
     onPage(checkYourVatResult)
-    driver.findElement(By.id(resultOutcome)).getText
+    webDriver.findElement(By.id(resultOutcome)).getText
   }
 
 }

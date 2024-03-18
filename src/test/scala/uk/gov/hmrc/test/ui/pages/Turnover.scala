@@ -25,7 +25,7 @@ object Turnover extends BasePage {
 
   def provideTurnoverAmount(amount: String): CostOfGoods.type = {
     onPage(turnover)
-    driver.findElement(By.id(turnoverInput)).sendKeys(amount)
+    webDriver.findElement(By.id(turnoverInput)).sendKeys(amount)
     submitPage()
     CostOfGoods
   }
