@@ -16,12 +16,9 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
-import io.cucumber.scala.{EN, ScalaDsl}
-import org.scalatest.matchers.must.Matchers
-import org.scalatestplus.selenium.WebBrowser
 import uk.gov.hmrc.test.ui.pages.{GGLoginPage, GGLoginPageInvalidConfidenceLevel}
 
-class GGLoginInvalidConfidenceLevel extends ScalaDsl with EN with Matchers with WebBrowser {
+class GGLoginInvalidConfidenceLevel extends BaseStepDef {
 
   Given("""User login to the GGLogin Page$""") { () =>
     GGLoginPage.navigateToAuthLoginStub()

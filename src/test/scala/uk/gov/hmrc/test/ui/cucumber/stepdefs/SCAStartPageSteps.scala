@@ -16,13 +16,10 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
-import io.cucumber.scala.{EN, ScalaDsl}
 import org.openqa.selenium.By
-import org.scalatest.matchers.must.Matchers
-import org.scalatestplus.selenium._
 import uk.gov.hmrc.test.ui.pages.SCAStartPage
 
-class SCAStartPageSteps extends ScalaDsl with EN with Matchers with WebBrowser {
+class SCAStartPageSteps extends BaseStepDef {
 
   Then("""User is on SCA start page$""")(() => assert(SCAStartPage.verifySCAStartPage()))
 
