@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2024 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,27 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.cucumber.runner
+package uk.gov.hmrc.test.ui.utils
 
-import io.cucumber.junit.{Cucumber, CucumberOptions}
-import org.junit.runner.RunWith
+import org.mongodb.scala.MongoClient
 
-@RunWith(classOf[Cucumber])
-@CucumberOptions(
-  features = Array("src/test/resources/features.SCAWrapper/local"),
-  glue = Array("uk.gov.hmrc.test.ui.cucumber.stepdefs"),
-  plugin = Array("pretty", "html:target/cucumber", "json:target/cucumber.json", "junit:target/test-reports/RunAccessibility.xml"),
-  tags = "@accessibility"
-)
-class RunAccessibility {}
+import scala.concurrent.Await
+import scala.concurrent.duration._
+import scala.language.postfixOps
+
+object MongoConnection {
+
+
+  def dropCollection(dbName: String, collectionName: String): Unit = {
+    val mongoClient = MongoClient()
+    Await.result(
+      mongoClient
+        .getDatabase(dbName)
+        .getCollection(collectionName)
+        .drop()
+        .head(),
+      10 seconds)
+    mongoClient.close()
+  }
+
+}

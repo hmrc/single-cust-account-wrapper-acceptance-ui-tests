@@ -13,6 +13,6 @@ fi
 #sbt scalafmtSbt
 # TODO fix: sbt scalafmtCheckAll scalafmtSbtCheck
 
-sbt -Dbrowser="${BROWSER_TYPE:=$DEFAULT_BROWSER}" -Denvironment="${ENV:=local}" "testOnly uk.gov.hmrc.test.ui.cucumber.runner.Runner"
+sbt -Dbrowser="${BROWSER_TYPE:=$DEFAULT_BROWSER}" -Denvironment="${ENV:=local}" "testOnly uk.gov.hmrc.test.ui.cucumber.runner.Runner" testReport
 
 # Local version uses real messages API for messages
