@@ -26,51 +26,51 @@ object GGChildBenefitLogin extends BasePage with GGloginPagePaths with SCAStartP
 
   def navigateToBaseUrl(url: String): Unit = {
     deleteCookies()
-    webDriver.navigate().to(TestConfiguration.url(url))
+    driver.navigate().to(TestConfiguration.url(url))
   }
 
   def navigateToServiceUrl(url: String, serviceName: String): Unit = {
     deleteCookies()
-    webDriver.navigate().to(TestConfiguration.url(url) + serviceName)
-    webDriver.manage().window().maximize()
+    driver.navigate().to(TestConfiguration.url(url) + serviceName)
+    driver.manage().window().maximize()
   }
 
   def deleteCookies(): Unit =
-    webDriver.manage().deleteAllCookies()
+    driver.manage().deleteAllCookies()
 
   def setConfidenceLevel(): Unit =
-    webDriver.findElement(By.id("confidenceLevel")).sendKeys("200")
+    driver.findElement(By.id("confidenceLevel")).sendKeys("200")
 
   def setOrganisationAffinityGroup(): Unit =
-    webDriver.findElement(By.id("affinityGroupSelect")).sendKeys("Organisation")
+    driver.findElement(By.id("affinityGroupSelect")).sendKeys("Organisation")
 
   def enterNINO(nino: String): Unit =
     nino match {
       case "invalidService" =>
-      case _                => webDriver.findElement(By.id("nino")).sendKeys(nino)
+      case _                => driver.findElement(By.id("nino")).sendKeys(nino)
     }
 
   def clickSubmitButton(): Unit =
-    webDriver.findElement(By.id("submit")).click()
+    driver.findElement(By.id("submit")).click()
 
   def selectSAEnrolment(): Unit = {
-    val EnrolmentSelect: Select = new Select(webDriver.findElement(By.id(dropdown)))
+    val EnrolmentSelect: Select = new Select(driver.findElement(By.id(dropdown)))
     EnrolmentSelect.selectByVisibleText(SelfAssessment)
-    webDriver.findElement(By.id(addPresent)).click()
-    webDriver
+    driver.findElement(By.id(addPresent)).click()
+    driver
       .findElement(By.id(identifierValueForUTRNumber))
       .sendKeys(UTRNumber)
   }
 
   def selectPTAEnrolment(): Unit = {
-    webDriver
+    driver
       .findElement(By.id("enrolment[0].name"))
       .sendKeys(EnrolmentKey)
-    webDriver
+    driver
       .findElement(By.id("input-0-0-name"))
       .sendKeys(IdentifierName)
 
-    webDriver
+    driver
       .findElement(By.id(identifierValueForPTA))
       .sendKeys(NINumber)
   }

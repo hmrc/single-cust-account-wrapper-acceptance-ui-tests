@@ -21,5 +21,5 @@ import org.openqa.selenium.WebDriver
 import uk.gov.hmrc.selenium.webdriver.Driver
 
 trait BrowserDriver extends LazyLogging{
-  implicit val webDriver: WebDriver = Driver.instance
+  implicit val driver: WebDriver = Driver.instance
 }

@@ -25,48 +25,48 @@ import uk.gov.hmrc.test.ui.pages.config.Configuration
 object GGNINOLoginPage extends BasePage with GGloginPagePaths with SCAStartPagePaths with FeedbackPagePaths {
 
   def navigateToStartPage(): Unit =
-    webDriver.get(Configuration.settings.APP_ROOT)
+    driver.get(Configuration.settings.APP_ROOT)
 
   def navigateToAuthLoginStub(): Unit =
-    webDriver.navigate().to(Configuration.settings.AUTHLOGINSTUB)
+    driver.navigate().to(Configuration.settings.AUTHLOGINSTUB)
 
   def enterRedirectURL(): Unit =
-    webDriver
+    driver
       .findElement(By.name(redirectURLField))
       .sendKeys(Configuration.settings.NINO_PAGE)
 
   def selectConfidenceLevel(): Unit = {
-    val confidenceLevel: Select = new Select(webDriver.findElement(By.name(confidenceLevelField)))
+    val confidenceLevel: Select = new Select(driver.findElement(By.name(confidenceLevelField)))
     confidenceLevel.selectByValue("200")
   }
   def enterNino(): Unit        =
-    webDriver
+    driver
       .findElement(By.name(nino))
       .sendKeys(NINumber)
   def selectSAEnrolment(): Unit = {
-    val EnrolmentSelect: Select = new Select(webDriver.findElement(By.id(dropdown)))
+    val EnrolmentSelect: Select = new Select(driver.findElement(By.id(dropdown)))
     EnrolmentSelect.selectByVisibleText(SelfAssessment)
-    webDriver.findElement(By.id(addPresent)).click()
-    webDriver
+    driver.findElement(By.id(addPresent)).click()
+    driver
       .findElement(By.id(identifierValueForUTRNumber))
       .sendKeys(UTRNumber)
   }
 
   def selectPTAEnrolment(): Unit = {
-    webDriver
+    driver
       .findElement(By.id("enrolment[0].name"))
       .sendKeys(EnrolmentKey)
-    webDriver
+    driver
       .findElement(By.id("input-0-0-name"))
       .sendKeys(IdentifierName)
 
-    webDriver
+    driver
       .findElement(By.id(identifierValueForPTA))
       .sendKeys(NINumber)
   }
 
   def clickSubmitButton(): Unit =
-    webDriver.findElement(By.id(submitButton)).click()
+    driver.findElement(By.id(submitButton)).click()
 
   val NINumber                    = "AA000003B"
   val dropdown                    = "presets-dropdown"

@@ -55,7 +55,7 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
   }
   Then("""User should able to see (.*) link directly above the footer in Jenkins$""") { (FeedbackLink: String) =>
     //TODO find out why the xpath is different when the service isn't running locally
-    webDriver.findElement(By.xpath("//span[@class='govuk-phase-banner__text']")).isDisplayed
+    driver.findElement(By.xpath("//span[@class='govuk-phase-banner__text']")).isDisplayed
     assert(SCAStartPage.FeedBackLinkJenkins(FeedbackLink))
   }
   When("""User click on feedback link""") { () =>
@@ -137,7 +137,7 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
       linkName match {
         case "Cymraeg" =>
           assert(
-            !webDriver
+            !driver
               .findElement(By.cssSelector("a[href*='/single-customer-account/hmrc-frontend/language/cy']"))
               .isEnabled,
             s"language $linkName is present on the page"
@@ -145,7 +145,7 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
 
         case "English" =>
           assert(
-            !webDriver
+            !driver
               .findElement(By.cssSelector("a[href*='/single-customer-account/hmrc-frontend/language/en']"))
               .isEnabled,
             s"language $linkName is present on the page"
@@ -157,15 +157,15 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
   When("""^the user clicks on (.*) menu$""") { linkName: String =>
     linkName match {
       case "Account home" =>
-        webDriver.findElement(By.partialLinkText(linkName)).click()
+        driver.findElement(By.partialLinkText(linkName)).click()
       case "Messages" =>
-        webDriver.findElement(By.partialLinkText(linkName)).click()
+        driver.findElement(By.partialLinkText(linkName)).click()
       case "Check progress" =>
-        webDriver.findElement(By.partialLinkText(linkName)).click()
+        driver.findElement(By.partialLinkText(linkName)).click()
       case "Profile and settings" =>
-        webDriver.findElement(By.partialLinkText(linkName)).click()
+        driver.findElement(By.partialLinkText(linkName)).click()
       case "Sign out" =>
-        webDriver.findElement(By.partialLinkText(linkName)).click()
+        driver.findElement(By.partialLinkText(linkName)).click()
 
     }
   }
@@ -173,79 +173,79 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
   When("""^User clicks on (.*) footer link$""") { linkName: String =>
     linkName match {
       case "Cookies" =>
-        webDriver.findElement(By.partialLinkText(linkName)).click()
+        driver.findElement(By.partialLinkText(linkName)).click()
       case "Accessibility statement" =>
-        webDriver.findElement(By.partialLinkText(linkName)).click()
+        driver.findElement(By.partialLinkText(linkName)).click()
       case "Privacy policy" =>
-        webDriver.findElement(By.partialLinkText(linkName)).click()
+        driver.findElement(By.partialLinkText(linkName)).click()
       case "Terms and conditions" =>
-        webDriver.findElement(By.partialLinkText(linkName)).click()
+        driver.findElement(By.partialLinkText(linkName)).click()
       case "Help using GOV.UK" =>
-        webDriver.findElement(By.partialLinkText(linkName)).click()
+        driver.findElement(By.partialLinkText(linkName)).click()
       case "Contact" =>
-        webDriver.findElement(By.partialLinkText(linkName)).click()
+        driver.findElement(By.partialLinkText(linkName)).click()
       case "Rhestr o Wasanaethau Cymraeg" =>
-        webDriver.findElement(By.partialLinkText(linkName)).click()
+        driver.findElement(By.partialLinkText(linkName)).click()
 
     }
   }
 
   Then("""user should redirects to track page$""") { () =>
 
-    val trackURL = webDriver.getCurrentUrl
+    val trackURL = driver.getCurrentUrl
     trackURL.contains("/track")
   }
 
 
   Then("""user should redirect to (.*) page$""") { (locator: String) =>
-    webDriver.findElement(By.xpath("//*[contains(text(),'" + locator + "')]")).isDisplayed
+    driver.findElement(By.xpath("//*[contains(text(),'" + locator + "')]")).isDisplayed
   }
 
 
   Then("""user should go through tax letter journey and redirect to Account home page""") { () =>
-    val wait = new WebDriverWait(webDriver, Duration.ofSeconds(50))
+    val wait = new WebDriverWait(driver, Duration.ofSeconds(50))
 
-    if (webDriver.getCurrentUrl.contains("/personal-account")) {
+    if (driver.getCurrentUrl.contains("/personal-account")) {
       wait.until(
         ExpectedConditions.or(
           ExpectedConditions.urlContains("/paperless/survey/optin-declined?"),
           ExpectedConditions.urlContains("/personal-account")
         )
       )
-      webDriver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
-      webDriver.navigate().back()
+      driver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
+      driver.navigate().back()
     }
 
-    if (webDriver.getCurrentUrl.contains("paperless/optin?")) {
+    if (driver.getCurrentUrl.contains("paperless/optin?")) {
       wait.until(
         ExpectedConditions.or(
           ExpectedConditions.urlContains("paperless/optin?"),
           ExpectedConditions.urlContains("/personal-account")
         )
       )
-      webDriver.findElement(By.id("sps-opt-in-2")).click()
-      webDriver.findElement(By.id("submitEmailButton")).click()
+      driver.findElement(By.id("sps-opt-in-2")).click()
+      driver.findElement(By.id("submitEmailButton")).click()
       wait.until(ExpectedConditions.urlContains("/paperless/optout-confirmation?"))
-      webDriver.findElement(By.id("submitEmailButton")).click()
-      webDriver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
-      webDriver.navigate().back()
-      webDriver.navigate().back()
-      webDriver.navigate().back()
+      driver.findElement(By.id("submitEmailButton")).click()
+      driver.findElement(By.xpath("//*[contains(text(),'Account home')]")).isDisplayed
+      driver.navigate().back()
+      driver.navigate().back()
+      driver.navigate().back()
     }
 
   }
 
   Then("""User should see cookies banner""") { () =>
-    webDriver.findElement(By.xpath("//*[contains(text(),'Accept additional cookies')]")).isDisplayed
+    driver.findElement(By.xpath("//*[contains(text(),'Accept additional cookies')]")).isDisplayed
 
   }
   Then("""User should able to close it""") { () =>
-    webDriver.findElement(By.xpath("//*[contains(text(),'Accept additional cookies')]")).click()
-    webDriver.findElement(By.xpath("//*[contains(text(),'Hide cookies message')]")).click()
+    driver.findElement(By.xpath("//*[contains(text(),'Accept additional cookies')]")).click()
+    driver.findElement(By.xpath("//*[contains(text(),'Hide cookies message')]")).click()
   }
 
   Then("""User should not see Business tax account menu option""") { () =>
-    assertTrue(webDriver.findElements(By.xpath("//*[contains(text(),'Business tax account')]")).isEmpty)
+    assertTrue(driver.findElements(By.xpath("//*[contains(text(),'Business tax account')]")).isEmpty)
   }
 
   Then("""The message collection is dropped from mongo database""") { () =>
@@ -296,19 +296,19 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
 
 
   And("""^the user should see (.*) as the number of messages$""") { (messages: String) =>
-    webDriver.navigate().refresh()
-    webDriver.findElement(By.partialLinkText("Messages")).click()
+    driver.navigate().refresh()
+    driver.findElement(By.partialLinkText("Messages")).click()
     val actualMessagesText =
-      webDriver.findElement(By.className("hmrc-notification-badge")).getText
+      driver.findElement(By.className("hmrc-notification-badge")).getText
 
     actualMessagesText shouldBe messages
   }
 
   And("""the user should see the message on the page after clicking the message""") { () =>
-    webDriver.findElement(By.xpath("//*[contains(text(),'Messages')]")).click()
-    webDriver.findElement(By.xpath("//span[@class='govuk-!-font-weight-bold black-text govuk-body']")).click()
-    webDriver.findElement(By.xpath("//p[@class='message_time faded-text--small govuk-body']")).isDisplayed
-    webDriver.findElement(By.id("back-link")).click()
+    driver.findElement(By.xpath("//*[contains(text(),'Messages')]")).click()
+    driver.findElement(By.xpath("//span[@class='govuk-!-font-weight-bold black-text govuk-body']")).click()
+    driver.findElement(By.xpath("//p[@class='message_time faded-text--small govuk-body']")).isDisplayed
+    driver.findElement(By.id("back-link")).click()
 
   }
 
