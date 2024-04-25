@@ -10,7 +10,7 @@ object Dependencies {
     "io.cucumber"           %% "cucumber-scala"           % "8.14.2"    % Test,
     "io.cucumber"           % "cucumber-core"             % "7.11.1"    % Test,
     "org.scalatest"         %% "scalatest"                % "3.2.17"    % Test,
-    "uk.gov.hmrc"           %% "ui-test-runner"           % "0.17.0"    % Test,
+    "uk.gov.hmrc"           %% "ui-test-runner"           % "0.29.0"    % Test,
     "org.scalatestplus"     %% "selenium-4-12"            % "3.2.17.0"  % Test,
     "com.typesafe.play"     %% "play-test"                % "2.8.12"    % Test,
     "com.typesafe.play"     %% "play-ws-standalone-json"  % "2.1.2"     % Test,
