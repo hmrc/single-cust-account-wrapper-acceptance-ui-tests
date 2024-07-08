@@ -21,7 +21,9 @@ import uk.gov.hmrc.test.ui.pages.SCAStartPage
 
 class SCAStartPageSteps extends BaseStepDef {
 
-  Then("""User is on SCA start page$""")(() => assert(SCAStartPage.verifySCAStartPage()))
+  Then("""User is on SCA start page$"""){ () =>
+    assert(SCAStartPage.verifySCAStartPage())
+  }
 
   Then("""User should see (.*) title page Header contain logo text as (.*) in (.*)$""") {
     (Servicename: String, value: String, locator: String) =>
