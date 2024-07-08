@@ -25,13 +25,7 @@ import uk.gov.hmrc.test.ui.utils.HttpClient
 
 import java.time.Duration
 
-object SCAStartPage
-  extends BasePage
-    with GGloginPagePaths
-    with ActionsPagePaths
-    with SCAStartPagePaths
-    with FeedbackPagePaths
-    with HttpClient {
+object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths with SCAStartPagePaths with FeedbackPagePaths with HttpClient {
   def verifySCAStartPage(): Boolean =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))

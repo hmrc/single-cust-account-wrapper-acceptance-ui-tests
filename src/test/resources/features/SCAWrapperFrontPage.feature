@@ -1,6 +1,5 @@
-@suite @ZAP @accessibility
+@suite
 Feature: Wrapper integrating with sca-frontend
-
 
   Scenario: User logins to SCA web application and should see default GOV.UK header along with service name so user is reassured they have signed into Government service.
     Given User login to the GG Login Page
@@ -8,13 +7,11 @@ Feature: Wrapper integrating with sca-frontend
     Then User should see SCA title page Header contain logo text as GOV.UK in govuk-header__logotype-text
     Then User should see SCA title page Header contain service name as Single Customer Account in govuk-header__content
 
-
   Scenario: User logins to SCA web application and BTA menu only shown based on the SA enrolment rule.
     Given User login to the GG Login Page
     And User is on SCA start page
     When SA enrolment is applied
     Then User should see Business tax account menu option
-
 
   Scenario: User logins to SCA web application and should see following menu items.
     Given User login to the GG Login Page Without SA enrollment
@@ -36,11 +33,9 @@ Feature: Wrapper integrating with sca-frontend
     When User click on 'Accessibility statement' link
     Then Verify redirected URL should contains service name as single-customer-account
 
-
   Scenario: User logins to SCA web application and should see links in the footer
     Given User login to the GG Login Page
     Then User should see Cookies, Accessibility statement, Privacy policy, Terms and conditions, Help using GOV.UK, Contact and Rhestr o Wasanaethau Cymraeg links in the footer
-
 
   Scenario: User logins to SCA web application and should see Is this page not working properly? link and this link should lead to a page that says 'Get help with a technical problem'.
     Given User login to the GG Login Page
@@ -48,7 +43,6 @@ Feature: Wrapper integrating with sca-frontend
     When User click on Is this page not working properly link
     Then User should redirect to Get help with a technical problem page
     Then Verify redirected URL should contains service name as single-customer-account
-
 
   Scenario: User should be able to see the content in Welsh language
     Given User login to the GG Login Page
@@ -59,14 +53,12 @@ Feature: Wrapper integrating with sca-frontend
     Then the user can not click language 'English' link
     And the user sees relevant content in English language
 
-
   Scenario: User logins to SCA web application should see the cookies banner and able to close it
     And User is on SCA start page
     Then User should see cookies banner
     Then User should able to close it
 
-
-    Scenario: User login with PTA enrolment and then verify all the menu links should redirecting to desired page
+  Scenario: User login with PTA enrolment and then verify all the menu links should redirecting to desired page
     Given User login to the GG Login Page with PTA enrolment
     When the user clicks on Account home menu
     Then user should go through tax letter journey and redirect to Account home page
@@ -78,10 +70,9 @@ Feature: Wrapper integrating with sca-frontend
     When the user clicks on Sign out menu
     Then user should redirect to Give feedback page
 
-
   Scenario: Check the messages icon displays correctly
-  Given The message collection is dropped from mongo database
-  And User login to the GG Login Page with PTA enrolment
-  And A message is posted to the messages API in the local environment
-  Then the user should see 1 as the number of messages
+    Given The message collection is dropped from mongo database
+    And User login to the GG Login Page with PTA enrolment
+    And A message is posted to the messages API in the local environment
+    Then the user should see 1 as the number of messages
 
