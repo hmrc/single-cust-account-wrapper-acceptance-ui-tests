@@ -57,7 +57,7 @@ Feature: Wrapper integrating with sca-frontend
     And User is on SCA start page
     Then User should see cookies banner
     Then User should able to close it
-@wip
+
   Scenario: Check the messages icon displays correctly
     Given The message collection is dropped from mongo database
     And User login to the GG Login Page
