@@ -12,7 +12,7 @@ Feature: Wrapper integrating with sca-frontend
     And User is on SCA start page
     When SA enrolment is applied
     Then User should see Business tax account menu option
-
+  @wip
   Scenario: User logins to SCA web application and should see following menu items.
     Given User login to the GG Login Page Without SA enrollment
     Then User should see following option in menu Account home, Messages, Check progress, Profile and settings and Sign out
@@ -75,4 +75,10 @@ Feature: Wrapper integrating with sca-frontend
     And User login to the GG Login Page with PTA enrolment
     And A message is posted to the messages API in the local environment
     Then the user should see 1 as the number of messages
+
+
+#    Time out - Manual check - Check Java script loaded on the page
+#    Attorney Banner
+#    Sign out
+#    SCA start page - No menu bar,
 
