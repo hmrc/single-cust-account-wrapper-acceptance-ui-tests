@@ -111,6 +111,8 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
 
   def returnToPreviousPage(): Unit = driver.navigate.back()
 
+  def clickOnSignOut(): Unit = driver.findElement(By.xpath(SignOutLink)).click()
+
   def verifyFeedbackPageURL(): Boolean =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
