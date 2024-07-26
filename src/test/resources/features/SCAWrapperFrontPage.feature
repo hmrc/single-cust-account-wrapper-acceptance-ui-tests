@@ -64,7 +64,7 @@ Feature: Wrapper integrating with sca-frontend
     And User is on SCA start page
     And A message is posted to the messages API in the local environment
     Then the user should see 1 as the number of messages
-@wip
+
     Scenario: User logins to SCA web application should be able to log out
       Given User login to the GG Login Page
       And User is on SCA start page
