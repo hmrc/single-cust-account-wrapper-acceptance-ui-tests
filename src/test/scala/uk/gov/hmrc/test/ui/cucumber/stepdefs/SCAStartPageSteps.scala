@@ -21,13 +21,13 @@ import uk.gov.hmrc.test.ui.pages.SCAStartPage
 
 class SCAStartPageSteps extends BaseStepDef {
 
-  Then("""User is on SCA start page$"""){ () =>
+  Then("""User is on SCA start page$""") { () =>
     assert(SCAStartPage.verifySCAStartPage())
   }
 
   Then("""User should see (.*) title page Header contain logo text as (.*) in (.*)$""") {
     (Servicename: String, value: String, locator: String) =>
-      ( Servicename,SCAStartPage.assertContent(By.xpath("//*[@class='" + locator + "']"), value))
+      (Servicename, SCAStartPage.assertContent(By.xpath("//*[@class='" + locator + "']"), value))
   }
 
   Then("""^User sees (.*)$""") { (message: String) =>
@@ -35,8 +35,8 @@ class SCAStartPageSteps extends BaseStepDef {
   }
 
   Then("""User should see (.*) title page Header contain service name as (.*) in (.*)$""") {
-    (Servicename: String,value: String, locator: String) =>
-      ( Servicename,SCAStartPage.assertContent(By.xpath("//*[@class='" + locator + "']"), value))
+    (Servicename: String, value: String, locator: String) =>
+      (Servicename, SCAStartPage.assertContent(By.xpath("//*[@class='" + locator + "']"), value))
   }
 
   Then("""User should see SCA title page footer contain (.*) in (.*)$""") { (value: String, locator: String) =>
@@ -51,7 +51,7 @@ class SCAStartPageSteps extends BaseStepDef {
     (text: String, identifier: String, locator: String) =>
       identifier match {
         case "id" => SCAStartPage.clickOn(By.id(locator))
-        case _    => throw new RuntimeException("Type of element identifier not found")
+        case _ => throw new RuntimeException("Type of element identifier not found")
       }
   }
 
@@ -145,4 +145,13 @@ class SCAStartPageSteps extends BaseStepDef {
     SCAStartPage.assertContent(By.xpath("//*[(text()='" + feedbackPageText + "')]"), feedbackPageText)
   }
 
+  Then("""User should see (.*) button$""") {
+    (SignOutLink: String) =>
+      SCAStartPage.assertContent(By.xpath("//*[contains(text(),'Sign out')]"),
+        SignOutLink)
+
+  }
+  Then("""User clicks on Sign out button""") { () =>
+    SCAStartPage.clickOnSignOut()
+  }
 }
