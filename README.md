@@ -11,7 +11,7 @@ Clone the project [https://github.com/hmrc/single-cust-account-wrapper-acceptanc
 
 # Start services:
 
-To start the service - Go to terminal instance run: `sm2 -start SCA_FUTURES_ALL`
+To start the service - Go to terminal instance run: `sm2 --start SCA_FUTURES_ALL`
 
 # Verify services:
 
