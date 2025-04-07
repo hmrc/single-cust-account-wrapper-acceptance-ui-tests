@@ -27,7 +27,7 @@ object Hooks extends ScalaDsl with EN with Browser with BrowserDriver {
     Driver.instance.manage().deleteAllCookies()
   }
 
-  After { scenario: Scenario =>
+  After { (scenario: Scenario) =>
     logger.info(s"After scenario -> ${scenario.getName}")
     if (scenario.isFailed) {
       val testName = scenario.getName.replaceAll(" ", "-").replaceAll(":", "")

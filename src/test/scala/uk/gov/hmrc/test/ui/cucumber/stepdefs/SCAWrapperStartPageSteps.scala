@@ -154,7 +154,7 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
     }
   }
 
-  When("""^the user clicks on (.*) menu$""") { linkName: String =>
+  When("""^the user clicks on (.*) menu$""") { (linkName: String) =>
     linkName match {
       case "Account home" =>
         driver.findElement(By.partialLinkText(linkName)).click()
@@ -170,7 +170,7 @@ class SCAWrapperStartPageSteps extends BaseStepDef with GGloginPagePaths {
     }
   }
 
-  When("""^User clicks on (.*) footer link$""") { linkName: String =>
+  When("""^User clicks on (.*) footer link$""") { (linkName: String) =>
     linkName match {
       case "Cookies" =>
         driver.findElement(By.partialLinkText(linkName)).click()

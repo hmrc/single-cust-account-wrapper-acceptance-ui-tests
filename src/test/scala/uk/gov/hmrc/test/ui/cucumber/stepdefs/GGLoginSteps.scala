@@ -18,7 +18,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import uk.gov.hmrc.test.ui.pages.{GGChildBenefitLogin, GGChocsLoginPage, GGLoginPage, GGNINOLoginPage}
 
-class GGLoginSteps extends BaseStepDef  {
+class GGLoginSteps extends BaseStepDef {
 
   Given("""^User login to the GG Login Page$""") { () =>
     GGLoginPage.navigateToAuthLoginStub()
@@ -52,7 +52,7 @@ class GGLoginSteps extends BaseStepDef  {
     GGChocsLoginPage.selectConfidenceLevel()
     GGChocsLoginPage.enterNino()
     GGChocsLoginPage.selectPTAEnrolment()
-   GGChocsLoginPage.selectSAEnrolment()
+    GGChocsLoginPage.selectSAEnrolment()
     GGChocsLoginPage.clickSubmitButton()
   }
 
@@ -82,7 +82,6 @@ class GGLoginSteps extends BaseStepDef  {
     GGChocsLoginPage.selectPTAEnrolment()
     GGChocsLoginPage.clickSubmitButton()
   }
-
 
 
   Given("""^User login to the NINO GG Login Page$""") { () =>
