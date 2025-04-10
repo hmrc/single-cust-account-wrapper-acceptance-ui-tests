@@ -18,27 +18,27 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import org.openqa.selenium.{By, WebDriver}
-import org.scalatest.matchers.must.Matchers.convertToAnyMustWrapper
+import org.scalatest.matchers.must.Matchers._
 import uk.gov.hmrc.test.ui.PagePaths.{ActionsPagePaths, FeedbackPagePaths, GGloginPagePaths, SCAStartPagePaths}
 import uk.gov.hmrc.test.ui.pages.config.Configuration
-import uk.gov.hmrc.test.ui.utils.HttpClient
+//import uk.gov.hmrc.test.ui.utils.HttpClient
 
 import java.time.Duration
 
-object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths with SCAStartPagePaths with FeedbackPagePaths with HttpClient {
-  def verifySCAStartPage(): Boolean =
+object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths with SCAStartPagePaths with FeedbackPagePaths{
+  def verifySCAStartPage() =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.urlMatches(Configuration.settings.APPROOT))
 
-  def searchResults(name: String): Boolean =
+  def searchResults(name: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.id(accountName), name))
 
-  def SCAMenuResult(TaxesAndBenefits: String, Messages: String, YourDetails: String): Boolean = {
+  def SCAMenuResult(TaxesAndBenefits: String, Messages: String, YourDetails: String) = {
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -53,7 +53,7 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
       .until(ExpectedConditions.textToBePresentInElementLocated(By.id(PersonalDetails), YourDetails))
   }
 
-  def searchResult(PAYE: String, SA: String, StatePension: String): Boolean = {
+  def searchResult(PAYE: String, SA: String, StatePension: String) = {
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -68,7 +68,7 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
       .until(ExpectedConditions.textToBePresentInElementLocated(By.id(Pension), StatePension))
   }
 
-  def searchNISP(statePensionLink: String, niLink: String): Boolean = {
+  def searchNISP(statePensionLink: String, niLink: String) = {
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -83,7 +83,7 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
 
   def clickOnStatePensionSummary(): Unit = driver.findElement(By.linkText(statePensionLink)).click()
 
-  def verifyStatePensionPageURL(): Boolean =
+  def verifyStatePensionPageURL() =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -91,13 +91,13 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
 
   def clickOnNIRecord(): Unit = driver.findElement(By.linkText(niLink)).click()
 
-  def verifyNIRecordPageURL(): Boolean =
+  def verifyNIRecordPageURL() =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.urlMatches(Configuration.settings.NI_PAGE))
 
-  def checkMessage(Message: String): Boolean =
+  def checkMessage(Message: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -113,7 +113,7 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
 
   def clickOnSignOut(): Unit = driver.findElement(By.xpath(SignOutLink)).click()
 
-  def verifyFeedbackPageURL(): Boolean =
+  def verifyFeedbackPageURL() =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -130,7 +130,7 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
   def clickById(id: String): Unit =
     clickOn(By.id(id))
 
-  def SCABTALink(BTA: String): Boolean =
+  def SCABTALink(BTA: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -142,7 +142,7 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
                       CheckProgress: String,
                       ProfileAndSettings: String,
                       SignOut: String
-                    ): Boolean = {
+                    ) = {
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -166,26 +166,26 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
 
   }
 
-  def confirmActionsResult(message: String): Boolean =
+  def confirmActionsResult(message: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector(actionsResult), message))
 
 
-  def FeedBackLink(FeedbackLink: String): Boolean =
+  def FeedBackLink(FeedbackLink: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.className("govuk-phase-banner__text"), FeedbackLink))
 
-  def FeedBackLinkJenkins(FeedbackLink: String): Boolean =
+  def FeedBackLinkJenkins(FeedbackLink: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(FeedbacklinkJenkins), FeedbackLink))
 
-  def FeedBackPage(Feedbackpage: String): Boolean =
+  def FeedBackPage(Feedbackpage: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -193,7 +193,7 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
 
   def clickOnPageNotWorkingProperly(): Unit = driver.findElement(By.linkText(pageNotWorkingProperlyLink)).click()
 
-  def PageNotWorkingProperlyLink(PageNotWorkingProperly: String): Boolean =
+  def PageNotWorkingProperlyLink(PageNotWorkingProperly: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -202,7 +202,7 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
           .textToBePresentInElementLocated(By.linkText(pageNotWorkingProperlyLink), PageNotWorkingProperly)
       )
 
-  def PageNotWorkingProperly(PageNotWorkingProperly: String): Boolean =
+  def PageNotWorkingProperly(PageNotWorkingProperly: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -224,7 +224,7 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
 
   }
 
-  def AccessibilitystatementLink(Accessibilitystatement: String): Boolean =
+  def AccessibilitystatementLink(Accessibilitystatement: String) : java.lang.Boolean =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -243,7 +243,7 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
                         HelpUsingGOVUK: String,
                         Contact: String,
                         WelshLanguage: String
-                      ): Boolean = {
+                      ) = {
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])

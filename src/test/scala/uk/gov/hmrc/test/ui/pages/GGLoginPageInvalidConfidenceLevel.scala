@@ -30,7 +30,7 @@ object GGLoginPageInvalidConfidenceLevel extends BasePage with GGloginPagePaths 
     confidenceLevel.selectByValue("50")
   }
 
-  def verifySCAStartPageAccessError(SCAAccessError: String): Boolean =
+  def verifySCAStartPageAccessError(SCAAccessError: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(10))
       .ignoring(classOf[Nothing])

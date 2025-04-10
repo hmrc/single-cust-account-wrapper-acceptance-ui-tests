@@ -18,10 +18,9 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import org.openqa.selenium.{By, WebDriver}
-import org.scalatest.matchers.must.Matchers.convertToAnyMustWrapper
+import org.scalatest.matchers.must.Matchers._
 import uk.gov.hmrc.test.ui.PagePaths.{FeedbackPagePaths, GGloginPagePaths, SCAStartPagePaths}
 import uk.gov.hmrc.test.ui.pages.config.Configuration
-import uk.gov.hmrc.test.ui.utils.HttpClient
 
 import java.time.Duration
 
@@ -29,21 +28,20 @@ object ActivityPage
     extends BasePage
     with GGloginPagePaths
     with SCAStartPagePaths
-    with FeedbackPagePaths
-    with HttpClient {
-  def verifySCAStartPage(): Boolean =
+    with FeedbackPagePaths {
+  def verifySCAStartPage() =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.urlMatches(Configuration.settings.ACTIVITY))
 
-  def searchResults(name: String): Boolean =
+  def searchResults(name: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.id(accountName), name))
 
-  def SCAMenuResult(TaxesAndBenefits: String, Messages: String, YourDetails: String): Boolean = {
+  def SCAMenuResult(TaxesAndBenefits: String, Messages: String, YourDetails: String) = {
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -58,7 +56,7 @@ object ActivityPage
       .until(ExpectedConditions.textToBePresentInElementLocated(By.id(PersonalDetails), YourDetails))
   }
 
-  def searchResult(PAYE: String, SA: String, StatePension: String): Boolean = {
+  def searchResult(PAYE: String, SA: String, StatePension: String) = {
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -73,7 +71,7 @@ object ActivityPage
       .until(ExpectedConditions.textToBePresentInElementLocated(By.id(Pension), StatePension))
   }
 
-  def searchNISP(statePensionLink: String, niLink: String): Boolean = {
+  def searchNISP(statePensionLink: String, niLink: String) = {
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -88,7 +86,7 @@ object ActivityPage
 
   def clickOnStatePensionSummary(): Unit = driver.findElement(By.linkText(statePensionLink)).click()
 
-  def verifyStatePensionPageURL(): Boolean =
+  def verifyStatePensionPageURL() =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -96,13 +94,13 @@ object ActivityPage
 
   def clickOnNIRecord(): Unit = driver.findElement(By.linkText(niLink)).click()
 
-  def verifyNIRecordPageURL(): Boolean =
+  def verifyNIRecordPageURL() =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.urlMatches(Configuration.settings.NI_PAGE))
 
-  def checkMessage(Message: String): Boolean =
+  def checkMessage(Message: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -116,7 +114,7 @@ object ActivityPage
 
   def returnToPreviousPage(): Unit = driver.navigate.back()
 
-  def verifyFeedbackPageURL(): Boolean =
+  def verifyFeedbackPageURL() =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -133,7 +131,7 @@ object ActivityPage
   def clickById(id: String): Unit =
     clickOn(By.id(id))
 
-  def SCABTALink(BTA: String): Boolean =
+  def SCABTALink(BTA: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -145,7 +143,7 @@ object ActivityPage
     CheckProgress: String,
     ProfileAndSettings: String,
     SignOut: String
-  ): Boolean = {
+  ) = {
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -169,19 +167,19 @@ object ActivityPage
 
   }
 
-  def FeedBackLink(FeedbackLink: String): Boolean =
+  def FeedBackLink(FeedbackLink: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.className("govuk-phase-banner__text"), FeedbackLink))
 
-  def FeedBackLinkJenkins(FeedbackLink: String): Boolean =
+  def FeedBackLinkJenkins(FeedbackLink: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(FeedbacklinkJenkins), FeedbackLink))
 
-  def FeedBackPage(Feedbackpage: String): Boolean =
+  def FeedBackPage(Feedbackpage: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -189,7 +187,7 @@ object ActivityPage
 
   def clickOnPageNotWorkingProperly(): Unit = driver.findElement(By.linkText(pageNotWorkingProperlyLink)).click()
 
-  def PageNotWorkingProperlyLink(PageNotWorkingProperly: String): Boolean =
+  def PageNotWorkingProperlyLink(PageNotWorkingProperly: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -198,7 +196,7 @@ object ActivityPage
           .textToBePresentInElementLocated(By.linkText(pageNotWorkingProperlyLink), PageNotWorkingProperly)
       )
 
-  def PageNotWorkingProperly(PageNotWorkingProperly: String): Boolean =
+  def PageNotWorkingProperly(PageNotWorkingProperly: String) =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -220,7 +218,7 @@ object ActivityPage
 
   }
 
-  def AccessibilitystatementLink(Accessibilitystatement: String): Boolean =
+  def AccessibilitystatementLink(Accessibilitystatement: String): java.lang.Boolean =
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
@@ -239,7 +237,7 @@ object ActivityPage
     HelpUsingGOVUK: String,
     Contact: String,
     WelshLanguage: String
-  ): Boolean = {
+  ) = {
     new FluentWait[WebDriver](driver)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
