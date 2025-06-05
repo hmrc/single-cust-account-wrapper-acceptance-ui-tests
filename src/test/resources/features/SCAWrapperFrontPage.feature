@@ -1,6 +1,6 @@
 @suite
 Feature: Wrapper integrating with sca-frontend
-  
+
   Scenario: User logins to SCA web application and should see default GOV.UK header along with service name so user is reassured they have signed into Government service.
     Given User login to the GG Login Page
     And User is on SCA start page
