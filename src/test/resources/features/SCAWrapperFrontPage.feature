@@ -4,7 +4,7 @@ Feature: Wrapper integrating with sca-frontend
   Scenario: User logins to SCA web application and should see default GOV.UK header along with service name so user is reassured they have signed into Government service.
     Given User login to the GG Login Page
     And User is on SCA start page
-    Then User should see SCA title page Header contain logo text as GOV.UK in govuk-header__logotype-text
+    Then User should see SCA title page Header contain logo text as GOV.UK in govuk-header__logotype
     Then User should see SCA title page Header contain service name as Single Customer Account in govuk-header__content
 
   Scenario: User logins to SCA web application and BTA menu only shown based on the SA enrolment rule.
@@ -21,7 +21,7 @@ Feature: Wrapper integrating with sca-frontend
 
   Scenario: The Phase banner if it is shown should only be positioned at the bottom of the page directly above the footer and feedback link should be redirect to 'Send your feedback' Page
     Given User login to the GG Login Page
-    Then default content of phase status should be ALPHA
+    Then default content of phase status should be Alpha
     Then User should able to see feedback link directly above the footer
     When User click on feedback link
     Then it should redirect to Send your feedback page
