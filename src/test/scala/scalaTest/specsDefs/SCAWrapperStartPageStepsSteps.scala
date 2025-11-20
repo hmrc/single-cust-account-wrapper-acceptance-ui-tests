@@ -279,7 +279,7 @@ object SCAWrapperStartPageStepsSteps extends BaseStepDef {
 
   // The message collection is dropped from mongo database
   def thenTheMessageCollectionIsDroppedFromMongoDatabase(): Unit = {
-    MongoConnection.dropCollection("message", "message")
+    MongoConnection.dropCollection("message", "secure-message")
   }
 
   // A message is posted to the messages API in the (.*) environment$
