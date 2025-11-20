@@ -19,7 +19,7 @@ package scalaTest.specs
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.featurespec.AnyFeatureSpec
 import scalaTest.specs.tags.WipTest
-import scalaTest.specsDefs.GGLoginStepsSteps.givenUserLoginToTheGGLoginPage
+import scalaTest.specsDefs.GGLoginStepsSteps.*
 import scalaTest.specsDefs.SCAStartPageStepsSteps.*
 import scalaTest.specsDefs.SCAWrapperStartPageStepsSteps.*
 
@@ -60,7 +60,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
 
     Scenario("User logins to SCA web application and should see following menu items.", WipTest) {
       Given("User login to the GG Login Page Without SA enrollment")
-        givenUserLoginToTheGGLoginPage()
+      givenUserLoginToTheGGLoginPageWithoutSAEnrollment()
 
       Then("User should see following option in menu Account home, Messages, Check progress, Profile and settings and Sign out")
         thenUserShouldSeeFollowingOptionInMenuX("Account home", "Messages", "Check progress", "Profile and settings", "Sign out")
@@ -68,7 +68,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
       Then("User should also see Account home icon besides account home menu option")
         thenUserShouldAlsoSeeXIconBesidesAccountHomeMenuOption("Account home")
 
-//      Then("User should not see Business tax account menu option")
+      Then("User should not see Business tax account menu option")
         thenUserShouldNotSeeBusinessTaxAccountMenuOption()
 
     }
@@ -185,8 +185,8 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
       And("A message is posted to the messages API in the local environment")
         andAMessageIsPostedToTheMessagesAPIInTheXEnvironment("local")
 
-//      Then("the user should see 1 as the number of messages")
-//        andTheUserShouldSeeXAsTheNumberOfMessages("1")
+      Then("the user should see 1 as the number of messages")
+        andTheUserShouldSeeXAsTheNumberOfMessages("1")
 
     }
 
