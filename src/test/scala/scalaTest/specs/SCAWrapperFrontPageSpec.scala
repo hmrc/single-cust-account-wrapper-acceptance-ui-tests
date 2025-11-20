@@ -30,7 +30,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
 
     Scenario("User logins to SCA web application and should see default GOV.UK header along with service name so user is reassured they have signed into Government service.") {
       Given("User login to the GG Login Page")
-      givenUserLoginToTheGGLoginPage()
+      loginWithGG()
 
       And("User is on SCA start page")
         thenUserIsOnSCAStartPage()
@@ -45,7 +45,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
 
     Scenario("User logins to SCA web application and BTA menu only shown based on the SA enrolment rule.") {
       Given("User login to the GG Login Page")
-        givenUserLoginToTheGGLoginPage()
+        loginWithGG()
 
       And("User is on SCA start page")
         thenUserIsOnSCAStartPage()
@@ -60,7 +60,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
 
     Scenario("User logins to SCA web application and should see following menu items.", WipTest) {
       Given("User login to the GG Login Page Without SA enrollment")
-      givenUserLoginToTheGGLoginPageWithoutSAEnrollment()
+      loginWithGGWithoutSAEnrollment()
 
       Then("User should see following option in menu Account home, Messages, Check progress, Profile and settings and Sign out")
         thenUserShouldSeeFollowingOptionInMenuX("Account home", "Messages", "Check progress", "Profile and settings", "Sign out")
@@ -75,7 +75,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
 
     Scenario("The Phase banner if it is shown should only be positioned at the bottom of the page directly above the footer and feedback link should be redirect to 'Send your feedback' Page") {
       Given("User login to the GG Login Page")
-        givenUserLoginToTheGGLoginPage()
+        loginWithGG()
 
       Then("default content of phase status should be Alpha")
         thenDefaultContentOfPhaseStatusShouldBeX("Alpha")
@@ -96,7 +96,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
 
     Scenario("Services should be able to configure the URL of Accessibility statement link") {
       Given("User login to the GG Login Page")
-        givenUserLoginToTheGGLoginPage()
+        loginWithGG()
 
       Then("User should see Accessibility statement link in the footer")
         thenUserShouldSeeXLinkInTheFooter("Accessibility statement")
@@ -111,7 +111,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
 
     Scenario("User logins to SCA web application and should see links in the footer") {
       Given("User login to the GG Login Page")
-        givenUserLoginToTheGGLoginPage()
+        loginWithGG()
 
       Then("User should see Cookies, Accessibility statement, Privacy policy, Terms and conditions, Help using GOV.UK, Contact and Rhestr o Wasanaethau Cymraeg links in the footer")
       thenUserShouldSee("Cookies", "Accessibility statement", "Privacy policy", "Terms and conditions", "Help using GOV.UK", "Contact", "Rhestr o Wasanaethau Cymraeg")
@@ -120,7 +120,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
 
     Scenario("User logins to SCA web application and should see Is this page not working properly? link and this link should lead to a page that says 'Get help with a technical problem'.") {
       Given("User login to the GG Login Page")
-        givenUserLoginToTheGGLoginPage()
+        loginWithGG()
 
       Then("User should see Is this page not working properly? (opens in new tab) directly above the footer")
         thenUserShouldSeeXDirectlyAboveTheFooter("Is this page not working properly? (opens in new tab)")
@@ -138,7 +138,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
 
     Scenario("User should be able to see the content in Welsh language") {
       Given("User login to the GG Login Page")
-        givenUserLoginToTheGGLoginPage()
+        loginWithGG()
 
       When("the user clicks on Cymraeg welesh language link of single-customer-account")
         whenTheUserClicksOnCymraeWeleshLanguageLink("single-customer-account")
@@ -177,7 +177,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
         thenTheMessageCollectionIsDroppedFromMongoDatabase()
 
       And("User login to the GG Login Page")
-        givenUserLoginToTheGGLoginPage()
+        loginWithGG()
 
       And("User is on SCA start page")
         thenUserIsOnSCAStartPage()
@@ -192,7 +192,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
 
     Scenario("User logins to SCA web application should be able to log out") {
       Given("User login to the GG Login Page")
-        givenUserLoginToTheGGLoginPage()
+        loginWithGG()
 
       And("User is on SCA start page")
         thenUserIsOnSCAStartPage()

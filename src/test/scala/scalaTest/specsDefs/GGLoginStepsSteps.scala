@@ -21,7 +21,7 @@ import uk.gov.hmrc.test.ui.pages.*
 object GGLoginStepsSteps {
 
   // ^User login to the GG Login Page$
-  def givenUserLoginToTheGGLoginPage(): Unit = {
+  def loginWithGG(): Unit = {
     GGLoginPage.navigateToAuthLoginStub()
         GGLoginPage.enterRedirectURL()
         GGLoginPage.selectConfidenceLevel()
@@ -31,7 +31,7 @@ object GGLoginStepsSteps {
   }
 
   // ^User login to the GG Login Page Without SA enrollment$
-  def givenUserLoginToTheGGLoginPageWithoutSAEnrollment(): Unit = {
+  def loginWithGGWithoutSAEnrollment(): Unit = {
     GGLoginPage.navigateToAuthLoginStub()
         GGLoginPage.enterRedirectURL()
         GGLoginPage.selectConfidenceLevel()
@@ -40,7 +40,7 @@ object GGLoginStepsSteps {
   }
 
   // ^User login to the GG Login Page with PTA enrolment$
-  def givenUserLoginToTheGGLoginPageWithPTAEnrolment(): Unit = {
+  def loginWithGGWithPTAEnrolment(): Unit = {
     GGLoginPage.navigateToAuthLoginStub()
         GGLoginPage.enterRedirectURL()
         GGLoginPage.selectConfidenceLevel()
@@ -50,7 +50,7 @@ object GGLoginStepsSteps {
   }
 
   // ^User login to the Chocs GG Login Page$
-  def givenUserLoginToTheChocsGGLoginPage(): Unit = {
+  def loginWithChocsGG(): Unit = {
     GGChocsLoginPage.navigateToAuthLoginStub()
         GGChocsLoginPage.enterRedirectURL()
         GGChocsLoginPage.selectConfidenceLevel()
@@ -61,7 +61,7 @@ object GGLoginStepsSteps {
   }
 
   // ^User login to the Chocs GG Login Page Without SA enrollment$
-  def givenUserLoginToTheChocsGGLoginPageWithoutSAEnrollment(): Unit = {
+  def loginWithChocsGGWithoutSAEnrollment(): Unit = {
     GGChocsLoginPage.navigateToAuthLoginStub()
         GGChocsLoginPage.enterRedirectURL()
         GGChocsLoginPage.selectConfidenceLevel()
@@ -71,7 +71,7 @@ object GGLoginStepsSteps {
   }
 
   // ^User login to the Chocs GG Login Page with PTA enrolment$
-  def givenUserLoginToTheChocsGGLoginPageWithPTAEnrolment(): Unit = {
+  def loginWithChocsWithPTAEnrolment(): Unit = {
     GGChocsLoginPage.navigateToAuthLoginStub()
         GGChocsLoginPage.enterRedirectURL()
         GGChocsLoginPage.selectConfidenceLevel()
@@ -81,7 +81,7 @@ object GGLoginStepsSteps {
   }
 
   // ^User login to the actions GG Login Page with nino (.*)$
-  def givenUserLoginToTheActionsGGLoginPageWithNinoX(ninoNumber: String): Unit = {
+  def loginToActionsGGWithNino(ninoNumber: String): Unit = {
     GGChocsLoginPage.navigateToAuthLoginStub()
         GGChocsLoginPage.enterRedirectActionURL()
         GGChocsLoginPage.selectConfidenceLevel()
@@ -91,7 +91,7 @@ object GGLoginStepsSteps {
   }
 
   // ^User login to the NINO GG Login Page$
-  def givenUserLoginToTheNINOGGLoginPage(): Unit = {
+  def loginToNinoGG(): Unit = {
     GGNINOLoginPage.navigateToAuthLoginStub()
         GGNINOLoginPage.enterRedirectURL()
         GGNINOLoginPage.selectConfidenceLevel()
@@ -101,7 +101,7 @@ object GGLoginStepsSteps {
   }
 
   // ^User login to the NINO GG Login Page Without SA enrollment$
-  def givenUserLoginToTheNINOGGLoginPageWithoutSAEnrollment(): Unit = {
+  def loginToNinoGGWithoutSAEnrollment(): Unit = {
     GGNINOLoginPage.navigateToAuthLoginStub()
         GGNINOLoginPage.enterRedirectURL()
         GGNINOLoginPage.selectConfidenceLevel()
@@ -110,7 +110,7 @@ object GGLoginStepsSteps {
   }
 
   // ^User login to the NINO GG Login Page with PTA enrolment$
-  def givenUserLoginToTheNINOGGLoginPageWithPTAEnrolment(): Unit = {
+  def loginToNinoGGWithPTAEnrolment(): Unit = {
     GGNINOLoginPage.navigateToAuthLoginStub()
         GGNINOLoginPage.enterRedirectURL()
         GGNINOLoginPage.selectConfidenceLevel()
@@ -120,7 +120,7 @@ object GGLoginStepsSteps {
   }
 
   // ^I accesses the (.*) page with nino (.*)$
-  def givenIAccessesTheXPageWithNinoX(url: String, nino: String): Unit = {
+  def accessPageWithNino(url: String, nino: String): Unit = {
     url match {
           case "/actions" =>
             GGChildBenefitLogin.navigateToServiceUrl("actions", url)
@@ -144,7 +144,7 @@ object GGLoginStepsSteps {
   }
 
   // ^User login to the activity Login Page$
-  def givenUserLoginToTheActivityLoginPage(): Unit = {
+  def loginToActivityPage(): Unit = {
     GGLoginPage.navigateToAuthLoginStub()
         GGLoginPage.enterRedirectActivityURL()
         GGLoginPage.selectConfidenceLevel()
