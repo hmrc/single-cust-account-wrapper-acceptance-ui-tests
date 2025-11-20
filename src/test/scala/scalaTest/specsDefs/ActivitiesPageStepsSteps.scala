@@ -28,16 +28,16 @@ import java.time.format.DateTimeFormatter
 object ActivitiesPageStepsSteps {
 
   // ^User is on activity start page$
-  def andUserIsOnActivityStartPage(): Unit = {
+  def userIsOnActivityStartPage(): Unit = {
   assert(SCAStartPage.verifySCAStartPage())
   }
   
-  def UserShouldAbleToSeeXInX(value: String, locator: String): Unit = {
+  def userShouldAbleToSee(value: String, locator: String): Unit = {
     SCAStartPage.assertContent(By.xpath("//*[@class='" + locator + "']"), value)
   }
 
   // ^User should see test text on activity page$
-  def thenUserShouldSeeTestTextOnActivityPage(): Unit = {
+  def userShouldSeeTestTextOnActivityPage(): Unit = {
     val date = LocalDate.now.minusMonths(2).minusDays(1)
         val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
         val formattedString = date.format(formatter)
@@ -46,7 +46,7 @@ object ActivitiesPageStepsSteps {
   }
 
   // ^the user sees PAYE income date on the page$
-  def thenTheUserSeesPAYEIncomeDateOnThePage(): Unit = {
+  def userSeesPAYEIncomeDateOnPage(): Unit = {
     val date = LocalDate.now.minusMonths(2).minusDays(1)
         val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
         val formattedString = date.format(formatter)
@@ -55,7 +55,7 @@ object ActivitiesPageStepsSteps {
   }
 
   // the user sees text latest tax code change date on the page
-  def andTheUserSeesTextLatestTaxCodeChangeDateOnThePage(): Unit = {
+  def userSeesTextLatestTaxCodeChangeDateOnThePage(): Unit = {
     val date = LocalDate.now.minusMonths(2).minusDays(1)
         val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
         val formattedString = date.format(formatter)
@@ -63,27 +63,27 @@ object ActivitiesPageStepsSteps {
   }
   
   // ^the user sees text (.*) on the page$
-  def andTheUserSeesTextXOnThePage(value: String): Unit = {
+  def userSeesTextOnThePage(value: String): Unit = {
     SCAStartPage.assertContent(By.xpath("//*[contains(text(),'" + value + "')]"), value)
   }
 
   // ^the user should sees text (.*) on the page$
-  def andTheUserShouldSeesTextXOnThePage(value: String): Unit = {
+  def userShouldSeesTextOnThePage(value: String): Unit = {
     SCAStartPage.assertContent(By.xpath("//*[contains(text(),'" + value + "')]"), value)
   }
 
   // ^the user should see latest tax code text (.*) on the page$
-  def andTheUserShouldSeesLatestTaxCodeTextXOnThePage(value: String): Unit = {
+  def userShouldSeesLatestTaxCodeTextOnThePage(value: String): Unit = {
     SCAStartPage.assertContent(By.xpath("//*[contains(a/text(), '" + value + "')]"), value)
   }
 
   // User should not see (.*) text on activity page$
-  def thenUserShouldNotSeeXTextOnActivityPage(value: String): Unit = {
+  def userShouldNotSeeTextOnActivityPage(value: String): Unit = {
     assertTrue(Driver.instance.findElements(By.xpath("//*[contains(text(),'" + value + "')]")).isEmpty)
   }
 
   // ^the user sees text as a (.*) date on the page$
-  def andTheUserSeesTextAsAXDateOnThePage(value: String): Unit = {
+  def userSeesTextDateOnThePage(value: String): Unit = {
     value match {
 
           case "HMRC paid you child benefit" =>

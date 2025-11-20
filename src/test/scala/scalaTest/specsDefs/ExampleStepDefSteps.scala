@@ -23,12 +23,12 @@ import uk.gov.hmrc.test.ui.pages.CheckYourVATHomePage.provideVATPeriod
 object ExampleStepDefSteps {
 
   // I am on the Check your VAT flat rate service
-  def givenIAmOnTheCheckYourVATFlatRateService(): Unit = {
+  def checkYourVATFlatRateService(): Unit = {
     CheckYourVATHomePage.loadPage
   }
 
   // I submit my VAT for goods under £1000 for the year
-  def whenISubmitMyVATForGoodsUnder1000ForTheYear(): Unit = {
+  def submitVATForGoodsUnder1000Year(): Unit = {
     provideVATPeriod("Annually")
           .provideTurnoverAmount("1000")
           .provideCostOfGoodsAmount("999")
@@ -36,7 +36,7 @@ object ExampleStepDefSteps {
   }
 
   // I submit my VAT information for goods over £1000 for the year
-  def whenISubmitMyVATInformationForGoodsOver1000ForTheYear(): Unit = {
+  def submitVATInformationForGoodsOver1000Year(): Unit = {
     provideVATPeriod("Annually")
           .provideTurnoverAmount("1000")
           .provideCostOfGoodsAmount("1000")
@@ -44,7 +44,7 @@ object ExampleStepDefSteps {
   }
 
   // I submit my VAT information for goods under £250 for the quarter
-  def whenISubmitMyVATInformationForGoodsUnder250ForTheQuarter(): Unit = {
+  def submitVATInformationForGoodsUnder250Quarter(): Unit = {
     provideVATPeriod("Quarterly")
           .provideTurnoverAmount("1000")
           .provideCostOfGoodsAmount("249")
@@ -52,7 +52,7 @@ object ExampleStepDefSteps {
   }
 
   // I submit my VAT information for goods for £250 for the quarter
-  def whenISubmitMyVATInformationForGoodsFor250ForTheQuarter(): Unit = {
+  def submitMyInformationForGoodsFor250Quarter(): Unit = {
     provideVATPeriod("Quarterly")
           .provideTurnoverAmount("1000")
           .provideCostOfGoodsAmount("250")
@@ -60,12 +60,12 @@ object ExampleStepDefSteps {
   }
 
   // I will be asked to use the 16.5% VAT flat rate
-  def thenIWillBeAskedToUseThe16VATFlatRate(): Unit = {
+  def use16PercentFlatRate(): Unit = {
     result.equals(useSetVATFlatRate)
   }
 
   // I will be asked to use the VAT flat rate
-  def thenIWillBeAskedToUseTheVATFlatRate(): Unit = {
+  def useTheVATFlatRate(): Unit = {
     result.equals(useUniqueVATFlatRate)
   }
 
