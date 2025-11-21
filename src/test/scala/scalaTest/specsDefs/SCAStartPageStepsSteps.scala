@@ -47,7 +47,7 @@ object SCAStartPageStepsSteps extends BaseStepDef{
     SCAStartPage.assertContent(By.xpath("//*[@class='" + locator + "']"), value)
   }
 
-  // User should see SCA user name as (.*)$
+  // User should see SCA username as (.*)$
   def userShouldSeeSCAUserName(name: String): Unit = {
     assert(SCAStartPage.searchResults(name))
   }

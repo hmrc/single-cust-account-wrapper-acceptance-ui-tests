@@ -51,10 +51,10 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
         userIsOnSCAStartPage()
 
       When("SA enrolment is applied")
-        whenSAEnrolmentIsApplied()
+        SAEnrolmentIsApplied()
 
       Then("User should see Business tax account menu option")
-        thenUserShouldSeeXMenuOption("Business tax account")
+        menuOption("Business tax account")
 
     }
 
@@ -63,13 +63,13 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
       loginWithGGWithoutSAEnrollment()
 
       Then("User should see following option in menu Account home, Messages, Check progress, Profile and settings and Sign out")
-        thenUserShouldSeeFollowingOptionInMenuX("Account home", "Messages", "Check progress", "Profile and settings", "Sign out")
+        optionsInMenu("Account home", "Messages", "Check progress", "Profile and settings", "Sign out")
 
       Then("User should also see Account home icon besides account home menu option")
-        thenUserShouldAlsoSeeXIconBesidesAccountHomeMenuOption("Account home")
+        iconBesidesAccountHomeMenu("Account home")
 
       Then("User should not see Business tax account menu option")
-        thenUserShouldNotSeeBusinessTaxAccountMenuOption()
+        notSeeBusinessTaxAccount()
 
     }
 
@@ -78,19 +78,19 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
         loginWithGG()
 
       Then("default content of phase status should be Alpha")
-        thenDefaultContentOfPhaseStatusShouldBeX("Alpha")
+        defaultContentOfPhaseStatus("Alpha")
 
       Then("User should able to see feedback link directly above the footer")
-        thenUserShouldAbleToSeeXLinkDirectlyAboveTheFooter("feedback")
+        linkDirectlyAboveTheFooter("feedback")
 
       When("User click on feedback link")
-        whenUserClickOnFeedbackLink()
+        clickOnFeedbackLink()
 
       Then("it should redirect to Send your feedback page")
-        thenItShouldRedirectToXPage("Send your feedback")
+        redirectToPage("Send your feedback")
 
       Then("Verify redirected URL should contains service name as single-customer-account")
-        thenVerifyRedirectedURLShouldContainsServiceNameAsX("single-customer-account")
+        verifyRedirectedURLContainsServiceName("single-customer-account")
 
     }
 
@@ -99,13 +99,13 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
         loginWithGG()
 
       Then("User should see Accessibility statement link in the footer")
-        thenUserShouldSeeXLinkInTheFooter("Accessibility statement")
+        seeLinkInTheFooter("Accessibility statement")
 
       When("User click on Accessibility statement link")
-        whenUserClickOnAccessibilityStatementLink()
+        clickOnAccessibilityStatement()
 
       Then("Verify redirected URL should contains service name as single-customer-account")
-        thenVerifyRedirectedURLShouldContainsServiceNameAsX("single-customer-account")
+        verifyRedirectedURLContainsServiceName("single-customer-account")
 
     }
 
@@ -114,7 +114,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
         loginWithGG()
 
       Then("User should see Cookies, Accessibility statement, Privacy policy, Terms and conditions, Help using GOV.UK, Contact and Rhestr o Wasanaethau Cymraeg links in the footer")
-      thenUserShouldSee("Cookies", "Accessibility statement", "Privacy policy", "Terms and conditions", "Help using GOV.UK", "Contact", "Rhestr o Wasanaethau Cymraeg")
+      userShouldSee("Cookies", "Accessibility statement", "Privacy policy", "Terms and conditions", "Help using GOV.UK", "Contact", "Rhestr o Wasanaethau Cymraeg")
 
     }
 
@@ -123,16 +123,16 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
         loginWithGG()
 
       Then("User should see Is this page not working properly? (opens in new tab) directly above the footer")
-        thenUserShouldSeeXDirectlyAboveTheFooter("Is this page not working properly? (opens in new tab)")
+        textDirectlyAboveTheFooter("Is this page not working properly? (opens in new tab)")
 
       When("User click on Is this page not working properly link")
-        whenUserClickOnIsThisPageNotWorkingProperlyLink()
+        clickOnIsThisPageNotWorkingProperly()
 
       Then("User should redirect to Get help with a technical problem page")
-        thenUserShouldRedirectToXPage("Get help with a technical problem")
+        redirectTo("Get help with a technical problem")
 
       Then("Verify redirected URL should contains service name as single-customer-account")
-        thenVerifyRedirectedURLShouldContainsServiceNameAsX("single-customer-account")
+        verifyRedirectedURLContainsServiceName("single-customer-account")
 
     }
 
@@ -141,22 +141,22 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
         loginWithGG()
 
       When("the user clicks on Cymraeg welesh language link of single-customer-account")
-        whenTheUserClicksOnCymraeWeleshLanguageLink("single-customer-account")
+        clickOnCymraeWeleshLanguage("single-customer-account")
 
       Then("the user sees relevant content in welsh language")
-        andTheUserSeesRelevantContentInWelshLanguage()
+        seesRelevantContentInWelshLanguage()
 
       And("the user can not click language Cymraeg link")
-        andTheUserCanNotClickLanguageLink("Cymraeg")
+        cannotClickLanguageLink("Cymraeg")
 
       When("the user clicks on English language link of single-customer-account")
-        whenTheUserClicksOnEnglishLanguageLink("single-customer-account")
+        clickOnEnglishLanguage("single-customer-account")
 
       Then("the user can not click language English link")
-        andTheUserCanNotClickLanguageLink("English")
+        cannotClickLanguageLink("English")
 
       And("the user sees relevant content in English language")
-        andTheUserSeesRelevantContentInEnglishLanguage()
+        seesRelevantContentInEnglishLanguage()
 
     }
 
@@ -165,16 +165,16 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
         userIsOnSCAStartPage()
 
       Then("User should see cookies banner")
-        thenUserShouldSeeCookiesBanner()
+        seeCookiesBanner()
 
       Then("User should able to close it")
-        thenUserShouldAbleToCloseIt()
+        closeCookies()
 
     }
 
     Scenario("Check the messages icon displays correctly") {
       Given("The message collection is dropped from mongo database")
-        thenTheMessageCollectionIsDroppedFromMongoDatabase()
+        messageCollectionDroppedFromMongoDatabase()
 
       And("User login to the GG Login Page")
         loginWithGG()
@@ -183,10 +183,10 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
         userIsOnSCAStartPage()
 
       And("A message is posted to the messages API in the local environment")
-        andAMessageIsPostedToTheMessagesAPIInTheXEnvironment("local")
+        messagePostedToTheMessagesAPI("local")
 
       Then("the user should see 1 as the number of messages")
-        andTheUserShouldSeeXAsTheNumberOfMessages("1")
+        numberOfMessages("1")
 
     }
 
