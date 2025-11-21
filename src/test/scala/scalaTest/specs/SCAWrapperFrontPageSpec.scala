@@ -33,13 +33,13 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
       loginWithGG()
 
       And("User is on SCA start page")
-        thenUserIsOnSCAStartPage()
+        userIsOnSCAStartPage()
 
       Then("User should see SCA title page Header contain logo text as GOV.UK in govuk-header__logotype")
-        thenUserShouldSeeXTitlePageHeaderContainLogoTextAsXInX("SCA", "GOV.UK", "govuk-header__logotype")
+        titlePageHeaderContainLogoText("SCA", "GOV.UK", "govuk-header__logotype")
 
       Then("User should see SCA title page Header contain service name as Single Customer Account in govuk-header__content")
-        thenUserShouldSeeXTitlePageHeaderContainServiceNameAsXInX("SCA", "Single Customer Account", "govuk-header__content")
+        titlePageHeaderContainServiceName("SCA", "Single Customer Account", "govuk-header__content")
 
     }
 
@@ -48,7 +48,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
         loginWithGG()
 
       And("User is on SCA start page")
-        thenUserIsOnSCAStartPage()
+        userIsOnSCAStartPage()
 
       When("SA enrolment is applied")
         whenSAEnrolmentIsApplied()
@@ -162,7 +162,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
 
     Scenario("User logins to SCA web application should see the cookies banner and able to close it") {
       And("User is on SCA start page")
-        thenUserIsOnSCAStartPage()
+        userIsOnSCAStartPage()
 
       Then("User should see cookies banner")
         thenUserShouldSeeCookiesBanner()
@@ -180,7 +180,7 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
         loginWithGG()
 
       And("User is on SCA start page")
-        thenUserIsOnSCAStartPage()
+        userIsOnSCAStartPage()
 
       And("A message is posted to the messages API in the local environment")
         andAMessageIsPostedToTheMessagesAPIInTheXEnvironment("local")
@@ -195,13 +195,13 @@ class SCAWrapperFrontPageSpec extends AnyFeatureSpec with Matchers with BaseSpec
         loginWithGG()
 
       And("User is on SCA start page")
-        thenUserIsOnSCAStartPage()
+        userIsOnSCAStartPage()
 
       Then("User should see Sign out button")
-        thenUserShouldSeeXButton("Sign out")
+        seeButton("Sign out")
 
       Then("User clicks on Sign out button")
-        thenUserClicksOnSignOutButton()
+        clickSignOut()
 
     }
   }
