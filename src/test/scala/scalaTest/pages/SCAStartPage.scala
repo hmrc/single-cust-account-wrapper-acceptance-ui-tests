@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package scalaTest.pages
 
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, WebDriverWait}
 import org.openqa.selenium.{By, WebDriver, WebElement}
 import org.scalatest.matchers.must.Matchers.*
+import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.test.ui.PagePaths.{ActionsPagePaths, FeedbackPagePaths, GGloginPagePaths, SCAStartPagePaths}
 import uk.gov.hmrc.test.ui.pages.config.Configuration
 
@@ -26,100 +27,100 @@ import java.time.Duration
 
 object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths with SCAStartPagePaths with FeedbackPagePaths{
   def verifySCAStartPage() =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.urlMatches(Configuration.settings.APPROOT))
 
   def searchResults(name: String) =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.id(accountName), name))
 
   def SCAMenuResult(TaxesAndBenefits: String, Messages: String, YourDetails: String) = {
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.id(TaxandBenefits), TaxesAndBenefits))
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.id(Msgs), Messages))
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.id(PersonalDetails), YourDetails))
   }
 
   def searchResult(PAYE: String, SA: String, StatePension: String) = {
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.id(PayAsYouEarn), PAYE))
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.id(selfAssesment), SA))
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.id(Pension), StatePension))
   }
 
   def searchNISP(statePensionLink: String, niLink: String) = {
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(statePensionURL), statePensionLink))
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(niURL), niLink))
   }
 
-  def clickOnTaxReturn(): Unit = driver.findElement(By.linkText(taxReturnLink)).click()
+  def clickOnTaxReturn(): Unit = Driver.instance.findElement(By.linkText(taxReturnLink)).click()
 
-  def clickOnStatePensionSummary(): Unit = driver.findElement(By.linkText(statePensionLink)).click()
+  def clickOnStatePensionSummary(): Unit = Driver.instance.findElement(By.linkText(statePensionLink)).click()
 
   def verifyStatePensionPageURL() =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.urlMatches(Configuration.settings.STATEPENSION_PAGE))
 
-  def clickOnNIRecord(): Unit = driver.findElement(By.linkText(niLink)).click()
+  def clickOnNIRecord(): Unit = Driver.instance.findElement(By.linkText(niLink)).click()
 
   def verifyNIRecordPageURL() =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.urlMatches(Configuration.settings.NI_PAGE))
 
   def checkMessage(Message: String) =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(scaMessage), Message))
 
-  def clickOnMessage(): Unit = driver.findElement(By.partialLinkText(yourMessage)).click()
+  def clickOnMessage(): Unit = Driver.instance.findElement(By.partialLinkText(yourMessage)).click()
 
-  def clickOnBackButton(): Unit = driver.findElement(By.className(backButton)).click()
+  def clickOnBackButton(): Unit = Driver.instance.findElement(By.className(backButton)).click()
 
-  def clickOnFeedback(): Unit = driver.findElement(By.xpath(FeedbacklinkJenkins)).click()
+  def clickOnFeedback(): Unit = Driver.instance.findElement(By.xpath(FeedbacklinkJenkins)).click()
 
-  def returnToPreviousPage(): Unit = driver.navigate.back()
+  def returnToPreviousPage(): Unit = Driver.instance.navigate.back()
 
-  def clickOnSignOut(): Unit = driver.findElement(By.xpath(SignOutLink)).click()
+  def clickOnSignOut(): Unit = Driver.instance.findElement(By.xpath(SignOutLink)).click()
 
   def verifyFeedbackPageURL() =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.urlMatches(Configuration.settings.FEEDBACK_PAGE))
 
-  def assertContent(id: By, expectedText: String)(implicit driver: WebDriver): Unit = {
-    val wait = new FluentWait[WebDriver](driver)
+  def assertContent(id: By, expectedText: String): Unit = {
+    val wait = new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(15))
       .pollingEvery(Duration.ofMillis(500))
       .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
@@ -132,7 +133,7 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
   }
 
   def clickOn(by: By): Unit =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .until(ExpectedConditions.elementToBeClickable(by))
       .click()
@@ -141,7 +142,7 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
     clickOn(By.id(id))
 
   def SCABTALink(BTA: String) =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(BusinessAccountLink), BTA))
@@ -153,23 +154,23 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
                       ProfileAndSettings: String,
                       SignOut: String
                     ) = {
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(AccountHomeLink), AccountHome))
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(MessagesLink), Messages))
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(CheckProgressLink), CheckProgress))
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(ProfileAndSettingsLink), ProfileAndSettings))
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(SignOutLink), SignOut))
@@ -177,34 +178,34 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
   }
 
   def confirmActionsResult(message: String) =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector(actionsResult), message))
 
 
   def FeedBackLink(FeedbackLink: String) =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.className("govuk-phase-banner__text"), FeedbackLink))
 
   def FeedBackLinkJenkins(FeedbackLink: String) =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(FeedbacklinkJenkins), FeedbackLink))
 
   def FeedBackPage(Feedbackpage: String) =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .ignoring(classOf[Nothing])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath(pageFeedback), Feedbackpage))
 
-  def clickOnPageNotWorkingProperly(): Unit = driver.findElement(By.linkText(pageNotWorkingProperlyLink)).click()
+  def clickOnPageNotWorkingProperly(): Unit = Driver.instance.findElement(By.linkText(pageNotWorkingProperlyLink)).click()
 
   def PageNotWorkingProperlyLink(PageNotWorkingProperly: String) =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .pollingEvery(Duration.ofMillis(500))
       .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
@@ -215,7 +216,7 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
       )
 
   def PageNotWorkingProperly(PageNotWorkingProperly: String) =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .pollingEvery(Duration.ofMillis(500))
       .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
@@ -227,19 +228,19 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
   def moveToTab(): WebDriver = {
 
     import java.util
-    val newTb = new util.ArrayList[String](driver.getWindowHandles)
-    driver.switchTo.window(newTb.get(1))
-    driver.switchTo.window(newTb.get(1))
+    val newTb = new util.ArrayList[String](Driver.instance.getWindowHandles)
+    Driver.instance.switchTo.window(newTb.get(1))
+    Driver.instance.switchTo.window(newTb.get(1))
   }
 
   def VerifyServiceName(Serivename: String): Unit = {
-    val url = driver.getCurrentUrl
+    val url = Driver.instance.getCurrentUrl
     assert(url.contains(Serivename))
 
   }
 
   def AccessibilitystatementLink(Accessibilitystatement: String) : java.lang.Boolean =
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .pollingEvery(Duration.ofMillis(500))
       .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
@@ -249,7 +250,7 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
           .textToBePresentInElementLocated(By.linkText(AccessibilitystatementLink), Accessibilitystatement)
       )
 
-  def clickOnAccessibilitystatementLink(): Unit = driver.findElement(By.linkText(AccessibilitystatementLink)).click()
+  def clickOnAccessibilitystatementLink(): Unit = Driver.instance.findElement(By.linkText(AccessibilitystatementLink)).click()
 
   def WrapperSCAFooter(
                         Cookies: String,
@@ -260,13 +261,13 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
                         Contact: String,
                         WelshLanguage: String
                       ) = {
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .pollingEvery(Duration.ofMillis(500))
       .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
       .ignoring(classOf[org.openqa.selenium.StaleElementReferenceException])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.linkText("Cookies"), Cookies))
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .pollingEvery(Duration.ofMillis(500))
       .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
@@ -275,13 +276,13 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
         ExpectedConditions
           .textToBePresentInElementLocated(By.linkText("Accessibility statement"), AccessibilityStatement)
       )
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .pollingEvery(Duration.ofMillis(500))
       .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
       .ignoring(classOf[org.openqa.selenium.StaleElementReferenceException])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.linkText("Privacy policy"), PrivacyPolicy))
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .pollingEvery(Duration.ofMillis(500))
       .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
@@ -289,20 +290,20 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
       .until(
         ExpectedConditions.textToBePresentInElementLocated(By.linkText("Terms and conditions"), TermsAndConditions)
       )
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .pollingEvery(Duration.ofMillis(500))
       .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
       .ignoring(classOf[org.openqa.selenium.StaleElementReferenceException])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.linkText("Help using GOV.UK"), HelpUsingGOVUK))
 
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .pollingEvery(Duration.ofMillis(500))
       .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
       .ignoring(classOf[org.openqa.selenium.StaleElementReferenceException])
       .until(ExpectedConditions.textToBePresentInElementLocated(By.linkText("Contact"), Contact))
-    new FluentWait[WebDriver](driver)
+    new FluentWait[WebDriver](Driver.instance)
       .withTimeout(Duration.ofSeconds(Configuration.settings.PAGE_TIMEOUT_SECS))
       .pollingEvery(Duration.ofMillis(500))
       .ignoring(classOf[org.openqa.selenium.NoSuchElementException])
@@ -316,16 +317,16 @@ object SCAStartPage extends BasePage with GGloginPagePaths with ActionsPagePaths
 
   def textContentVerify(txts: List[String]) =
     for (txt <- txts)
-      assert(driver.getPageSource.contains(txt), s"\n'$txt' text was not found on the page")
+      assert(Driver.instance.getPageSource.contains(txt), s"\n'$txt' text was not found on the page")
 
   def clickOnCymraeg(Servicename: String): Unit = {
     val xpath = s"//a[@href='/$Servicename/hmrc-frontend/language/cy']"
-    val wait = new WebDriverWait(driver, Duration.ofSeconds(10))
+    val wait = new WebDriverWait(Driver.instance, Duration.ofSeconds(10))
     val element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)))
     element.click()
   }
 
   def clickOnEnglish(Servicename: String): Unit =
-    driver.findElement(By.xpath("//a[@href='/" + Servicename + "/hmrc-frontend/language/en']")).click()
+    Driver.instance.findElement(By.xpath("//a[@href='/" + Servicename + "/hmrc-frontend/language/en']")).click()
 
 }
